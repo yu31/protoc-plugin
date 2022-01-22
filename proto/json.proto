@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package json;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/yu31/proto-go-plugin/pkg/pb/jsonpb;jsonpb";
+
+// Package name of class.
+option java_package = "com.github.yu31.jsonpb";
+// File name of class.
+option java_outer_classname = "JsonPB";
+option java_multiple_files = false;
+
+
+// SerializeOptions in file scope.
+extend google.protobuf.FileOptions {
+	SerializeOptions file = 4001;
+}
+
+// SerializeOptions in message scope.
+extend google.protobuf.MessageOptions {
+	SerializeOptions message = 5001;
+}
+
+// Options in field scope.
+extend google.protobuf.FieldOptions {
+	FieldOptions field = 6001;
+}
+
+// Options in oneof scope.
+extend google.protobuf.OneofOptions {
+	OneofOptions oneof = 7001;
+}
+
+// Options in enum scope.
+extend google.protobuf.EnumOptions {
+	// Whether use string format for enum type. default use integer.
+	EnumOptions enum = 8001;
+}
+
+enum NameStyle {
+	NameStyleUnset = 0;
+	TextName   = 1; // Protobuf's text name (field.Desc.TextName()). This is default.
+	GoName     = 2; // The golang's field name. It is upper camel case.
+	JSONName   = 3; // Protobuf's json name (field.Desc.JSONName()). It is lower camel case.
+}
+
+message SerializeOptions {
+	// name_style represents the key name in json format.
+	optional NameStyle name_style = 1;
+	
+	// Whether ignore generating code for the file or message.
+	optional bool ignore = 2;
+	
+	// Whether use string format for enum type field. default use integer.
+	optional bool use_enum_string = 3;
+	
+	// Whether hide the key of oneof in json format.
+	optional bool hide_oneof_key = 4;
+	
+	// Whether omit the field of empty value in encoding(MarshalJSON).
+	// It same as the struct tag `json:"xxx,omitempty"`.
+	optional bool omitempty = 5;
+	
+	// disallow_unknown_fields causes the Decoder to return an error when the destination
+	// is a struct and the input contains object keys which do not match any
+	// non-ignored, exported fields in the destination.
+	optional bool disallow_unknown_fields = 6;
+}
+
+message OneofOptions {
+	// The key name in json format. Default is field's name of golang.
+	// if "json" is "-", The field will be ignore.
+	optional string json = 1;
+	
+	// If true, the field will be ignore. It same as `json: "-"`
+	optional bool ignore = 2;
+	
+	// Whether omit the field of empty value in encoding(MarshalJSON).
+	// It same as the struct tag `json:"xxx,omitempty"`.
+	optional bool omitempty = 3;
+	
+	// Whether hide the key of oneof in json format.
+	optional bool hide_oneof_key = 4;
+}
+
+message EnumOptions {
+	// Whether use string format for enum type. default use integer.
+	optional bool use_enum_string = 1;
+}
+
+message FieldOptions {
+	// The key name in json format.
+	// if "json" is "-", The field will be ignore.
+	optional string json = 1;
+
+	// If true, the field will be ignore. It same as `json: "-"`
+	optional bool ignore = 2;
+
+	// Whether omit the field of empty value in encoding(MarshalJSON).
+	// It same as the struct tag `json:"xxx,omitempty"`.
+	optional bool omitempty = 3;
+
+	// Whether use string format for enum type. default use integer.
+	optional bool use_enum_string = 4;
+}

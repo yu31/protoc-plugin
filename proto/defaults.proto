@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package defaults;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/yu31/proto-go-plugin/pkg/pb/defaultspb;defaultspb";
+
+// Package name of class.
+option java_package = "com.github.yu31.defaultspb";
+// File name of class.
+option java_outer_classname = "DefaultsPB";
+option java_multiple_files = false;
+
+
+extend google.protobuf.FieldOptions {
+  FieldOptions field = 64020;
+}
+
+extend google.protobuf.OneofOptions {
+  OneOfOptions oneof = 64021;
+}
+
+message FieldOptions {
+  // Set default value for field that types includes:
+  // string, enum, bool,
+  // int32, int64, sint32, sint64, sfixed32, sfixed64,
+  // uint32, uint64,fixed32, fixed64.
+  optional string basic = 101;
+
+  // Set default value for field of types repeated.
+  repeated string array = 102;
+
+  // Set default value for field of types map.
+  map<string, string> map = 103;
+}
+
+message OneOfOptions {
+  // The field name that in oneof part.
+  optional string field = 1;
+}

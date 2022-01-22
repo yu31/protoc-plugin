@@ -1,0 +1,480 @@
+syntax = "proto3";
+
+package validator;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/yu31/proto-go-plugin/pkg/pb/validatorpb;validatorpb";
+
+// Package name of class.
+option java_package = "com.github.yu31.validatorpb";
+// File name of class.
+option java_outer_classname = "ValidatorPB";
+option java_multiple_files = false;
+
+
+// Validation options applied at the field level
+extend google.protobuf.FieldOptions {
+  ValidOptions field = 65020;
+}
+
+// Validation options applied at the oneof level
+extend google.protobuf.OneofOptions {
+  ValidOptions oneof = 65031;
+}
+
+message ValidOptions {
+  CheckIf check_if = 1;
+  TagOptions tags = 2;
+}
+
+message CheckIf {
+  string field = 1; // the name of field.
+  TagOptions tags = 2;
+}
+
+// TagOptions encapsulates the options for each type of field. Depending on the
+// field, the correct set should be used to ensure proper validations.
+message TagOptions {
+  oneof kind {
+    // OneOf Field types
+    OneOfTags   oneof = 20;
+
+    // Basic Field Types
+    FloatTags    float    = 21;
+    IntTags      int      = 22;
+    UintTags     uint     = 23;
+    StringTags   string   = 24;
+    BytesTags    bytes    = 25;
+    BoolTags     bool     = 26;
+    EnumTags     enum     = 27;
+
+    // Complex Field Types
+    MessageTags  message  = 28;
+    RepeatedTags repeated = 29;
+    MapTags      map      = 30;
+  }
+}
+
+// OneOfOptions describe the constraints applied to the values type of oneof.
+message OneOfTags {
+  // not_null ensures that exactly one the field options in a oneof is set;
+  // validation fails if no fields in the oneof are set.
+  optional bool not_null = 1;
+}
+
+// FloatOptions describe the constraints applied to the values type of
+// `float` and `double`.
+message FloatTags {
+  optional double eq  = 3;
+  optional double ne  = 4;
+  optional double lt  = 5;
+  optional double gt  = 6;
+  optional double lte = 7;
+  optional double gte = 8;
+
+  repeated double in     = 9;
+  repeated double not_in = 10;
+}
+
+// IntOptions describe the constraints applied to the values type of
+// `int32`, `int64`, `sint32`, `sint64`, `sfixed32`, `sfixed64`.
+message IntTags {
+  // eq specifies that this field must be equal to the specified value.
+  optional int64 eq  = 3;
+
+  // ne specifies that this field must be not equal to the specified value.
+  optional int64 ne  = 4;
+
+  // lt specifies that this field must be less than the specified value.
+  optional int64 lt  = 5;
+
+  // gt specifies that this field must be greater than the specified value.
+  optional int64 gt  = 6;
+
+  // lte specifies that this field must be less than or equal to the specified value.
+  optional int64 lte = 7;
+
+  // gte specifies that this field must be greater than or equal to the specified value.
+  optional int64 gte = 8;
+
+  // in specifies that this field must be in the specified value lists.
+  repeated int64 in     = 9;
+
+  // not_in specifies that this field must not be in the specified value lists.
+  repeated int64 not_in = 10;
+}
+
+// UintOptions describe the constraints applied to the values type of
+// `uint32`, `uint64`, `fixed32`, `fixed64`.
+message UintTags {
+  // eq specifies that this field must be equal to the specified value.
+  optional uint64 eq  = 3;
+
+  // ne specifies that this field must be not equal to the specified value.
+  optional uint64 ne  = 4;
+
+  // lt specifies that this field must be less than the specified value.
+  optional uint64 lt  = 5;
+
+  // gt specifies that this field must be greater than the specified value.
+  optional uint64 gt  = 6;
+
+  // lte specifies that this field must be less than or equal to the specified value.
+  optional uint64 lte = 7;
+
+  // gte specifies that this field must be greater than or equal to the specified value.
+  optional uint64 gte = 8;
+
+  // in specifies that this field must be in the specified value lists.
+  repeated uint64 in     = 9;
+
+  // not_in specifies that this field must not be in the specified value lists.
+  repeated uint64 not_in = 10;
+}
+
+// StringOptions describe the constraints applied to the values type of `string`.
+message StringTags {
+  // eq specifies that this field must be equal to the specified value.
+  optional string eq  = 3;
+
+  // ne specifies that this field must be not equal to the specified value.
+  optional string ne  = 4;
+
+  // lt specifies that this field must be less than the specified value.
+  optional string lt  = 5;
+
+  // gt specifies that this field must be greater than the specified value.
+  optional string gt  = 6;
+
+  // lte specifies that this field must be less than or equal to the specified value.
+  optional string lte = 7;
+
+  // gte specifies that this field must be greater than or equal to the specified value.
+  optional string gte = 8;
+
+  // in specifies that this field must be in the specified value lists.
+  repeated string in     = 9;
+
+  // not_in specifies that this field must not be in the specified value lists.
+  repeated string not_in = 10;
+
+  // char_len_eq specifies that this field must be equal to the specified number of
+  // characters (Unicode code points). Note that the number of
+  // characters may differ from the number of bytes in the string.
+  optional int64 char_len_eq  = 20;
+
+  // char_len_ne specifies that this field must not be equal to the specified number of
+  // characters (Unicode code points). Note that the number of
+  // characters may differ from the number of bytes in the string.
+  optional int64 char_len_ne  = 21;
+
+  // char_len_gt specifies that this field must be greater than the specified number of
+  // characters (Unicode code points). Note that the number of
+  // characters may differ from the number of bytes in the string.
+  optional int64 char_len_gt  = 22;
+
+  // char_len_lt specifies that this field must be less than the specified number of
+  // characters (Unicode code points). Note that the number of
+  // characters may differ from the number of bytes in the string.
+  optional int64 char_len_lt  = 23;
+
+  // char_len_gte specifies that this field must be greater than or equal to the specified number of
+  // characters (Unicode code points). Note that the number of
+  // characters may differ from the number of bytes in the string.
+  optional int64 char_len_gte = 24;
+
+  // char_len_lte specifies that this field must be less than or equal to the specified number of
+  // characters (Unicode code points). Note that the number of
+  // characters may differ from the number of bytes in the string.
+  optional int64 char_len_lte = 25;
+
+  // byte_len_eq specifies that this field must be equal to the specified number of bytes.
+  optional int64 byte_len_eq  = 30;
+
+  // byte_len_ne specifies that this field must not be equal to the specified number of bytes.
+  optional int64 byte_len_ne  = 31;
+
+  // byte_len_gt specifies that this field must be greater than the specified number of bytes.
+  optional int64 byte_len_gt  = 32;
+
+  // byte_len_lt specifies that this field must be less than the specified number of bytes.
+  optional int64 byte_len_lt  = 33;
+
+  // byte_len_gte specifies that this field must be greater than or equal to the specified number of bytes.
+  optional int64 byte_len_gte = 34;
+
+  // byte_len_lte specifies that this field must be less than or equal to the specified number of bytes.
+  optional int64 byte_len_lte = 35;
+
+  // regex specifies that this field must be math a RE2-syntax regex.
+  optional string regex        = 40;
+
+  // prefix specifies that this field must be start with the specified prefix.
+  optional string prefix       = 41;
+
+  // no_prefix specifies that this field must not be start with the specified prefix.
+  optional string no_prefix    = 42;
+
+  // prefix specifies that this field must be end with the specified suffix.
+  optional string suffix       = 43;
+
+  // prefix specifies that this field must not be end with the specified suffix.
+  optional string no_suffix    = 44;
+
+  // prefix specifies that this field must be contains the specified value.
+  optional string contains     = 45;
+
+  // prefix specifies that this field must not be contains the specified value.
+  optional string not_contains = 46;
+
+  // prefix specifies that this field must be contains the specified any value.
+  optional string contains_any = 47;
+
+  // prefix specifies that this field must not be contains the specified any value.
+  optional string not_contains_any = 48;
+
+  // utf8 specifies that the field must be utf8 codec string.
+  optional bool utf8 = 81;
+
+  // ascii specifies that the field must be a ASCII characters string.
+  optional bool ascii        = 71;
+
+  // print_ascii specifies that the field must be a printable ASCII string.
+  optional bool print_ascii  = 72;
+
+  // boolean specifies that the field must be a boolean string.
+  optional bool boolean      = 73;
+
+  // lowercase specifies that the field must be a lowercase string.
+  optional bool lowercase    = 74;
+
+  // uppercase specifies that the field must be a uppercase string.
+  optional bool uppercase    = 75;
+
+  // alpha specifies that the field must be a alpha characters string.
+  optional bool alpha        = 76; // a ~ z and A ~ Z
+
+  // number specifies that the field must be a number characters string.
+  optional bool number       = 77; // 0 ~ 9
+
+  // alpha_number specifies that the field must be a alphanumeric characters string.
+  optional bool alpha_number = 78; // 0 ~ 9, a ~ z and A ~ Z
+
+  // ip specifies that the field must be a valid IP (v4 or v6) address.
+  optional bool ip       = 101;
+  // ipv4 specifies that the field must be a valid IPv4 address.
+  optional bool ipv4     = 102;
+  // ipv6 specifies that the field must be a valid IPv6 address.
+  optional bool ipv6     = 103;
+
+  // ip_addr specifies that the field must be a resolvable IP address.
+  optional bool ip_addr  = 104;
+  // ip4_addr specifies that the field must be a resolvable Ipv4 address.
+  optional bool ip4_addr = 105;
+  // ip6_addr specifies that the field must be a resolvable Ipv6 address.
+  optional bool ip6_addr = 106;
+
+  // cidr specifies that the field must be a valid CIDR notation.
+  optional bool cidr   = 107;
+  // cidrv4 specifies that the field must be a valid CIDR notation for an IPv4 address.
+  optional bool cidrv4 = 108;
+  // cidrv6 specifies that the field must be a valid CIDR notation for an IPv6 address.
+  optional bool cidrv6 = 109;
+
+  // tcp_addr specifies that the field must be a valid TCP address.
+  optional bool tcp_addr  = 111;
+  // tcp4_addr specifies that the field must be a valid IPv4 TCP address.
+  optional bool tcp4_addr = 112;
+  // tcp6_addr specifies that the field must be a valid IPv6 TCP address.
+  optional bool tcp6_addr = 113;
+  // udp_addr specifies that the field must be a valid UDP address.
+  optional bool udp_addr  = 114;
+  // udp4_addr specifies that the field must be a valid UDP v4 address.
+  optional bool udp4_addr = 115;
+  // udp6_addr specifies that the field must be a valid UDP v6 address.
+  optional bool udp6_addr = 116;
+  // mac specifies that the field must be a valid MAC address.
+  optional bool mac       = 110;
+  // unix_addr specifies that the field must be a valid UNIX address.
+  optional bool unix_addr = 117;
+
+  // hostname specified that the field must be valid hostname as defined by RFC 952.
+  optional bool hostname         = 118;
+  // hostname specified that the field must be valid hostname as defined by RFC 1123.
+  optional bool hostname_rfc1123 = 119;
+  // hostname_port specifies that the field must be a string format with hostname and port.
+  optional bool hostname_port    = 120;
+  // data_uri specifies that the field must be a string in DATA URI format.
+  optional bool data_uri    = 121;
+  // fqdn specifies that the field must be a string in FQDN format.
+  optional bool fqdn        = 122;
+  // uri specifies that the field must be a string in URI format.
+  optional bool uri         = 123;
+  // url specifies that the field must be a string in URL format.
+  optional bool url         = 124;
+  // url_encoded specifies that the field must be a string in URL encoded format.
+  optional bool url_encoded = 125;
+
+  // unix_cron specifies the field must be a valid standard UNIX-Style crontab expression.
+  optional bool unix_cron = 80;
+
+  // email specifies that the field must be a valid email address as defined by RFC 5322.
+  optional bool email = 140;
+
+  // json specifies that the field must be a string in JSON format.
+  optional bool json = 141;
+  // jwt specifies that the field must be a string in JWT format.
+  optional bool jwt  = 142;
+  // html specifies that the field must be a string in HTML format.
+  optional bool html         = 143;
+  // html_encoded specifies that the field must be a string in HTML encoded format.
+  optional bool html_encoded = 144;
+  // base64 specifies that the field must be a string in BASE64 format.
+  optional bool base64      = 145;
+  // base64_url specifies that the field must be a string in BASE64 URL format.
+  optional bool base64_url  = 146;
+  // hexadecimal specifies that the field must be a string in hexadecimal format.
+  optional bool hexadecimal = 147;
+  // datetime specifies that the field must be format with specified datetime layout.
+  optional string datetime = 148;
+  // timezone specifies that the field must be a valid timezone.
+  optional bool   timezone = 149;
+
+  // uuid specifies that the field must be a valid UUID.
+  optional bool uuid  = 150; // RFC4122
+  // uuid1 specifies that the field must be a valid version 1 UUID.
+  optional bool uuid1 = 151; // RFC4122
+  // uuid3 specifies that the field must be a valid version 3 UUID.
+  optional bool uuid3 = 152; // RFC4122
+  // uuid4 specifies that the field must be a valid version 4 UUID.
+  optional bool uuid4 = 153; // RFC4122
+  // uuid5 specifies that the field must be a valid version 5 UUID.
+  optional bool uuid5 = 154; // RFC4122
+}
+
+// BytesRules describe the constraints applied to `bytes` values
+message BytesTags {
+  // len_eq specifies that this field must be equal to the specified number of
+  optional int64 len_eq  = 3;
+
+  // len_ne specifies that this field must not be equal to the specified number of
+  optional int64 len_ne  = 4;
+
+  // len_lt specifies that this field must be less than the specified number of
+  optional int64 len_lt  = 5;
+
+  // len_gt specifies that this field must be greater than the specified number of
+  optional int64 len_gt  = 6;
+
+  // len_lte specifies that this field must be less than or equal to the specified number of
+  optional int64 len_lte = 7;
+
+  // len_gte specifies that this field must be greater than or equal to the specified number of
+  optional int64 len_gte = 8;
+}
+
+message BoolTags {
+  // eq specifies that this field must be exactly the specified value
+  optional bool eq = 3;
+}
+
+message EnumTags {
+  // eq specifies that this field must be equal to the specified value.
+  optional int32 eq  = 3;
+
+  // ne specifies that this field must be not equal to the specified value.
+  optional int32 ne  = 4;
+
+  // lt specifies that this field must be less than the specified value.
+  optional int32 lt  = 5;
+
+  // gt specifies that this field must be greater than the specified value.
+  optional int32 gt  = 6;
+
+  // lte specifies that this field must be less than or equal to the specified value.
+  optional int32 lte = 7;
+
+  // gte specifies that this field must be greater than or equal to the specified value.
+  optional int32 gte = 8;
+
+  // in specifies that this field must be in the specified value lists.
+  repeated int32 in     = 9;
+
+  // not_in specifies that this field must not be in the specified value lists.
+  repeated int32 not_in = 10;
+
+  // in_enums specifies that this field must be a valid enum number.
+  optional bool in_enums = 11;
+}
+
+message MessageTags {
+  // not_null specifies that this field must be set
+  optional bool not_null = 2;
+
+  // skip specifies that the validation option of this field should not be evaluated
+  optional bool skip = 3;
+}
+
+message RepeatedTags {
+  // not_null specifies that this field must be set
+  optional bool not_null = 2;
+
+  // len_eq specifies that this field must be equal to the specified number of
+  optional int64 len_eq  = 3;
+
+  // len_ne specifies that this field must not be equal to the specified number of
+  optional int64 len_ne  = 4;
+
+  // len_lt specifies that this field must be less than the specified number of
+  optional int64 len_lt  = 5;
+
+  // len_gt specifies that this field must be greater than the specified number of
+  optional int64 len_gt  = 6;
+
+  // len_lte specifies that this field must be less than or equal to the specified number of
+  optional int64 len_lte = 7;
+
+  // len_gte specifies that this field must be greater than or equal to the specified number of
+  optional int64 len_gte = 8;
+
+  // Unique specifies that all elements in this field must be unique.
+  // For message types, only check the pointer address is unique(not its fields).
+  optional bool unique = 10;
+
+  // Items specifies the contraints to be applied to each item in the field.
+  // Repeated message fields will still execute validation against each item
+  // unless skip is specified here.
+  TagOptions item = 11;
+}
+
+message MapTags {
+  // not_null specifies that this field must be set
+  optional bool not_null = 2;
+
+  // len_eq specifies that this field must be equal to the specified number of
+  optional int64 len_eq  = 3;
+
+  // len_ne specifies that this field must not be equal to the specified number of
+  optional int64 len_ne  = 4;
+
+  // len_lt specifies that this field must be less than the specified number of
+  optional int64 len_lt  = 5;
+
+  // len_gt specifies that this field must be greater than the specified number of
+  optional int64 len_gt  = 6;
+
+  // len_lte specifies that this field must be less than or equal to the specified number of
+  optional int64 len_lte = 7;
+
+  // len_gte specifies that this field must be greater than or equal to the specified number of
+  optional int64 len_gte = 8;
+
+  // key specifies the constraints to be applied to each key in the field.
+  TagOptions key = 11;
+
+  // value specifies the constraints to be applied to the value of each key
+  // in the field. Message values will still have their validations evaluated
+  // unless skip is specified here.
+  TagOptions value = 12;
+}

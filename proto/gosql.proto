@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package gosql;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/yu31/proto-go-plugin/pkg/pb/gosqlpb;gosqlpb";
+
+// Package name of class.
+option java_package = "com.github.yu31.gosqlpb";
+// File name of class.
+option java_outer_classname = "GoSQLPB";
+option java_multiple_files = false;
+
+
+extend google.protobuf.MessageOptions {
+  Serialize serialize = 9001;
+}
+
+message Serialize {
+  oneof Format {
+    JSON      json      = 1;
+    ProtoJSON protojson = 2;
+    Proto     proto     = 3;
+    GoGoProto gogoproto = 4;
+  }
+}
+
+// Use "encoding/json"
+message JSON {
+}
+
+// Use "google.golang.org/protobuf/encoding/protojson"
+message ProtoJSON {
+  // protojson.MarshalOptions
+  message MarshalOptions {
+    bool   Multiline       = 1;
+    string Indent          = 2;
+    bool   AllowPartial    = 3;
+    bool   UseProtoNames   = 4;
+    bool   UseEnumNumbers  = 5;
+    bool   EmitUnpopulated = 6;
+  }
+  // protojson.UnmarshalOptions
+  message UnmarshalOptions {
+    bool AllowPartial   = 1;
+    bool DiscardUnknown = 2;
+  }
+  MarshalOptions   marshal   = 1;
+  UnmarshalOptions unmarshal = 2;
+}
+
+// Use google.golang.org/protobuf/proto.
+message Proto {
+  // proto.MarshalOptions
+  message MarshalOptions {
+    bool AllowPartial  = 1;
+    bool Deterministic = 2;
+    bool UseCachedSize = 3;
+  }
+  // proto.UnmarshalOptions
+  message UnmarshalOptions {
+    bool Merge          = 1;
+    bool AllowPartial   = 2;
+    bool DiscardUnknown = 3;
+  }
+  MarshalOptions   marshal   = 1;
+  UnmarshalOptions unmarshal = 2;
+}
+
+// Use github.com/gogo/protobuf/proto.
+message GoGoProto {
+}
