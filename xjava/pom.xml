@@ -4,14 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.yu31.protoc</groupId>
+    <groupId>com.github.yu31</groupId>
     <artifactId>protoc-plugin-java</artifactId>
     <version>0.0.1</version>
     <name>only used to organize and compile projects</name>
+    <url>https://github.com/yu31/protoc-plugin</url>
     <packaging>pom</packaging>
     <modules>
-        <module>bom</module>
         <module>parent</module>
         <module>pb</module>
+        <module>bom</module>
     </modules>
 </project>

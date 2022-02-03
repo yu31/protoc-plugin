@@ -5,13 +5,12 @@ package json;
 option go_package = "github.com/yu31/protoc-plugin/xgo/pb/pbjson";
 
 // Package name of class.
-option java_package = "io.yu31.protoc.pbjson";
+option java_package = "com.github.yu31.protoc.pbjson";
 // File name of class.
 option java_outer_classname = "PBJson";
 option java_multiple_files = false;
 
 import "google/protobuf/descriptor.proto";
-
 
 // SerializeOptions in file scope.
 extend google.protobuf.FileOptions {

@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14proto/defaults.proto\x12\x08\x64\x65\x66\x61ults\x1a google/protobuf/descriptor.proto\"\x95\x01\n\x0c\x46ieldOptions\x12\x12\n\x05\x62\x61sic\x18\x65 \x01(\tH\x00\x88\x01\x01\x12\r\n\x05\x61rray\x18\x66 \x03(\t\x12,\n\x03map\x18g \x03(\x0b\x32\x1f.defaults.FieldOptions.MapEntry\x1a*\n\x08MapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x42\x08\n\x06_basic\",\n\x0cOneOfOptions\x12\x12\n\x05\x66ield\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x08\n\x06_field:F\n\x05\x66ield\x12\x1d.google.protobuf.FieldOptions\x18\x94\xf4\x03 \x01(\x0b\x32\x16.defaults.FieldOptions:F\n\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\x95\xf4\x03 \x01(\x0b\x32\x16.defaults.OneOfOptionsBZ\n\x19io.yu31.protoc.pbdefaultsB\nPBDefaultsP\x00Z/github.com/yu31/protoc-plugin/xgo/pb/pbdefaultsb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14proto/defaults.proto\x12\x08\x64\x65\x66\x61ults\x1a google/protobuf/descriptor.proto\"\x95\x01\n\x0c\x46ieldOptions\x12\x12\n\x05\x62\x61sic\x18\x65 \x01(\tH\x00\x88\x01\x01\x12\r\n\x05\x61rray\x18\x66 \x03(\t\x12,\n\x03map\x18g \x03(\x0b\x32\x1f.defaults.FieldOptions.MapEntry\x1a*\n\x08MapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x42\x08\n\x06_basic\",\n\x0cOneOfOptions\x12\x12\n\x05\x66ield\x18\x01 \x01(\tH\x00\x88\x01\x01\x42\x08\n\x06_field:F\n\x05\x66ield\x12\x1d.google.protobuf.FieldOptions\x18\x94\xf4\x03 \x01(\x0b\x32\x16.defaults.FieldOptions:F\n\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\x95\xf4\x03 \x01(\x0b\x32\x16.defaults.OneOfOptionsBb\n!com.github.yu31.protoc.pbdefaultsB\nPBDefaultsP\x00Z/github.com/yu31/protoc-plugin/xgo/pb/pbdefaultsb\x06proto3')
 
 
 FIELD_FIELD_NUMBER = 64020
@@ -53,7 +53,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   google_dot_protobuf_dot_descriptor__pb2.OneofOptions.RegisterExtension(oneof)
 
   DESCRIPTOR._options = None
-  DESCRIPTOR._serialized_options = b'\n\031io.yu31.protoc.pbdefaultsB\nPBDefaultsP\000Z/github.com/yu31/protoc-plugin/xgo/pb/pbdefaults'
+  DESCRIPTOR._serialized_options = b'\n!com.github.yu31.protoc.pbdefaultsB\nPBDefaultsP\000Z/github.com/yu31/protoc-plugin/xgo/pb/pbdefaults'
   _FIELDOPTIONS_MAPENTRY._options = None
   _FIELDOPTIONS_MAPENTRY._serialized_options = b'8\001'
   _FIELDOPTIONS._serialized_start=69

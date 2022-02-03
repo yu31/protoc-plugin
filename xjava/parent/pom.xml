@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.yu31.protoc</groupId>
+    <groupId>com.github.yu31</groupId>
     <artifactId>protoc-plugin-parent</artifactId>
     <version>0.0.1</version>
-    <name>parent of protoc plugins java</name>
+    <name>parent for protoc plugins</name>
     <packaging>pom</packaging>
 
     <properties>
@@ -17,11 +17,11 @@
     </properties>
 
     <distributionManagement>
-        <repository>
-            <id>local-repo-release</id>
-            <name>GitHub Release</name>
-            <url>file://${project.basedir}/maven-repo</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>local-repo-release</id>-->
+<!--            <name>GitHub Release</name>-->
+<!--            <url>file://${project.basedir}/maven-repo</url>-->
+<!--        </repository>-->
     </distributionManagement>
 
     <dependencyManagement>
