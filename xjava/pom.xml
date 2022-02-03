@@ -8,7 +8,8 @@
     <artifactId>protoc-plugin</artifactId>
     <version>0.0.1</version>
     <url>https://github.com/yu31/protoc-plugin</url>
-    <name>A collection of protobuf plugin</name>
+    <name>protoc-plugin</name>
+    <description>A protobuf plugins in collection for implements utils includes "validator", "defaults" and "json"</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -16,13 +17,27 @@
         <protobuf.version>3.19.3</protobuf.version>
     </properties>
 
-    <distributionManagement>
-        <!--        <repository>-->
-        <!--            <id>local-repo-release</id>-->
-        <!--            <name>GitHub Release</name>-->
-        <!--            <url>file://${project.basedir}/maven-repo</url>-->
-        <!--        </repository>-->
-    </distributionManagement>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>git@github.com:yu31/protoc-plugin.git</url>
+        <connection>scm:git:git@github.com:yu31/protoc-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:yu31/protoc-plugin.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>yu31</name>
+            <email>yu.771991@gmail.com</email>
+        </developer>
+    </developers>
 
     <dependencyManagement>
         <dependencies>
@@ -45,10 +60,22 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <extensions>
         </extensions>
         <plugins>
+            <!-- Source -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -63,6 +90,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Javadoc -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -76,6 +104,38 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- GPG -->
+            <plugin>
+                <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-gpg-plugin -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+<!--                <configuration>-->
+<!--                    <useAgent>false</useAgent>-->
+<!--                </configuration>-->
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Nexus Staging Maven -->
+            <plugin>
+                <!-- https://mvnrepository.com/artifact/org.sonatype.plugins/nexus-staging-maven-plugin -->
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
 
