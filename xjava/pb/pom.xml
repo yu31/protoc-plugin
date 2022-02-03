@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.yu31</groupId>
+        <groupId>io.github.yu31</groupId>
         <artifactId>protoc-plugin-parent</artifactId>
         <version>0.0.1</version>
 <!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-<!--        <relativePath>../parent</relativePath>-->
+        <relativePath>../parent</relativePath>
     </parent>
 
     <artifactId>protoc-plugin-pb</artifactId>

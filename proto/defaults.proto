@@ -6,7 +6,7 @@ package defaults;
 option go_package = "github.com/yu31/protoc-plugin/xgo/pb/pbdefaults";
 
 // Package name of java.
-option java_package = "com.github.yu31.protoc.pbdefaults";
+option java_package = "io.github.yu31.protoc.pbdefaults";
 option java_outer_classname = "PBDefaults";
 option java_multiple_files = false;
 
