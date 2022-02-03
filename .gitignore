@@ -36,6 +36,12 @@ target
 .editorconfig
 *.iml
 
+# Python
+*.pyc
+
 # protoc-plugin
 build
+
+# environment variable
+project_env.sh
 
