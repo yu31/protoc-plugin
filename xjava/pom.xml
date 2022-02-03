@@ -5,14 +5,79 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.yu31</groupId>
-    <artifactId>protoc-plugin-java</artifactId>
+    <artifactId>protoc-plugin</artifactId>
     <version>0.0.1</version>
-    <name>only used to organize and compile projects</name>
     <url>https://github.com/yu31/protoc-plugin</url>
-    <packaging>pom</packaging>
-    <modules>
-        <module>parent</module>
-        <module>pb</module>
-        <module>bom</module>
-    </modules>
+    <name>A collection of protobuf plugin</name>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <protobuf.version>3.19.3</protobuf.version>
+    </properties>
+
+    <distributionManagement>
+        <!--        <repository>-->
+        <!--            <id>local-repo-release</id>-->
+        <!--            <name>GitHub Release</name>-->
+        <!--            <url>file://${project.basedir}/maven-repo</url>-->
+        <!--        </repository>-->
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-bom -->
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-bom</artifactId>
+                <version>${protobuf.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <extensions>
+        </extensions>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
 </project>

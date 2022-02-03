@@ -20,7 +20,7 @@ cd "${current_path}"/.. || exit 1
 
 GOPATH=$(go env GOPATH)
 
-output_dir="./xpy/pb"
+output_dir="./xpy/src/pb"
 
 # To avoids invalid code residue.
 /bin/rm -fr "$output_dir"

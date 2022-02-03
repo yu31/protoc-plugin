@@ -12,10 +12,10 @@ fi
 
 cd "${current_path}"/.. || exit 1
 
-output_dir="./xjava/pb/src/main/java"
+output_dir="./xjava/src/main/java"
 
 # To avoids invalid code residue.
-/bin/rm -fr "$output_dir"
+/bin/rm -fr "$output_dir/protoc/pb"
 mkdir -p "$output_dir"
 
 for f in proto/*.proto; do
