@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+package godefaultsignore;
+
+option go_package = "tests/godefaultsignore";

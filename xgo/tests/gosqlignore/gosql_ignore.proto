@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package gosqlignore;
+
+option go_package = "tests/gosqlignore";
+
+import "proto/gosql.proto";
+
+message Args {
+  option (gosql.serialize) = {};
+  string tt = 1;
+}
+
+// Flink Engine Service
+service S1 {
+  rpc Create(Args) returns (Args) {}
+}

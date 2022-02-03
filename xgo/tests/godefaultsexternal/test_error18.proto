@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage18 {
+  oneof oneof_typ1 {
+    bytes  oneof1_bytes1  = 1 [ (defaults.field) = { basic: "x" }];
+  }
+}

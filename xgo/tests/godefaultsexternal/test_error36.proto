@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+enum Enum1 {
+  January  = 0;
+  February = 1;
+  March    = 2;
+  April    = 3;
+  May      = 4;
+  June     = 8;
+}
+
+message ErrorMessage36 {
+  map<int32, Enum1>    map_int32_enum1    = 217 [ (defaults.field) = { map: [ { key: "160", value: "10" } ] } ];
+}

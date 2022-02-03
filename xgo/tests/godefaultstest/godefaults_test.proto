@@ -1,0 +1,222 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+enum Enum1 {
+  January  = 0;
+  February = 1;
+  March    = 2;
+  April    = 3;
+  May      = 4;
+  June     = 8;
+}
+
+message Config {
+  string ip = 1 [ (defaults.field) = { basic: "127.0.0.1" } ];
+  int32  port = 2 [ (defaults.field) = { basic: "80" } ];
+}
+
+message LiteralMessage1 {
+  string   t_string1   = 1 [ (defaults.field) = { basic: "ts1"; } ];
+  string   t_string2   = 2 [ (defaults.field) = { basic: ""; } ];
+  string   t_string3   = 3 [ (defaults.field) = { basic: '""'; } ];
+  string   t_string4   = 4 [ (defaults.field) = { basic: '"'; } ];
+  string   t_string5   = 5 [ (defaults.field) = { basic: '"ts5"'; } ];
+  string   t_string6   = 6 [ (defaults.field) = { basic: '"ts\"6"'; } ];
+  string   t_string7   = 7 [ (defaults.field) = { basic: '"ts"7"'; } ];
+  string   t_string8   = 8 [ (defaults.field) = { basic: '[ts8]'; } ];
+  string   t_string9   = 9 [ (defaults.field) = { basic: '{ts9}'; } ];
+  string   t_string10  = 10 [ (defaults.field) = { } ];
+
+  int32    t_int32    = 101 [ (defaults.field) = { basic: "1";} ];
+  int64    t_int64    = 102 [ (defaults.field) = { basic: "2"; } ];
+  uint32   t_uint32   = 103 [ (defaults.field) = { basic: "3"; } ];
+  uint64   t_uint64   = 104 [ (defaults.field) = { basic: "4"; } ];
+  sint32   t_sint32   = 105 [ (defaults.field) = { basic: "5"; } ];
+  sint64   t_sint64   = 106 [ (defaults.field) = { basic: "6"; } ];
+  sfixed32 t_sfixed32 = 107 [ (defaults.field) = { basic: "7"; } ];
+  sfixed64 t_sfixed64 = 108 [ (defaults.field) = { basic: "8"; } ];
+  fixed32  t_fixed32  = 109 [ (defaults.field) = { basic: "9"; } ];
+  fixed64  t_fixed64  = 110 [ (defaults.field) = { basic: "10"; } ];
+  float    t_float    = 111 [ (defaults.field) = { basic: "11.11"; } ];
+  double   t_double   = 112 [ (defaults.field) = { basic: "12.12"; } ];
+  bool     t_bool     = 113 [ (defaults.field) = { basic: "true"; } ];
+  bytes    t_bytes1   = 114 [ (defaults.field) = { } ];
+  bytes    t_bytes2   = 115 [ (defaults.field) = { } ];
+  Enum1    t_enum1    = 116 [ (defaults.field) = { basic: "3"; } ];
+  Enum1    t_enum2    = 117 [ (defaults.field) = { basic: "1"; } ];
+  Config   t_config1  = 118 [ (defaults.field) = { basic: "" } ];
+  Config   t_config2  = 119 [ (defaults.field) = { } ];
+}
+
+message OptionalMessage1 {
+  optional string   t_string1   = 1 [ (defaults.field) = { basic: "ts1"; } ];
+  optional string   t_string2   = 2 [ (defaults.field) = { basic: ""; } ];
+  optional string   t_string3   = 3 [ (defaults.field) = { basic: '""'; } ];
+  optional string   t_string4   = 4 [ (defaults.field) = { basic: '"'; } ];
+  optional string   t_string5   = 5 [ (defaults.field) = { basic: '"ts5"'; } ];
+  optional string   t_string6   = 6 [ (defaults.field) = { basic: '"ts\"6"'; } ];
+  optional string   t_string7   = 7 [ (defaults.field) = { basic: '"ts"7"'; } ];
+  optional string   t_string8   = 8 [ (defaults.field) = { basic: '[ts8]'; } ];
+  optional string   t_string9   = 9 [ (defaults.field) = { basic: '{ts9}'; } ];
+  optional string   t_string10  = 10 [ (defaults.field) = { } ];
+
+  optional int32    t_int32    = 101 [ (defaults.field) = { basic: "0"; } ];
+  optional int64    t_int64    = 102 [ (defaults.field) = { basic: "2"; } ];
+  optional uint32   t_uint32   = 103 [ (defaults.field) = { basic: "3"; } ];
+  optional uint64   t_uint64   = 104 [ (defaults.field) = { basic: "4"; } ];
+  optional sint32   t_sint32   = 105 [ (defaults.field) = { basic: "5"; } ];
+  optional sint64   t_sint64   = 106 [ (defaults.field) = { basic: "6"; } ];
+  optional sfixed32 t_sfixed32 = 107 [ (defaults.field) = { basic: "7"; } ];
+  optional sfixed64 t_sfixed64 = 108 [ (defaults.field) = { basic: "8";  } ];
+  optional fixed32  t_fixed32  = 109 [ (defaults.field) = { basic: "9";  } ];
+  optional fixed64  t_fixed64  = 110 [ (defaults.field) = { basic: "10";  } ];
+  optional float    t_float    = 111 [ (defaults.field) = { basic: "11.11" } ];
+  optional double   t_double   = 112 [ (defaults.field) = { basic: "12.12"} ];
+  optional bool     t_bool     = 113 [ (defaults.field) = { basic: "true"; } ];
+  optional bytes    t_bytes1   = 114 [ (defaults.field) = {  }];
+  optional bytes    t_bytes2   = 115 [ (defaults.field) = {  }];
+  optional Enum1    t_enum1    = 116 [ (defaults.field) = { basic: "1"; } ];
+  optional Enum1    t_enum2    = 117 [ (defaults.field) = { basic: "4"; } ];
+  optional Config   t_config1  = 118 [ (defaults.field) = { basic: "" } ];
+  optional Config   t_config2  = 119 [ (defaults.field) = { } ];
+}
+
+message ListMessage1 {
+  repeated string   array_string1  = 1 [ (defaults.field) = { array: ["s1", "s2, s4", "s3", ""]; } ];
+  repeated string   array_string2  = 2 [ (defaults.field) = { array: []; } ];
+  repeated string   array_string3  = 3 [ (defaults.field) = { } ];
+
+  repeated double   array_double   = 101 [ (defaults.field) = { array: ["1.1", "1.2", "1.3"]; } ];
+  repeated float    array_float    = 102 [ (defaults.field) = { array: ["2.1", "2.2", "2.3"]; } ];
+  repeated int32    array_int32    = 103 [ (defaults.field) = { array: ["10", "11", "12"]; } ];
+  repeated int64    array_int64    = 104 [ (defaults.field) = { array: ["20", "21", "22"]; } ];
+  repeated uint32   array_uint32   = 105 [ (defaults.field) = { array: ["30", "31", "32"]; } ];
+  repeated uint64   array_uint64   = 106 [ (defaults.field) = { array: ["40", "41", "42"]; } ];
+  repeated sint32   array_sint32   = 107 [ (defaults.field) = { array: ["50", "51", "52"]; } ];
+  repeated sint64   array_sint64   = 108 [ (defaults.field) = { array: ["60", "61", "62"]; } ];
+  repeated sfixed32 array_sfixed32 = 109 [ (defaults.field) = { array: ["70", "71", "72"]; } ];
+  repeated sfixed64 array_sfixed64 = 110 [ (defaults.field) = { array: ["80", "81", "82"]; } ];
+  repeated fixed32  array_fixed32  = 111 [ (defaults.field) = { array: ["90", "91", "92"]; } ];
+  repeated fixed64  array_fixed64  = 112 [ (defaults.field) = { array: ["100", "101", "102"]; } ];
+  repeated bool     array_bool     = 113 [ (defaults.field) = { array: ["true", "false", "true"]; } ];
+  repeated bytes    array_bytes1   = 114 [ (defaults.field) = { } ];
+  repeated bytes    array_bytes2   = 115 [ (defaults.field) = { } ];
+  repeated Enum1    array_enum1    = 116 [ (defaults.field) = { array: ["0", "1", "2"]; } ];
+  repeated Enum1    array_enum2    = 117 [ (defaults.field) = { array: ["3", "4", "8"]; } ];
+  repeated Config   array_config1  = 118 [ (defaults.field) = { } ];
+  repeated Config   array_config2  = 119 [ (defaults.field) = { } ];
+}
+
+message MapMessage1 {
+  map<string, string> map_string_string1 = 1 [ (defaults.field) = { map: [ { key: "k11", value: "v11"}, { key: "k12", value: "v12"} ] } ];
+  map<string, string> map_string_string2 = 2 [ (defaults.field) = { map: [ {}, {}] } ];
+  map<string, string> map_string_string3 = 3 [ (defaults.field) = { map: [ ] } ];
+  map<string, string> map_string_string4 = 4 [ (defaults.field) = { } ];
+
+  map<int32, double>   map_int32_double   = 202 [ (defaults.field) = { map: [ { key: "10", value: "10.1" }, { key: "11", value: "10.2" } ] } ];
+  map<int32, float>    map_int32_float    = 203 [ (defaults.field) = { map: [ { key: "20", value: "20.1" }, { key: "21", value: "20.2" } ] } ];
+  map<int32, int32>    map_int32_int32    = 204 [ (defaults.field) = { map: [ { key: "30", value: "1" }, { key: "31", value: "11" } ] } ];
+  map<int32, int64>    map_int32_int64    = 205 [ (defaults.field) = { map: [ { key: "40", value: "2" }, { key: "41", value: "12" } ] } ];
+  map<int32, uint32>   map_int32_uint32   = 206 [ (defaults.field) = { map: [ { key: "50", value: "3" }, { key: "51", value: "13" } ] } ];
+  map<int32, uint64>   map_int32_uint64   = 207 [ (defaults.field) = { map: [ { key: "60", value: "4" }, { key: "61", value: "14" } ] } ];
+  map<int32, sint32>   map_int32_sint32   = 208 [ (defaults.field) = { map: [ { key: "70", value: "5" }, { key: "71", value: "15" } ] } ];
+  map<int32, sint64>   map_int32_sint64   = 209 [ (defaults.field) = { map: [ { key: "80", value: "6" }, { key: "81", value: "16" } ] } ];
+  map<int32, sfixed32> map_int32_sfixed32 = 210 [ (defaults.field) = { map: [ { key: "90", value: "7" }, { key: "91", value: "17" } ] } ];
+  map<int32, sfixed64> map_int32_sfixed64 = 211 [ (defaults.field) = { map: [ { key: "100", value: "8" }, { key: "101", value: "18" } ] } ];
+  map<int32, fixed32>  map_int32_fixed32  = 212 [ (defaults.field) = { map: [ { key: "110", value: "9" }, { key: "111", value: "19" } ] } ];
+  map<int32, fixed64>  map_int32_fixed64  = 213 [ (defaults.field) = { map: [ { key: "120", value: "10" }, { key: "121", value: "20" } ] } ];
+  map<int32, bool>     map_int32_bool     = 214 [ (defaults.field) = { map: [ { key: "130", value: "true" }, { key: "131", value: "false" } ] } ];
+  map<int32, string>   map_int32_string   = 215 [ (defaults.field) = { map: [ { key: "140", value: "v1" }, { key: "141", value: "v2" } ] } ];
+  map<int32, bytes>    map_int32_bytes    = 216 [ (defaults.field) = {  } ];
+  map<int32, Enum1>    map_int32_enum1    = 217 [ (defaults.field) = { map: [ { key: "160", value: "0" }, { key: "161", value: "1" } ] } ];
+  map<int32, Enum1>    map_int32_enum2    = 218 [ (defaults.field) = { map: [ { key: "170", value: "3" }, { key: "171", value: "4" } ] } ];
+  map<int32, Config>   map_int32_config   = 220 [ (defaults.field) = { } ];
+
+  map<int64, int32>    map_int64_int32    = 301 [ (defaults.field) = { map: [ { key: "200", value: "100" }, { key: "201", value: "101" } ] } ];
+  map<uint32, int32>   map_uint32_int32   = 302 [ (defaults.field) = { map: [ { key: "210", value: "110" }, { key: "211", value: "111" } ] } ];
+  map<uint64, int32>   map_uint64_int32   = 304 [ (defaults.field) = { map: [ { key: "220", value: "120" }, { key: "221", value: "121" } ] } ];
+  map<sint32, int32>   map_sint32_int32   = 305 [ (defaults.field) = { map: [ { key: "230", value: "130" }, { key: "231", value: "131" } ] } ];
+  map<sint64, int32>   map_sint64_int32   = 306 [ (defaults.field) = { map: [ { key: "240", value: "140" }, { key: "241", value: "141" } ] } ];
+  map<fixed32, int32>  map_fixed32_int32  = 307 [ (defaults.field) = { map: [ { key: "250", value: "150" }, { key: "251", value: "151" } ] } ];
+  map<fixed64, int32>  map_fixed64_int32  = 308 [ (defaults.field) = { map: [ { key: "260", value: "160" }, { key: "261", value: "161" } ] } ];
+  map<sfixed32, int32> map_sfixed32_int32 = 309 [ (defaults.field) = { map: [ { key: "270", value: "170" }, { key: "271", value: "171" } ] } ];
+  map<sfixed64, int32> map_sfixed64_int32 = 310 [ (defaults.field) = { map: [ { key: "280", value: "180" }, { key: "281", value: "181" } ] } ];
+  map<string, int32>   map_string_int32   = 311 [ (defaults.field) = { map: [ { key: "k1", value: "1000" }, { key: "k2", value: "1001" } ] } ];
+}
+
+message OneofMessag1 {
+  oneof oneof_typ1 {
+    option (defaults.oneof) = { field: "oneof1_double" };
+
+    string   oneof1_string1   = 1 [ (defaults.field) = { basic: "ts1"; } ];
+    string   oneof1_string2   = 2 [ (defaults.field) = { basic: ""; } ];
+    string   oneof1_string3   = 3 [ (defaults.field) = { basic: '""'; } ];
+    string   oneof1_string4   = 4 [ (defaults.field) = { basic: '"'; } ];
+    string   oneof1_string5   = 5 [ (defaults.field) = { basic: '"ts5"'; } ];
+    string   oneof1_string6   = 6 [ (defaults.field) = { basic: '"ts\"6"'; } ];
+    string   oneof1_string7   = 7 [ (defaults.field) = { basic: '"ts"7"'; } ];
+    string   oneof1_string8   = 8 [ (defaults.field) = { basic: '[ts8]'; } ];
+    string   oneof1_string9   = 9 [ (defaults.field) = { basic: '{ts9}'; } ];
+
+    double   oneof1_double   = 31 [ (defaults.field) = { basic: "1.1"; }];
+    float    oneof1_float    = 32 [ (defaults.field) = { basic: "1.2"; }];
+    int32    oneof1_int32    = 33 [ (defaults.field) = { basic: "1"; }];
+    int64    oneof1_int64    = 34 [ (defaults.field) = { basic: "2"; }];
+    uint32   oneof1_uint32   = 35 [ (defaults.field) = { basic: "3"; }];
+    uint64   oneof1_uint64   = 36 [ (defaults.field) = { basic: "4"; }];
+    sint32   oneof1_sint32   = 37 [ (defaults.field) = { basic: "5"; }];
+    sint64   oneof1_sint64   = 38 [ (defaults.field) = { basic: "6"; }];
+    fixed32  oneof1_fixed32  = 39 [ (defaults.field) = { basic: "7"; }];
+    fixed64  oneof1_fixed64  = 40 [ (defaults.field) = { basic: "9"; }];
+    sfixed32 oneof1_sfixed32 = 41 [ (defaults.field) = { basic: "10"; }];
+    sfixed64 oneof1_sfixed64 = 42 [ (defaults.field) = { basic: "11"; }];
+    bool     oneof1_bool     = 43 [ (defaults.field) = { basic: "true"; }];
+    bytes    oneof1_bytes1   = 44 [ (defaults.field) = { }];
+    bytes    oneof1_bytes2   = 45 [ (defaults.field) = { }];
+    bytes    oneof1_bytes3   = 46 [ (defaults.field) = { }];
+    Enum1    oneof1_enum1    = 47 [ (defaults.field) = { basic: "8"; }];
+    Enum1    oneof1_enum2    = 48 [ (defaults.field) = { basic: "3"; }];
+    Config   oneof1_config1  = 49 [ (defaults.field) = { basic: "" }];
+    Config   oneof1_config2  = 50 [ (defaults.field) = { }];
+  }
+
+  oneof oneof_typ2 {
+    option (defaults.oneof) = { };
+
+    string   oneof2_string1   = 101 [ (defaults.field) = { basic: "ts1"; } ];
+    string   oneof2_string2   = 102 [ (defaults.field) = { basic: ""; } ];
+    string   oneof2_string3   = 103 [ (defaults.field) = { basic: '""'; } ];
+    string   oneof2_string4   = 104 [ (defaults.field) = { basic: '"'; } ];
+    string   oneof2_string5   = 105 [ (defaults.field) = { basic: '"ts5"'; } ];
+    string   oneof2_string6   = 106 [ (defaults.field) = { basic: '"ts\"6"'; } ];
+    string   oneof2_string7   = 107 [ (defaults.field) = { basic: '"ts"7"'; } ];
+    string   oneof2_string8   = 108 [ (defaults.field) = { basic: '[ts8]'; } ];
+    string   oneof2_string9   = 109 [ (defaults.field) = { basic: '{ts9}'; } ];
+
+    double   oneof2_double   = 131 [ (defaults.field) = { basic: "1.1"; }];
+    float    oneof2_float    = 132 [ (defaults.field) = { basic: "1.2"; }];
+    int32    oneof2_int32    = 133 [ (defaults.field) = { basic: "1"; }];
+    int64    oneof2_int64    = 134 [ (defaults.field) = { basic: "2"; }];
+    uint32   oneof2_uint32   = 135 [ (defaults.field) = { basic: "3"; }];
+    uint64   oneof2_uint64   = 136 [ (defaults.field) = { basic: "4"; }];
+    sint32   oneof2_sint32   = 137 [ (defaults.field) = { basic: "5"; }];
+    sint64   oneof2_sint64   = 138 [ (defaults.field) = { basic: "6"; }];
+    fixed32  oneof2_fixed32  = 139 [ (defaults.field) = { basic: "7"; }];
+    fixed64  oneof2_fixed64  = 140 [ (defaults.field) = { basic: "9"; }];
+    sfixed32 oneof2_sfixed32 = 141 [ (defaults.field) = { basic: "10"; }];
+    sfixed64 oneof2_sfixed64 = 142 [ (defaults.field) = { basic: "11"; }];
+    bool     oneof2_bool     = 143 [ (defaults.field) = { basic: "true"; }];
+    bytes    oneof2_bytes1   = 144 [ (defaults.field) = { }];
+    bytes    oneof2_bytes2   = 145 [ (defaults.field) = { }];
+    bytes    oneof2_bytes3   = 146 [ (defaults.field) = { }];
+    Enum1    oneof2_enum1    = 147 [ (defaults.field) = { basic: "2"; }];
+    Enum1    oneof2_enum2    = 148 [ (defaults.field) = { basic: "3"; }];
+    Config   oneof2_config1  = 149 [ (defaults.field) = { basic: "" }];
+    Config   oneof2_config2  = 150 [ (defaults.field) = { }];
+  }
+}

@@ -1,0 +1,1917 @@
+syntax = "proto3";
+
+package gojsontest;
+
+option go_package = "tests/gojsontest";
+
+import "google/protobuf/descriptor.proto";
+// Use import "github.com/yu31/protoc-plugin/gox/proto/gosql.proto" in other project.
+import "proto/json.proto";
+import "tests/gojsonexternal/gojson_external.proto";
+
+option (json.file) = {
+//	name_style: TextName,
+//	hide_oneof_key: false,
+//	omitempty: false,
+//	disallow_unknown_fields: false,
+};
+
+//option (gojson.file_options) = {name_style: UnderScore, marshal: {omitempty: true}};
+
+message EmptyMessage {
+
+}
+
+message StandMessage1 {
+	string name1 = 1;
+	string name2 = 2;
+	string name3 = 3;
+}
+
+enum StandEnum1 {
+	January  = 0;
+	February = 1;
+	March    = 2;
+	April    = 3;
+	May      = 4;
+	June     = 5;
+}
+
+//
+message Model1 {
+	enum EmbedEnum1 {
+		july      = 0;
+		august    = 1;
+		september = 2;
+		october   = 3;
+		november  = 4;
+		december  = 5;
+	}
+	
+	message EmbedMessage1 {
+		string age1 = 1;
+		string age2 = 2;
+		string age3 = 3;
+	}
+	
+	oneof OneofType1 {
+		option (json.oneof) = {json: "oneof_type1", hide_oneof_key: false, omitempty: false};
+		
+		double   oneof1_double   = 1;
+		float    oneof1_float    = 2;
+		int32    oneof1_int32    = 3;
+		int64    oneof1_int64    = 4;
+		uint32   oneof1_uint32   = 5;
+		uint64   oneof1_uint64   = 6;
+		sint32   oneof1_sint32   = 7;
+		sint64   oneof1_sint64   = 8;
+		fixed32  oneof1_fixed32  = 9;
+		fixed64  oneof1_fixed64  = 10;
+		sfixed32 oneof1_sfixed32 = 11;
+		sfixed64 oneof1_sfixed64 = 12;
+		bool     oneof1_bool     = 13;
+		string   oneof1_string   = 14;
+		bytes    oneof1_bytes    = 15;
+		EmbedMessage1 oneof1_embed_message = 16;
+		StandMessage1 oneof1_stand_message = 17;
+		gojsonexternal.ExternalMessage1 oneof1_external_message = 18;
+		EmbedEnum1    oneof1_embed_enum    = 19;
+		StandEnum1    oneof1_stand_enum    = 20;
+		gojsonexternal.ExternalEnum1 oneof1_external_enum   = 21;
+	}
+
+	oneof oneofType2 {
+		double   oneof2_double   = 31;
+		float    oneof2_float    = 32;
+		int32    oneof2_int32    = 33;
+		int64    oneof2_int64    = 34;
+		uint32   oneof2_uint32   = 35;
+		uint64   oneof2_uint64   = 36;
+		sint32   oneof2_sint32   = 37;
+		sint64   oneof2_sint64   = 38;
+		fixed32  oneof2_fixed32  = 39;
+		fixed64  oneof2_fixed64  = 40;
+		sfixed32 oneof2_sfixed32 = 41;
+		sfixed64 oneof2_sfixed64 = 42;
+		bool     oneof2_bool     = 43;
+		string   oneof2_string   = 44;
+		bytes    oneof2_bytes    = 45;
+		EmbedMessage1 oneof2_embed_message = 46;
+		StandMessage1 oneof2_stand_message = 47;
+		gojsonexternal.ExternalMessage1 oneof2_external_message = 48;
+		EmbedEnum1    oneof2_embed_enum    = 49;
+		StandEnum1    oneof2_stand_enum    = 50;
+		gojsonexternal.ExternalEnum1 oneof2_external_enum   = 51;
+	}
+
+	oneof OneofType3 {
+		double   oneof3_double   = 61;
+		float    oneof3_float    = 62;
+		int32    oneof3_int32    = 63;
+		int64    oneof3_int64    = 64;
+		uint32   oneof3_uint32   = 65;
+		uint64   oneof3_uint64   = 66;
+		sint32   oneof3_sint32   = 67;
+		sint64   oneof3_sint64   = 68;
+		fixed32  oneof3_fixed32  = 69;
+		fixed64  oneof3_fixed64  = 70;
+		sfixed32 oneof3_sfixed32 = 71;
+		sfixed64 oneof3_sfixed64 = 72;
+		bool     oneof3_bool     = 73;
+		string   oneof3_string   = 74;
+		bytes    oneof3_bytes    = 75;
+		EmbedMessage1 oneof3_embed_message = 76;
+		StandMessage1 oneof3_stand_message = 77;
+		gojsonexternal.ExternalMessage1 oneof3_external_message = 78;
+		EmbedEnum1    oneof3_embed_enum    = 79;
+		StandEnum1    oneof3_stand_enum    = 80;
+		gojsonexternal.ExternalEnum1 oneof3_external_enum   = 81;
+	}
+
+	oneof Oneof_Type4 {
+		double   oneof4_double   = 91;
+		float    oneof4_float    = 92;
+		int32    oneof4_int32    = 93;
+		int64    oneof4_int64    = 94;
+		uint32   oneof4_uint32   = 95;
+		uint64   oneof4_uint64   = 96;
+		sint32   oneof4_sint32   = 97;
+		sint64   oneof4_sint64   = 98;
+		fixed32  oneof4_fixed32  = 99;
+		fixed64  oneof4_fixed64  = 100;
+		sfixed32 oneof4_sfixed32 = 101;
+		sfixed64 oneof4_sfixed64 = 102;
+		bool     oneof4_bool     = 103;
+		string   oneof4_string   = 104;
+		bytes    oneof4_bytes    = 105;
+		EmbedMessage1 oneof4_embed_message = 106;
+		StandMessage1 oneof4_stand_message = 107;
+		gojsonexternal.ExternalMessage1 oneof4_external_message = 108;
+		EmbedEnum1    oneof4_embed_enum    = 109;
+		StandEnum1    oneof4_stand_enum    = 110;
+		gojsonexternal.ExternalEnum1 oneof4_external_enum   = 111;
+	}
+
+	oneof oneof_Type5 {
+		double   oneof5_double   = 121;
+		float    oneof5_float    = 122;
+		int32    oneof5_int32    = 123;
+		int64    oneof5_int64    = 124;
+		uint32   oneof5_uint32   = 125;
+		uint64   oneof5_uint64   = 126;
+		sint32   oneof5_sint32   = 127;
+		sint64   oneof5_sint64   = 128;
+		fixed32  oneof5_fixed32  = 129;
+		fixed64  oneof5_fixed64  = 130;
+		sfixed32 oneof5_sfixed32 = 131;
+		sfixed64 oneof5_sfixed64 = 132;
+		bool     oneof5_bool     = 133;
+		string   oneof5_string   = 134;
+		bytes    oneof5_bytes    = 135;
+		EmbedMessage1 oneof5_embed_message = 136;
+		StandMessage1 oneof5_stand_message = 137;
+		gojsonexternal.ExternalMessage1 oneof5_external_message = 138;
+		EmbedEnum1    oneof5_embed_enum    = 139;
+		StandEnum1    oneof5_stand_enum    = 140;
+		gojsonexternal.ExternalEnum1 oneof5_external_enum   = 141;
+	}
+
+	oneof oneof_type6 {
+		double   oneof6_double   = 151;
+		float    oneof6_float    = 152;
+		int32    oneof6_int32    = 153;
+		int64    oneof6_int64    = 154;
+		uint32   oneof6_uint32   = 155;
+		uint64   oneof6_uint64   = 156;
+		sint32   oneof6_sint32   = 157;
+		sint64   oneof6_sint64   = 158;
+		fixed32  oneof6_fixed32  = 159;
+		fixed64  oneof6_fixed64  = 160;
+		sfixed32 oneof6_sfixed32 = 161;
+		sfixed64 oneof6_sfixed64 = 162;
+		bool     oneof6_bool     = 163;
+		string   oneof6_string   = 164;
+		bytes    oneof6_bytes    = 165;
+		EmbedMessage1 oneof6_embed_message = 166;
+		StandMessage1 oneof6_stand_message = 167;
+		gojsonexternal.ExternalMessage1 oneof6_external_message = 168;
+		EmbedEnum1    oneof6_embed_enum    = 169;
+		StandEnum1    oneof6_stand_enum    = 170;
+		gojsonexternal.ExternalEnum1 oneof6_external_enum   = 171;
+	}
+
+	oneof Oneof_type7 {
+		double   oneof7_double   = 181;
+		float    oneof7_float    = 182;
+		int32    oneof7_int32    = 183;
+		int64    oneof7_int64    = 184;
+		uint32   oneof7_uint32   = 185;
+		uint64   oneof7_uint64   = 186;
+		sint32   oneof7_sint32   = 187;
+		sint64   oneof7_sint64   = 188;
+		fixed32  oneof7_fixed32  = 189;
+		fixed64  oneof7_fixed64  = 190;
+		sfixed32 oneof7_sfixed32 = 191;
+		sfixed64 oneof7_sfixed64 = 192;
+		bool     oneof7_bool     = 193;
+		string   oneof7_string   = 194;
+		bytes    oneof7_bytes    = 195;
+		EmbedMessage1 oneof7_embed_message = 196;
+		StandMessage1 oneof7_stand_message = 197;
+		gojsonexternal.ExternalMessage1 oneof7_external_message = 198;
+		EmbedEnum1    oneof7_embed_enum    = 199;
+		StandEnum1    oneof7_stand_enum    = 200;
+		gojsonexternal.ExternalEnum1 oneof7_external_enum   = 201;
+	}
+
+	oneof Oneof_Type8 {
+		double   oneof8_double   = 211;
+		float    oneof8_float    = 212;
+		int32    oneof8_int32    = 213;
+		int64    oneof8_int64    = 214;
+		uint32   oneof8_uint32   = 215;
+		uint64   oneof8_uint64   = 216;
+		sint32   oneof8_sint32   = 217;
+		sint64   oneof8_sint64   = 218;
+		fixed32  oneof8_fixed32  = 219;
+		fixed64  oneof8_fixed64  = 220;
+		sfixed32 oneof8_sfixed32 = 221;
+		sfixed64 oneof8_sfixed64 = 222;
+		bool     oneof8_bool     = 223;
+		string   oneof8_string   = 224;
+		bytes    oneof8_bytes    = 225;
+		EmbedMessage1 oneof8_embed_message = 226;
+		StandMessage1 oneof8_stand_message = 227;
+		gojsonexternal.ExternalMessage1 oneof8_external_message = 228;
+		EmbedEnum1    oneof8_embed_enum    = 229;
+		StandEnum1    oneof8_stand_enum    = 230;
+		gojsonexternal.ExternalEnum1 oneof8_external_enum   = 231;
+	}
+
+	oneof Oneof_Type9 {
+		double   oneof9_double   = 241;
+		float    oneof9_float    = 242;
+		int32    oneof9_int32    = 243;
+		int64    oneof9_int64    = 244;
+		uint32   oneof9_uint32   = 245;
+		uint64   oneof9_uint64   = 246;
+		sint32   oneof9_sint32   = 247;
+		sint64   oneof9_sint64   = 248;
+		fixed32  oneof9_fixed32  = 249;
+		fixed64  oneof9_fixed64  = 250;
+		sfixed32 oneof9_sfixed32 = 251;
+		sfixed64 oneof9_sfixed64 = 252;
+		bool     oneof9_bool     = 253;
+		string   oneof9_string   = 254;
+		bytes    oneof9_bytes    = 255;
+		EmbedMessage1 oneof9_embed_message = 256;
+		StandMessage1 oneof9_stand_message = 257;
+		gojsonexternal.ExternalMessage1 oneof9_external_message = 258;
+		EmbedEnum1    oneof9_embed_enum    = 259;
+		StandEnum1    oneof9_stand_enum    = 260;
+		gojsonexternal.ExternalEnum1 oneof9_external_enum   = 261;
+	}
+
+	oneof Oneof_Type10 {
+		double   oneof10_double   = 271;
+		float    oneof10_float    = 272;
+		int32    oneof10_int32    = 273;
+		int64    oneof10_int64    = 274;
+		uint32   oneof10_uint32   = 275;
+		uint64   oneof10_uint64   = 276;
+		sint32   oneof10_sint32   = 277;
+		sint64   oneof10_sint64   = 278;
+		fixed32  oneof10_fixed32  = 279;
+		fixed64  oneof10_fixed64  = 280;
+		sfixed32 oneof10_sfixed32 = 281;
+		sfixed64 oneof10_sfixed64 = 282;
+		bool     oneof10_bool     = 283;
+		string   oneof10_string   = 284;
+		bytes    oneof10_bytes    = 285;
+		EmbedMessage1 oneof10_embed_message = 286;
+		StandMessage1 oneof10_stand_message = 287;
+		gojsonexternal.ExternalMessage1 oneof10_external_message = 288;
+		EmbedEnum1    oneof10_embed_enum    = 289;
+		StandEnum1    oneof10_stand_enum    = 290;
+		gojsonexternal.ExternalEnum1 oneof10_external_enum   = 291;
+	}
+
+	oneof Oneof_Type11 {
+		double   oneof11_double   = 301;
+		float    oneof11_float    = 302;
+		int32    oneof11_int32    = 303;
+		int64    oneof11_int64    = 304;
+		uint32   oneof11_uint32   = 305;
+		uint64   oneof11_uint64   = 306;
+		sint32   oneof11_sint32   = 307;
+		sint64   oneof11_sint64   = 308;
+		fixed32  oneof11_fixed32  = 309;
+		fixed64  oneof11_fixed64  = 310;
+		sfixed32 oneof11_sfixed32 = 311;
+		sfixed64 oneof11_sfixed64 = 312;
+		bool     oneof11_bool     = 313;
+		string   oneof11_string   = 314;
+		bytes    oneof11_bytes    = 315;
+		EmbedMessage1 oneof11_embed_message = 316;
+		StandMessage1 oneof11_stand_message = 317;
+		gojsonexternal.ExternalMessage1 oneof11_external_message = 318;
+		EmbedEnum1    oneof11_embed_enum    = 319;
+		StandEnum1    oneof11_stand_enum    = 320;
+		gojsonexternal.ExternalEnum1 oneof11_external_enum   = 321;
+	}
+
+	oneof Oneof_Type12 {
+		double   oneof12_double   = 331;
+		float    oneof12_float    = 332;
+		int32    oneof12_int32    = 333;
+		int64    oneof12_int64    = 334;
+		uint32   oneof12_uint32   = 335;
+		uint64   oneof12_uint64   = 336;
+		sint32   oneof12_sint32   = 337;
+		sint64   oneof12_sint64   = 338;
+		fixed32  oneof12_fixed32  = 339;
+		fixed64  oneof12_fixed64  = 340;
+		sfixed32 oneof12_sfixed32 = 341;
+		sfixed64 oneof12_sfixed64 = 342;
+		bool     oneof12_bool     = 343;
+		string   oneof12_string   = 344;
+		bytes    oneof12_bytes    = 345;
+		EmbedMessage1 oneof12_embed_message = 346;
+		StandMessage1 oneof12_stand_message = 347;
+		gojsonexternal.ExternalMessage1 oneof12_external_message = 348;
+		EmbedEnum1    oneof12_embed_enum    = 349;
+		StandEnum1    oneof12_stand_enum    = 350;
+		gojsonexternal.ExternalEnum1 oneof12_external_enum   = 351;
+	}
+
+	oneof Oneof_Type13 {
+		double   oneof13_double   = 361;
+		float    oneof13_float    = 362;
+		int32    oneof13_int32    = 363;
+		int64    oneof13_int64    = 364;
+		uint32   oneof13_uint32   = 365;
+		uint64   oneof13_uint64   = 366;
+		sint32   oneof13_sint32   = 367;
+		sint64   oneof13_sint64   = 368;
+		fixed32  oneof13_fixed32  = 369;
+		fixed64  oneof13_fixed64  = 370;
+		sfixed32 oneof13_sfixed32 = 371;
+		sfixed64 oneof13_sfixed64 = 372;
+		bool     oneof13_bool     = 373;
+		string   oneof13_string   = 374;
+		bytes    oneof13_bytes    = 375;
+		EmbedMessage1 oneof13_embed_message = 376;
+		StandMessage1 oneof13_stand_message = 377;
+		gojsonexternal.ExternalMessage1 oneof13_external_message = 378;
+		EmbedEnum1    oneof13_embed_enum    = 379;
+		StandEnum1    oneof13_stand_enum    = 380;
+		gojsonexternal.ExternalEnum1 oneof13_external_enum   = 381;
+	}
+
+	oneof Oneof_Type14 {
+		double   oneof14_double   = 391;
+		float    oneof14_float    = 392;
+		int32    oneof14_int32    = 393;
+		int64    oneof14_int64    = 394;
+		uint32   oneof14_uint32   = 395;
+		uint64   oneof14_uint64   = 396;
+		sint32   oneof14_sint32   = 397;
+		sint64   oneof14_sint64   = 398;
+		fixed32  oneof14_fixed32  = 399;
+		fixed64  oneof14_fixed64  = 400;
+		sfixed32 oneof14_sfixed32 = 401;
+		sfixed64 oneof14_sfixed64 = 402;
+		bool     oneof14_bool     = 403;
+		string   oneof14_string   = 404;
+		bytes    oneof14_bytes    = 405;
+		EmbedMessage1 oneof14_embed_message = 406;
+		StandMessage1 oneof14_stand_message = 407;
+		gojsonexternal.ExternalMessage1 oneof14_external_message = 408;
+		EmbedEnum1    oneof14_embed_enum    = 409;
+		StandEnum1    oneof14_stand_enum    = 410;
+		gojsonexternal.ExternalEnum1 oneof14_external_enum   = 411;
+	}
+
+	oneof Oneof_Type15 {
+		double   oneof15_double   = 421;
+		float    oneof15_float    = 422;
+		int32    oneof15_int32    = 423;
+		int64    oneof15_int64    = 424;
+		uint32   oneof15_uint32   = 425;
+		uint64   oneof15_uint64   = 426;
+		sint32   oneof15_sint32   = 427;
+		sint64   oneof15_sint64   = 428;
+		fixed32  oneof15_fixed32  = 429;
+		fixed64  oneof15_fixed64  = 430;
+		sfixed32 oneof15_sfixed32 = 431;
+		sfixed64 oneof15_sfixed64 = 432;
+		bool     oneof15_bool     = 433;
+		string   oneof15_string   = 434;
+		bytes    oneof15_bytes    = 435;
+		EmbedMessage1 oneof15_embed_message = 436;
+		StandMessage1 oneof15_stand_message = 437;
+		gojsonexternal.ExternalMessage1 oneof15_external_message = 438;
+		EmbedEnum1    oneof15_embed_enum    = 439;
+		StandEnum1    oneof15_stand_enum    = 440;
+		gojsonexternal.ExternalEnum1 oneof15_external_enum   = 441;
+	}
+
+	oneof Oneof_Type16 {
+		double   oneof16_double   = 451;
+		float    oneof16_float    = 452;
+		int32    oneof16_int32    = 453;
+		int64    oneof16_int64    = 454;
+		uint32   oneof16_uint32   = 455;
+		uint64   oneof16_uint64   = 456;
+		sint32   oneof16_sint32   = 457;
+		sint64   oneof16_sint64   = 458;
+		fixed32  oneof16_fixed32  = 459;
+		fixed64  oneof16_fixed64  = 460;
+		sfixed32 oneof16_sfixed32 = 461;
+		sfixed64 oneof16_sfixed64 = 462;
+		bool     oneof16_bool     = 463;
+		string   oneof16_string   = 464;
+		bytes    oneof16_bytes    = 465;
+		EmbedMessage1 oneof16_embed_message = 466;
+		StandMessage1 oneof16_stand_message = 467;
+		gojsonexternal.ExternalMessage1 oneof16_external_message = 468;
+		EmbedEnum1    oneof16_embed_enum    = 469;
+		StandEnum1    oneof16_stand_enum    = 470;
+		gojsonexternal.ExternalEnum1 oneof16_external_enum   = 471;
+	}
+
+	oneof Oneof_Type17 {
+		double   oneof17_double   = 481;
+		float    oneof17_float    = 482;
+		int32    oneof17_int32    = 483;
+		int64    oneof17_int64    = 484;
+		uint32   oneof17_uint32   = 485;
+		uint64   oneof17_uint64   = 486;
+		sint32   oneof17_sint32   = 487;
+		sint64   oneof17_sint64   = 488;
+		fixed32  oneof17_fixed32  = 489;
+		fixed64  oneof17_fixed64  = 480;
+		sfixed32 oneof17_sfixed32 = 491;
+		sfixed64 oneof17_sfixed64 = 492;
+		bool     oneof17_bool     = 493;
+		string   oneof17_string   = 494;
+		bytes    oneof17_bytes    = 495;
+		EmbedMessage1 oneof17_embed_message = 496;
+		StandMessage1 oneof17_stand_message = 497;
+		gojsonexternal.ExternalMessage1 oneof17_external_message = 498;
+		EmbedEnum1    oneof17_embed_enum    = 499;
+		StandEnum1    oneof17_stand_enum    = 500;
+		gojsonexternal.ExternalEnum1 oneof17_external_enum   = 501;
+	}
+
+	oneof Oneof_Type18 {
+		double   oneof18_double   = 511;
+		float    oneof18_float    = 512;
+		int32    oneof18_int32    = 513;
+		int64    oneof18_int64    = 514;
+		uint32   oneof18_uint32   = 515;
+		uint64   oneof18_uint64   = 516;
+		sint32   oneof18_sint32   = 517;
+		sint64   oneof18_sint64   = 518;
+		fixed32  oneof18_fixed32  = 519;
+		fixed64  oneof18_fixed64  = 520;
+		sfixed32 oneof18_sfixed32 = 521;
+		sfixed64 oneof18_sfixed64 = 522;
+		bool     oneof18_bool     = 523;
+		string   oneof18_string   = 524;
+		bytes    oneof18_bytes    = 525;
+		EmbedMessage1 oneof18_embed_message = 526;
+		StandMessage1 oneof18_stand_message = 527;
+		gojsonexternal.ExternalMessage1 oneof18_external_message = 528;
+		EmbedEnum1    oneof18_embed_enum    = 529;
+		StandEnum1    oneof18_stand_enum    = 530;
+		gojsonexternal.ExternalEnum1 oneof18_external_enum   = 531;
+	}
+
+	oneof Oneof_Type19 {
+		double   oneof19_double   = 541;
+		float    oneof19_float    = 542;
+		int32    oneof19_int32    = 543;
+		int64    oneof19_int64    = 544;
+		uint32   oneof19_uint32   = 545;
+		uint64   oneof19_uint64   = 546;
+		sint32   oneof19_sint32   = 547;
+		sint64   oneof19_sint64   = 548;
+		fixed32  oneof19_fixed32  = 549;
+		fixed64  oneof19_fixed64  = 550;
+		sfixed32 oneof19_sfixed32 = 551;
+		sfixed64 oneof19_sfixed64 = 552;
+		bool     oneof19_bool     = 553;
+		string   oneof19_string   = 554;
+		bytes    oneof19_bytes    = 555;
+		EmbedMessage1 oneof19_embed_message = 556;
+		StandMessage1 oneof19_stand_message = 557;
+		gojsonexternal.ExternalMessage1 oneof19_external_message = 558;
+		EmbedEnum1    oneof19_embed_enum    = 559;
+		StandEnum1    oneof19_stand_enum    = 560;
+		gojsonexternal.ExternalEnum1 oneof19_external_enum   = 561;
+	}
+
+	oneof Oneof_Type20 {
+		double   oneof20_double   = 571;
+		float    oneof20_float    = 572;
+		int32    oneof20_int32    = 573;
+		int64    oneof20_int64    = 574;
+		uint32   oneof20_uint32   = 575;
+		uint64   oneof20_uint64   = 576;
+		sint32   oneof20_sint32   = 577;
+		sint64   oneof20_sint64   = 578;
+		fixed32  oneof20_fixed32  = 579;
+		fixed64  oneof20_fixed64  = 580;
+		sfixed32 oneof20_sfixed32 = 581;
+		sfixed64 oneof20_sfixed64 = 582;
+		bool     oneof20_bool     = 583;
+		string   oneof20_string   = 584;
+		bytes    oneof20_bytes    = 585;
+		EmbedMessage1 oneof20_embed_message = 586;
+		StandMessage1 oneof20_stand_message = 587;
+		gojsonexternal.ExternalMessage1 oneof20_external_message = 588;
+		EmbedEnum1    oneof20_embed_enum    = 589;
+		StandEnum1    oneof20_stand_enum    = 590;
+		gojsonexternal.ExternalEnum1 oneof20_external_enum   = 591;
+	}
+
+	oneof Oneof_Type21 {
+		double   oneof21_double   = 601;
+		float    oneof21_float    = 602;
+		int32    oneof21_int32    = 603;
+		int64    oneof21_int64    = 604;
+		uint32   oneof21_uint32   = 605;
+		uint64   oneof21_uint64   = 606;
+		sint32   oneof21_sint32   = 607;
+		sint64   oneof21_sint64   = 608;
+		fixed32  oneof21_fixed32  = 609;
+		fixed64  oneof21_fixed64  = 610;
+		sfixed32 oneof21_sfixed32 = 611;
+		sfixed64 oneof21_sfixed64 = 612;
+		bool     oneof21_bool     = 613;
+		string   oneof21_string   = 614;
+		bytes    oneof21_bytes    = 615;
+		EmbedMessage1 oneof21_embed_message = 616;
+		StandMessage1 oneof21_stand_message = 617;
+		gojsonexternal.ExternalMessage1 oneof21_external_message = 618;
+		EmbedEnum1    oneof21_embed_enum    = 619;
+		StandEnum1    oneof21_stand_enum    = 620;
+		gojsonexternal.ExternalEnum1 oneof21_external_enum   = 621;
+	}
+
+	oneof Oneof_Type22_null {
+		double   oneof22_double   = 631;
+		float    oneof22_float    = 632;
+		int32    oneof22_int32    = 633;
+		int64    oneof22_int64    = 634;
+		uint32   oneof22_uint32   = 635;
+		uint64   oneof22_uint64   = 636;
+		sint32   oneof22_sint32   = 637;
+		sint64   oneof22_sint64   = 638;
+		fixed32  oneof22_fixed32  = 639;
+		fixed64  oneof22_fixed64  = 640;
+		sfixed32 oneof22_sfixed32 = 641;
+		sfixed64 oneof22_sfixed64 = 642;
+		bool     oneof22_bool     = 643;
+		string   oneof22_string   = 644;
+		bytes    oneof22_bytes    = 645;
+		EmbedMessage1 oneof22_embed_message = 646;
+		StandMessage1 oneof22_stand_message = 647;
+		gojsonexternal.ExternalMessage1 oneof22_external_message = 648;
+		EmbedEnum1    oneof22_embed_enum    = 649;
+		StandEnum1    oneof22_stand_enum    = 650;
+		gojsonexternal.ExternalEnum1 oneof22_external_enum   = 651;
+	}
+
+	oneof Oneof_Type23_null {
+		double   oneof23_double   = 661;
+		float    oneof23_float    = 662;
+		int32    oneof23_int32    = 663;
+		int64    oneof23_int64    = 664;
+		uint32   oneof23_uint32   = 665;
+		uint64   oneof23_uint64   = 666;
+		sint32   oneof23_sint32   = 667;
+		sint64   oneof23_sint64   = 668;
+		fixed32  oneof23_fixed32  = 669;
+		fixed64  oneof23_fixed64  = 670;
+		sfixed32 oneof23_sfixed32 = 671;
+		sfixed64 oneof23_sfixed64 = 672;
+		bool     oneof23_bool     = 673;
+		string   oneof23_string   = 674;
+		bytes    oneof23_bytes    = 675;
+		EmbedMessage1 oneof23_embed_message = 676;
+		StandMessage1 oneof23_stand_message = 677;
+		gojsonexternal.ExternalMessage1 oneof23_external_message = 678;
+		EmbedEnum1    oneof23_embed_enum    = 679;
+		StandEnum1    oneof23_stand_enum    = 680;
+		gojsonexternal.ExternalEnum1 oneof23_external_enum   = 681;
+	}
+	
+	double   type_double1  = 1201;
+	double   TypeDouble2   = 1202 [ (json.field) = {json: "type_double2"} ];
+	double   typeDouble3   = 1203;
+	double   Type_double4  = 1204;
+	double   Type_Double5  = 1205;
+	
+	float    type_float    = 1211;
+	int32    type_int32    = 1212;
+	int64    type_int64    = 1213;
+	uint32   type_uint32   = 1214;
+	uint64   type_uint64   = 1215;
+	sint32   type_sint32   = 1216;
+	sint64   type_sint64   = 1217;
+	fixed32  type_fixed32  = 1218;
+	fixed64  type_fixed64  = 1219;
+  sfixed32 type_sfixed32 = 1220;
+  sfixed64 type_sfixed64 = 1221;
+  bool     type_bool1    = 1222;
+	bool     type_bool2    = 1223;
+	string   type_string1  = 1224;
+	string   type_string2  = 1225;
+	string   type_string3  = 1226;
+	string   type_string4  = 1227;
+	string   type_string5  = 1228;
+	bytes    type_bytes    = 1229;
+	EmbedMessage1 type_embed_message      = 1241;
+	StandMessage1 type_stand_message      = 1243;
+	EmbedEnum1    type_embed_enum         = 1244;
+	StandEnum1    type_stand_enum         = 1245;
+	gojsonexternal.ExternalEnum1 type_external_enum            = 1246;
+	gojsonexternal.ExternalMessage1 type_external_message      = 1247;
+	
+	bytes    type_bytes_null   = 1261;
+	EmbedMessage1 type_embed_message_null = 1262; // test null
+	StandMessage1 type_stand_message_null = 1263; // test null
+	gojsonexternal.ExternalMessage1 type_external_message_null = 1264; // test null
+	
+	repeated double   array_double   = 1301;
+	repeated float    array_float    = 1302;
+	repeated int32    array_int32    = 1303;
+	repeated int64    array_int64    = 1304;
+	repeated uint32   array_uint32   = 1305;
+	repeated uint64   array_uint64   = 1306;
+	repeated sint32   array_sint32   = 1307;
+	repeated sint64   array_sint64   = 1308;
+	repeated fixed32  array_fixed32  = 1309;
+	repeated fixed64  array_fixed64  = 1310;
+	repeated sfixed32 array_sfixed32 = 1311;
+	repeated sfixed64 array_sfixed64 = 1312;
+	repeated bool     array_bool     = 1313;
+	repeated string   array_string   = 1314;
+	repeated bytes    array_bytes    = 1315;
+	repeated EmbedMessage1 array_embed_message = 1316;
+	repeated StandMessage1 array_stand_message = 1317;
+	repeated gojsonexternal.ExternalMessage1 array_external_message = 1318;
+	repeated EmbedEnum1    array_embed_enum    = 1319;
+	repeated StandEnum1    array_stand_enum    = 1320;
+	repeated gojsonexternal.ExternalEnum1 array_external_enum = 1321;
+	repeated StandEnum1    array_stand_enum_null = 1322;
+
+	map<int32, double>   map_int32_double   = 1402;
+	map<int32, float>    map_int32_float    = 1403;
+	map<int32, int32>    map_int32_int32    = 1404;
+	map<int32, int64>    map_int32_int64    = 1405;
+	map<int32, uint32>   map_int32_uint32   = 1406;
+	map<int32, uint64>   map_int32_uint64   = 1407;
+	map<int32, sint32>   map_int32_sint32   = 1408;
+	map<int32, sint64>   map_int32_sint64   = 1409;
+	map<int32, fixed32>  map_int32_fixed32  = 1410;
+	map<int32, fixed64>  map_int32_fixed64  = 1411;
+	map<int32, sfixed32> map_int32_sfixed32 = 1412;
+	map<int32, sfixed64> map_int32_sfixed64 = 1413;
+	map<int32, bool>     map_int32_bool     = 1414;
+	map<int32, string>   map_int32_string   = 1415;
+	map<int32, bytes>    map_int32_bytes    = 1416;
+	map<int32, EmbedMessage1> map_int32_embed_message = 1417;
+	map<int32, StandMessage1> map_int32_stand_message = 1418;
+	map<int32, EmbedEnum1>    map_int32_embed_enum    = 1419;
+	map<int32, StandEnum1>    map_int32_stand_enum    = 1420;
+
+	map<int64, int32>    map_int64_int32    = 1451;
+	map<uint32, int32>   map_uint32_int32   = 1452;
+	map<uint64, int32>   map_uint64_int32   = 1453;
+	map<sint32, int32>   map_sint32_int32   = 1454;
+	map<sint64, int32>   map_sint64_int32   = 1455;
+	map<fixed32, int32>  map_fixed32_int32  = 1456;
+	map<fixed64, int32>  map_fixed64_int32  = 1457;
+	map<sfixed32, int32> map_sfixed32_int32 = 1458;
+	map<sfixed64, int32> map_sfixed64_int32 = 1459;
+	map<string, int32>   map_string_int32   = 1460;
+	map<string, int32>   map_string_int32_null  = 1461;
+	map<string, string>  map_string_string      = 1462;
+	map<string, EmbedMessage1> map_string_embed_message = 1463;
+	map<string, StandMessage1> map_string_stand_message = 1464;
+	map<string, gojsonexternal.ExternalMessage1> map_string_external_message = 1465;
+	map<string, EmbedEnum1>    map_string_embed_enum    = 1466;
+	map<string, StandEnum1>    map_string_stand_enum    = 1467;
+	map<string, gojsonexternal.ExternalEnum1> map_string_external_enum = 1468;
+}
+
+message Model2 {
+	enum EmbedEnum1 {
+		july      = 0;
+		august    = 1;
+		september = 2;
+		october   = 3;
+		november  = 4;
+		december  = 5;
+	}
+	
+	message EmbedMessage1 {
+		string age1 = 1;
+		string age2 = 2;
+		string age3 = 3;
+	}
+	
+	double   type_double1  = 1201;
+	double   type_double2  = 1202;
+	double   type_double3  = 1203;
+	double   type_double4  = 1204;
+	double   type_double5  = 1205;
+	float    type_float    = 1211;
+	int32    type_int32    = 1212;
+	int64    type_int64    = 1213;
+	uint32   type_uint32   = 1214;
+	uint64   type_uint64   = 1215;
+	sint32   type_sint32   = 1216;
+	sint64   type_sint64   = 1217;
+	fixed32  type_fixed32  = 1218;
+	fixed64  type_fixed64  = 1219;
+	sfixed32 type_sfixed32 = 1220;
+	sfixed64 type_sfixed64 = 1221;
+	bool     type_bool1    = 1222;
+	bool     type_bool2    = 1223;
+	string   type_string1  = 1224;
+	string   type_string2  = 1225;
+	string   type_string3  = 1226;
+	string   type_string4  = 1227;
+	string   type_string5  = 1228;
+	bytes    type_bytes    = 1229;
+	EmbedMessage1 type_embed_message      = 1241;
+	StandMessage1 type_stand_message      = 1243;
+	EmbedEnum1    type_embed_enum         = 1244;
+	StandEnum1    type_stand_enum         = 1245;
+	gojsonexternal.ExternalEnum1 type_external_enum            = 1246;
+	gojsonexternal.ExternalMessage1 type_external_message      = 1247;
+	
+	repeated double   array_double   = 1301;
+	repeated float    array_float    = 1302;
+	repeated int32    array_int32    = 1303;
+	repeated int64    array_int64    = 1304;
+	repeated uint32   array_uint32   = 1305;
+	repeated uint64   array_uint64   = 1306;
+	repeated sint32   array_sint32   = 1307;
+	repeated sint64   array_sint64   = 1308;
+	repeated fixed32  array_fixed32  = 1309;
+	repeated fixed64  array_fixed64  = 1310;
+	repeated sfixed32 array_sfixed32 = 1311;
+	repeated sfixed64 array_sfixed64 = 1312;
+	repeated bool     array_bool     = 1313;
+	repeated string   array_string   = 1314;
+	repeated bytes    array_bytes    = 1315;
+	repeated EmbedMessage1 array_embed_message = 1316;
+	repeated StandMessage1 array_stand_message = 1317;
+	repeated gojsonexternal.ExternalMessage1 array_external_message = 1318;
+	repeated EmbedEnum1    array_embed_enum    = 1319;
+	repeated StandEnum1    array_stand_enum    = 1320;
+	repeated gojsonexternal.ExternalEnum1 array_external_enum = 1321;
+	
+	map<int32, double>   map_int32_double   = 1402;
+	map<int32, float>    map_int32_float    = 1403;
+	map<int32, int32>    map_int32_int32    = 1404;
+	map<int32, int64>    map_int32_int64    = 1405;
+	map<int32, uint32>   map_int32_uint32   = 1406;
+	map<int32, uint64>   map_int32_uint64   = 1407;
+	map<int32, sint32>   map_int32_sint32   = 1408;
+	map<int32, sint64>   map_int32_sint64   = 1409;
+	map<int32, fixed32>  map_int32_fixed32  = 1410;
+	map<int32, fixed64>  map_int32_fixed64  = 1411;
+	map<int32, sfixed32> map_int32_sfixed32 = 1412;
+	map<int32, sfixed64> map_int32_sfixed64 = 1413;
+	map<int32, bool>     map_int32_bool     = 1414;
+	map<int32, string>   map_int32_string   = 1415;
+	map<int32, bytes>    map_int32_bytes    = 1416;
+	map<int32, EmbedMessage1> map_int32_embed_message = 1417;
+	map<int32, StandMessage1> map_int32_stand_message = 1418;
+	map<int32, EmbedEnum1>    map_int32_embed_enum    = 1419;
+	map<int32, StandEnum1>    map_int32_stand_enum    = 1420;
+	
+	map<int64, int32>    map_int64_int32    = 1451;
+	map<uint32, int32>   map_uint32_int32   = 1452;
+	map<uint64, int32>   map_uint64_int32   = 1453;
+	map<sint32, int32>   map_sint32_int32   = 1454;
+	map<sint64, int32>   map_sint64_int32   = 1455;
+	map<fixed32, int32>  map_fixed32_int32  = 1456;
+	map<fixed64, int32>  map_fixed64_int32  = 1457;
+	map<sfixed32, int32> map_sfixed32_int32 = 1458;
+	map<sfixed64, int32> map_sfixed64_int32 = 1459;
+	map<string, int32>   map_string_int32   = 1460;
+	map<string, string>  map_string_string      = 1462;
+	map<string, EmbedMessage1> map_string_embed_message = 1463;
+	map<string, StandMessage1> map_string_stand_message = 1464;
+	map<string, gojsonexternal.ExternalMessage1> map_string_external_message = 1465;
+	map<string, EmbedEnum1>    map_string_embed_enum    = 1466;
+	map<string, StandEnum1>    map_string_stand_enum    = 1467;
+	map<string, gojsonexternal.ExternalEnum1> map_string_external_enum = 1468;
+}
+
+// Used to benchmark.
+message Model3 {
+	string   t_string1  = 101;
+	string   t_string2  = 102;
+	string   t_string3  = 103;
+	string   t_string4  = 104;
+	string   t_string5  = 105;
+	string   t_string6  = 106;
+	string   t_string7  = 107;
+	string   t_string8  = 108;
+	string   t_string9  = 109;
+	string   t_string10 = 110;
+
+	int32    t_int32    = 2;
+	int64    t_int64    = 3;
+	uint32   t_uint32   = 4;
+	uint64   t_uint64   = 5;
+	sint32   t_sint32   = 6;
+	sint64   t_sint64   = 7;
+	sfixed32 t_sfixed32 = 8;
+	sfixed64 t_sfixed64 = 9;
+	fixed32  t_fixed32  = 10;
+	fixed64  t_fixed64  = 11;
+	float    t_float    = 12;
+	double   t_double   = 13;
+	bool     t_bool     = 14;
+}
+
+message NameStyleTextName {
+	option (json.message) = {name_style: TextName};
+	
+	int32 name_style1 = 1;
+	int32 names_Style2 = 2;
+	int32 Name_Style3 = 3;
+	int32 Name_style4 = 4;
+	int32 namestyle5 = 5;
+	int32 nameStyle6 = 6;
+	int32 NameStyle7 = 7;
+	int32 Namestyle8 = 8;
+	
+	oneof data_type1 {
+		string integer1 = 10;
+		string float1 = 11;
+	}
+	
+	oneof data_Type2 {
+		string integer2 = 20;
+		string float2 = 21;
+	}
+	
+	oneof Data_Type3 {
+		string integer3 = 30;
+		string float3 = 31;
+	}
+	
+	oneof Data_type4 {
+		string integer4 = 40;
+		string float4 = 41;
+	}
+	
+	oneof datatype5 {
+		string integer5 = 50;
+		string float5 = 51;
+	}
+	
+	oneof dataType6 {
+		string integer6 = 60;
+		string float6 = 61;
+	}
+	
+	oneof DataType7 {
+		string integer7 = 70;
+		string float7 = 71;
+	}
+	
+	oneof Datatype8 {
+		string integer8 = 80;
+		string float8 = 81;
+	}
+}
+
+message NameStyleGoName {
+	option (json.message) = {name_style: GoName};
+	
+	int32 name_style1 = 1;
+	int32 names_Style2 = 2;
+	int32 Name_Style3 = 3;
+	int32 Name_style4 = 4;
+	int32 namestyle5 = 5;
+	int32 nameStyle6 = 6;
+	int32 NameStyle7 = 7;
+	int32 Namestyle8 = 8;
+	
+	oneof data_type1 {
+		string integer1 = 10;
+		string float1 = 11;
+	}
+	
+	oneof data_Type2 {
+		string integer2 = 20;
+		string float2 = 21;
+	}
+	
+	oneof Data_Type3 {
+		string integer3 = 30;
+		string float3 = 31;
+	}
+	
+	oneof Data_type4 {
+		string integer4 = 40;
+		string float4 = 41;
+	}
+	
+	oneof datatype5 {
+		string integer5 = 50;
+		string float5 = 51;
+	}
+	
+	oneof dataType6 {
+		string integer6 = 60;
+		string float6 = 61;
+	}
+	
+	oneof DataType7 {
+		string integer7 = 70;
+		string float7 = 71;
+	}
+	
+	oneof Datatype8 {
+		string integer8 = 80;
+		string float8 = 81;
+	}
+}
+
+message NameStyleJSONName {
+	option (json.message) = {name_style: JSONName};
+	
+	int32 name_style1 = 1;
+	int32 names_Style2 = 2;
+	int32 Name_Style3 = 3;
+	int32 Name_style4 = 4;
+	int32 namestyle5 = 5;
+	int32 nameStyle6 = 6;
+	int32 NameStyle7 = 7;
+	int32 Namestyle8 = 8;
+	
+	oneof data_type1 {
+		string integer1 = 10;
+		string float1 = 11;
+	}
+	
+	oneof data_Type2 {
+		string integer2 = 20;
+		string float2 = 21;
+	}
+	
+	oneof Data_Type3 {
+		string integer3 = 30;
+		string float3 = 31;
+	}
+	
+	oneof Data_type4 {
+		string integer4 = 40;
+		string float4 = 41;
+	}
+	
+	oneof datatype5 {
+		string integer5 = 50;
+		string float5 = 51;
+	}
+	
+	oneof dataType6 {
+		string integer6 = 60;
+		string float6 = 61;
+	}
+	
+	oneof DataType7 {
+		string integer7 = 70;
+		string float7 = 71;
+	}
+	
+	oneof Datatype8 {
+		string integer8 = 80;
+		string float8 = 81;
+	}
+}
+
+message FieldCustomName {
+	option (json.message) = {name_style: TextName, omitempty: true};
+
+	enum Enum {
+		running    = 0;
+		stopped    = 1;
+	}
+
+	message Aliases {
+	}
+
+	message Config {
+		string ip = 1   [ (json.field) = { json: "cf" } ];
+		int32  port = 2 [ (json.field) = { json: "cp" } ];
+	}
+
+	string   t_string   = 1  [ (json.field) = { json: "ts" } ];
+	int32    t_int32    = 2  [ (json.field) = { json: "ti32" } ];
+	int64    t_int64    = 3  [ (json.field) = { json: "ti64" } ];
+	uint32   t_uint32   = 4  [ (json.field) = { json: "tu32" } ];
+	uint64   t_uint64   = 5  [ (json.field) = { json: "tu64" } ];
+	sint32   t_sint32   = 6  [ (json.field) = { json: "tsi32" } ];
+	sint64   t_sint64   = 7  [ (json.field) = { json: "tsi64" } ];
+	sfixed32 t_sfixed32 = 8  [ (json.field) = { json: "tsf32" } ];
+	sfixed64 t_sfixed64 = 9  [ (json.field) = { json: "tsf64" } ];
+	fixed32  t_fixed32  = 10 [ (json.field) = { json: "tfi32" } ];
+	fixed64  t_fixed64  = 11 [ (json.field) = { json: "tfi64" } ];
+	float    t_float    = 12 [ (json.field) = { json: "tfl" } ];
+	double   t_double   = 13 [ (json.field) = { json: "tdl" } ];
+	bool     t_bool     = 14 [ (json.field) = { json: "tbl" } ];
+	Enum     t_enum1    = 15 [ (json.field) = { json: "te1" } ];
+	Enum     t_enum2    = 16 [ (json.field) = { json: "te2", use_enum_string: true} ];
+	bytes    t_bytes    = 17 [ (json.field) = { json: "tbs" } ];
+	Aliases  t_aliases  = 18 [ (json.field) = { json: "ta" } ];
+	Config   t_config   = 19 [ (json.field) = { json: "tc" } ];
+
+	repeated double   array_double   = 101 [ (json.field) = { json: "adl" } ];
+	repeated float    array_float    = 102 [ (json.field) = { json: "afl" } ];
+	repeated int32    array_int32    = 103 [ (json.field) = { json: "ai32" } ];
+	repeated int64    array_int64    = 104 [ (json.field) = { json: "ai64" } ];
+	repeated uint32   array_uint32   = 105 [ (json.field) = { json: "au32" } ];
+	repeated uint64   array_uint64   = 106 [ (json.field) = { json: "au64" } ];
+	repeated sint32   array_sint32   = 107 [ (json.field) = { json: "asi32" } ];
+	repeated sint64   array_sint64   = 108 [ (json.field) = { json: "asi64" } ];
+	repeated sfixed32 array_sfixed32 = 109 [ (json.field) = { json: "asf32" } ];
+	repeated sfixed64 array_sfixed64 = 110 [ (json.field) = { json: "asf64" } ];
+	repeated fixed32  array_fixed32  = 111 [ (json.field) = { json: "afi32" } ];
+	repeated fixed64  array_fixed64  = 112 [ (json.field) = { json: "afi64" } ];
+	repeated bool     array_bool     = 113 [ (json.field) = { json: "abl" } ];
+	repeated string   array_string   = 114 [ (json.field) = { json: "as" } ];
+	repeated bytes    array_bytes    = 115 [ (json.field) = { json: "abs" } ];
+	repeated Enum     array_enum1    = 116 [ (json.field) = { json: "ae1" } ];
+	repeated Enum     array_enum2    = 117 [ (json.field) = { json: "ae2", use_enum_string: true} ];
+	repeated Aliases  array_aliases  = 118 [ (json.field) = { json: "aa" } ];
+	repeated Config   array_config   = 119 [ (json.field) = { json: "ac" } ];
+
+	map<int32, double>   map_int32_double   = 202 [ (json.field) = { json: "m32dl" } ];
+	map<int32, float>    map_int32_float    = 203 [ (json.field) = { json: "m32fl" } ];
+	map<int32, int32>    map_int32_int32    = 204 [ (json.field) = { json: "m32i32" } ];
+	map<int32, int64>    map_int32_int64    = 205 [ (json.field) = { json: "m32i64" } ];
+	map<int32, uint32>   map_int32_uint32   = 206 [ (json.field) = { json: "m32u32" } ];
+	map<int32, uint64>   map_int32_uint64   = 207 [ (json.field) = { json: "m32u64" } ];
+	map<int32, sint32>   map_int32_sint32   = 208 [ (json.field) = { json: "m32si32" } ];
+	map<int32, sint64>   map_int32_sint64   = 209 [ (json.field) = { json: "m32si64" } ];
+	map<int32, sfixed32> map_int32_sfixed32 = 210 [ (json.field) = { json: "m32sf32" } ];
+	map<int32, sfixed64> map_int32_sfixed64 = 211 [ (json.field) = { json: "m32sf64" } ];
+	map<int32, fixed32>  map_int32_fixed32  = 212 [ (json.field) = { json: "m32fi32" } ];
+	map<int32, fixed64>  map_int32_fixed64  = 213 [ (json.field) = { json: "m32fi64" } ];
+	map<int32, bool>     map_int32_bool     = 214 [ (json.field) = { json: "m32bl" } ];
+	map<int32, string>   map_int32_string   = 215 [ (json.field) = { json: "m32s" } ];
+	map<int32, bytes>    map_int32_bytes    = 216 [ (json.field) = { json: "m32b" } ];
+	map<int32, Enum>     map_int32_enum1    = 217 [ (json.field) = { json: "m32e1" } ];
+	map<int32, Enum>     map_int32_enum2    = 218 [ (json.field) = { json: "m32e2", use_enum_string: true} ];
+	map<int32, Aliases>  map_int32_aliases  = 219 [ (json.field) = { json: "m32a" } ];
+	map<int32, Config>   map_int32_config   = 220 [ (json.field) = { json: "m32c" } ];
+
+	map<int64, int32>    map_int64_int32    = 301 [ (json.field) = { json: "mi64i32" } ];
+	map<uint32, int32>   map_uint32_int32   = 302 [ (json.field) = { json: "mu32i32" } ];
+	map<uint64, int32>   map_uint64_int32   = 304 [ (json.field) = { json: "mu64i32" } ];
+	map<sint32, int32>   map_sint32_int32   = 305 [ (json.field) = { json: "ms32i32" } ];
+	map<sint64, int32>   map_sint64_int32   = 306 [ (json.field) = { json: "ms64i32" } ];
+	map<fixed32, int32>  map_fixed32_int32  = 307 [ (json.field) = { json: "mf32i32" } ];
+	map<fixed64, int32>  map_fixed64_int32  = 308 [ (json.field) = { json: "mf64i32" } ];
+	map<sfixed32, int32> map_sfixed32_int32 = 309 [ (json.field) = { json: "msf32i32" } ];
+	map<sfixed64, int32> map_sfixed64_int32 = 310 [ (json.field) = { json: "msf64i32" } ];
+	map<string, int32>   map_string_int32   = 311 [ (json.field) = { json: "msi32" } ];
+
+
+	oneof DataType1 {
+		option (json.oneof) = {json: "dt1", hide_oneof_key: false};
+
+		string   one1_t_string   = 401 [ (json.field) = { json: "o1ts" } ];
+		int32    one1_t_int32    = 402 [ (json.field) = { json: "o1i32" } ];
+		int64    one1_t_int64    = 403 [ (json.field) = { json: "o1i64" } ];
+		uint32   one1_t_uint32   = 404 [ (json.field) = { json: "o1u32" } ];
+		uint64   one1_t_uint64   = 405 [ (json.field) = { json: "o1u64" } ];
+		sint32   one1_t_sint32   = 406 [ (json.field) = { json: "o1si32" } ];
+		sint64   one1_t_sint64   = 407 [ (json.field) = { json: "o1si64" } ];
+		sfixed32 one1_t_sfixed32 = 408 [ (json.field) = { json: "o1sf32" } ];
+		sfixed64 one1_t_sfixed64 = 409 [ (json.field) = { json: "o1sf64" } ];
+		fixed32  one1_t_fixed32  = 410 [ (json.field) = { json: "o1fi32" } ];
+		fixed64  one1_t_fixed64  = 411 [ (json.field) = { json: "o1fi64" } ];
+		float    one1_t_float    = 412 [ (json.field) = { json: "o1tf" } ];
+		double   one1_t_double   = 413 [ (json.field) = { json: "o1df" } ];
+		bool     one1_t_bool     = 414 [ (json.field) = { json: "o1bl" } ];
+		Enum     one1_t_enum1    = 415 [ (json.field) = { json: "o1e1" } ];
+		Enum     one1_t_enum2    = 416 [ (json.field) = { json: "o1e2", use_enum_string: true} ];
+		bytes    one1_t_bytes    = 417 [ (json.field) = { json: "o1tb" } ];
+		Aliases  one1_t_aliases  = 418 [ (json.field) = { json: "o1ta" } ];
+		Config   one1_t_config   = 419 [ (json.field) = { json: "o1tc" } ];
+	}
+
+	oneof DataType2 {
+		option (json.oneof) = {json: "dt2", hide_oneof_key: true};
+
+		string   one2_t_string   = 501 [ (json.field) = { json: "o2ts" } ];
+		int32    one2_t_int32    = 502 [ (json.field) = { json: "o2i32" } ];
+		int64    one2_t_int64    = 503 [ (json.field) = { json: "o2i64" } ];
+		uint32   one2_t_uint32   = 504 [ (json.field) = { json: "o2u32" } ];
+		uint64   one2_t_uint64   = 505 [ (json.field) = { json: "o2u64" } ];
+		sint32   one2_t_sint32   = 506 [ (json.field) = { json: "o2si32" } ];
+		sint64   one2_t_sint64   = 507 [ (json.field) = { json: "o2si64" } ];
+		sfixed32 one2_t_sfixed32 = 508 [ (json.field) = { json: "o2sf32" } ];
+		sfixed64 one2_t_sfixed64 = 509 [ (json.field) = { json: "o2sf64" } ];
+		fixed32  one2_t_fixed32  = 510 [ (json.field) = { json: "o2fi32" } ];
+		fixed64  one2_t_fixed64  = 511 [ (json.field) = { json: "o2fi64" } ];
+		float    one2_t_float    = 512 [ (json.field) = { json: "o2tf" } ];
+		double   one2_t_double   = 513 [ (json.field) = { json: "o2df" } ];
+		bool     one2_t_bool     = 514 [ (json.field) = { json: "o2bl" } ];
+		Enum     one2_t_enum1    = 515 [ (json.field) = { json: "o2e1" } ];
+		Enum     one2_t_enum2    = 516 [ (json.field) = { json: "o2e2", use_enum_string: true} ];
+		bytes    one2_t_bytes    = 517 [ (json.field) = { json: "o2tb" } ];
+		Aliases  one2_t_aliases  = 518 [ (json.field) = { json: "o2ta" } ];
+		Config   one2_t_config   = 519 [ (json.field) = { json: "o2tc" } ];
+	}
+}
+
+message OneofHide1 {
+	option (json.message) = {hide_oneof_key: true};
+
+	oneof data_type1 {
+		string one1_string1 = 10 [(json.field) = {json: "one1_string1"} ];
+		string one1_string2 = 11 [(json.field) = {json: "one1_string2"} ];
+	}
+
+	oneof data_type2 {
+		string one2_string1 = 20 [(json.field) = {json: "one2_string1"} ];
+		string one2_string2 = 21 [(json.field) = {json: "one2_string2"} ];
+	}
+}
+
+message OneofHide2 {
+	option (json.message) = {hide_oneof_key: true};
+
+	oneof data_type1 {
+		option (json.oneof) = {hide_oneof_key: true};
+		string one1_string1 = 10 [(json.field) = {json: "one1_string1"} ];
+		string one1_string2 = 11 [(json.field) = {json: "one1_string2"} ];
+	}
+
+	oneof data_type2 {
+		option (json.oneof) = {hide_oneof_key: false};
+		string one2_string1 = 20 [(json.field) = {json: "one2_string1"} ];
+		string one2_string2 = 21 [(json.field) = {json: "one2_string2"} ];
+	}
+}
+
+message OneofHide3 {
+	option (json.message) = {hide_oneof_key: false};
+
+	oneof data_type1 {
+		option (json.oneof) = {hide_oneof_key: true};
+		string one1_string1 = 10 [(json.field) = {json: "one1_string1"} ];
+		string one1_string2 = 11 [(json.field) = {json: "one1_string2"} ];
+	}
+
+	oneof data_type2 {
+		option (json.oneof) = {hide_oneof_key: false};
+		string one2_string1 = 20 [(json.field) = {json: "one2_string1"} ];
+		string one2_string2 = 21 [(json.field) = {json: "one2_string2"} ];
+	}
+}
+
+message OneofHide4 {
+	option (json.message) = {hide_oneof_key: false};
+
+	oneof data_type1 {
+		string one1_string1 = 10 [(json.field) = {json: "one1_string1"} ];
+		string one1_string2 = 11 [(json.field) = {json: "one1_string2"} ];
+	}
+
+	oneof data_type2 {
+		string one2_string1 = 20 [(json.field) = {json: "one2_string1"} ];
+		string one2_string2 = 21 [(json.field) = {json: "one2_string2"} ];
+	}
+}
+
+message FieldOmitempty1 {
+	option (json.message) = {omitempty: true};
+
+	string t_string1 = 1 [(json.field) = { } ];
+	string t_string2 = 2 [(json.field) = { } ];
+
+	oneof data_type1 {
+		int32 one1_int32 = 10 [(json.field) = {json: "one1_int32"} ];
+	}
+
+	oneof data_type2 {
+		int64 one2_int64 = 20 [(json.field) = {json: "one2_int64"} ];
+	}
+
+	oneof data_type3 {
+		uint32 one3_uint32 = 30 [(json.field) = {json: "one3_uint32"} ];
+	}
+}
+
+message FieldOmitempty2 {
+	option (json.message) = {omitempty: true};
+
+	string t_string1 = 1 [(json.field) = { } ];
+	string t_string2 = 2 [(json.field) = { } ];
+	string t_string3 = 3 [(json.field) = { omitempty: false } ];
+	string t_string4 = 4 [(json.field) = { omitempty: false } ];
+
+	oneof data_type1 {
+		int32 one1_int32 = 10 [(json.field) = {json: "one1_int32"} ];
+	}
+
+	oneof data_type2 {
+		int64 one2_int64 = 20 [(json.field) = {json: "one2_int64"} ];
+	}
+
+	oneof data_type3 {
+		uint32 one3_uint32 = 30 [(json.field) = {json: "one3_uint32"} ];
+	}
+
+	oneof data_type4 {
+		option (json.oneof) = { omitempty: false};
+		uint64 one4_uint64 = 40 [(json.field) = {json: "one4_uint64"} ];
+	}
+
+	oneof data_type5 {
+		option (json.oneof) = { omitempty: false};
+		string one5_string1 = 50 [(json.field) = {json: "one5_string1"} ];
+	}
+
+	oneof data_type6 {
+		sint32 one6_sint32 = 60 [(json.field) = {json: "one6_sint32", omitempty: false} ];
+		sint64 one6_sint64 = 61 [(json.field) = {json: "one6_sint64"} ];
+	}
+
+	oneof data_type7 {
+		option (json.oneof) = {json: "dt7"};
+		bool one7_bool1 = 70 [(json.field) = {json: "one7_bool1", omitempty: false} ];
+		bool one7_bool2 = 71 [(json.field) = {json: "one7_bool2"} ];
+	}
+}
+
+message FieldOmitempty3 {
+	string t_string1 = 1 [(json.field) = { omitempty: true } ];
+	string t_string2 = 2 [(json.field) = { } ];
+	string t_string3 = 3 [(json.field) = { } ];
+	string t_string4 = 4 [(json.field) = { omitempty: true } ];
+	string t_string5 = 5 [(json.field) = { } ];
+
+	oneof data_type1 {
+		option (json.oneof) = {json: "dt1", omitempty: true};
+		int32 one1_int32 = 10 [(json.field) = {json: "one1_int32"} ];
+	}
+	
+	oneof data_type2 {
+		option (json.oneof) = {json: "dt2", omitempty: true};
+		int64 one2_int64 = 20 [(json.field) = {json: "one2_int64"} ];
+	}
+	
+	oneof data_type3 {
+		option (json.oneof) = {json: "dt3", omitempty: true};
+		uint32 one3_uint32 = 30 [(json.field) = {json: "one3_uint32"} ];
+	}
+	
+	oneof data_type4 {
+		option (json.oneof) = {json: "dt4", omitempty: false};
+		uint64 one4_uint64 = 40 [(json.field) = {json: "one4_uint64"} ];
+	}
+	
+	oneof data_type5 {
+		option (json.oneof) = {json: "dt5"};
+		string one5_string1 = 50 [(json.field) = {json: "one5_string1", omitempty: true} ];
+		string one5_string2 = 51 [(json.field) = {json: "one5_string2"} ];
+	}
+	
+	oneof data_type6 {
+		option (json.oneof) = {json: "dt6"};
+		sint32 one6_sint32 = 60 [(json.field) = {json: "one6_sint32", omitempty: true} ];
+		sint64 one6_sint64 = 61 [(json.field) = {json: "one6_sint64"} ];
+	}
+	
+	oneof data_type7 {
+		option (json.oneof) = {json: "dt7"};
+		bool one7_bool1 = 70 [(json.field) = {json: "one7_bool1", omitempty: true} ];
+		bool one7_bool2 = 71 [(json.field) = {json: "one7_bool2"} ];
+	}
+	
+	oneof data_type8 {
+		option (json.oneof) = {json: "dt8"};
+		bool one8_bool1 = 80 [(json.field) = {json: "one8_bool1", omitempty: false} ];
+		bool one8_bool2 = 81 [(json.field) = {json: "one8_bool2"} ];
+	}
+}
+
+message FieldOmitempty4 {
+	option (json.message) = {omitempty: false};
+
+	string t_string1 = 1 [(json.field) = { } ];
+	string t_string2 = 2 [(json.field) = { } ];
+	string t_string3 = 3 [(json.field) = { omitempty: true } ];
+	string t_string4 = 4 [(json.field) = { omitempty: true } ];
+
+	oneof data_type1 {
+		int32 one1_int32 = 10 [(json.field) = {json: "one1_int32"} ];
+	}
+
+	oneof data_type2 {
+		int64 one2_int64 = 20 [(json.field) = {json: "one2_int64"} ];
+	}
+
+	oneof data_type3 {
+		uint32 one3_uint32 = 30 [(json.field) = {json: "one3_uint32"} ];
+	}
+
+	oneof data_type4 {
+		option (json.oneof) = { omitempty: true};
+		uint64 one4_uint64 = 40 [(json.field) = {json: "one4_uint64"} ];
+	}
+
+	oneof data_type5 {
+		option (json.oneof) = { omitempty: true};
+		string one5_string1 = 50 [(json.field) = {json: "one5_string1"} ];
+	}
+
+	oneof data_type6 {
+		sint32 one6_sint32 = 60 [(json.field) = {json: "one6_sint32", omitempty: true} ];
+		sint64 one6_sint64 = 61 [(json.field) = {json: "one6_sint64"} ];
+	}
+
+	oneof data_type7 {
+		bool one7_bool1 = 70 [(json.field) = {json: "one7_bool1", omitempty: true} ];
+		bool one7_bool2 = 71 [(json.field) = {json: "one7_bool2"} ];
+	}
+}
+
+message FieldIgnore1 {
+	option (json.message) = {ignore: true};
+
+	string t_string1 = 1 [(json.field) = { } ];
+	string t_string2 = 2 [(json.field) = { } ];
+
+	oneof data_type1 {
+		int32 one1_int32 = 10 [(json.field) = {json: "one1_int32"} ];
+	}
+
+	oneof data_type2 {
+		int64 one2_int64 = 20 [(json.field) = {json: "one2_int64"} ];
+	}
+}
+
+message FieldIgnore2 {
+	int32 name_style1 = 1  [(json.field) = {json: "ns1"} ];
+	int32 names_Style2 = 2 [(json.field) = {json: "ns2", ignore: true } ];
+	int32 Name_Style3 = 3  [(json.field) = {json: "ns3"} ];
+	int32 nameStyle4 = 4   [(json.field) = {json: "ns4", } ];
+	int32 NameStyle5 = 5   [(json.field) = {json: "-"} ];
+	
+	oneof data_type1 {
+		option (json.oneof) = {json: "dt1", ignore: true};
+		
+		string integer1 = 10 [(json.field) = {json: "i1"} ];
+	}
+	
+	oneof data_type2 {
+		option (json.oneof) = {json: "-"};
+		string integer2 = 20 [(json.field) = {json: "i2"} ];
+	}
+	
+	oneof data_type3 {
+		option (json.oneof) = {json: "dt3"};
+		string integer3 = 30 [(json.field) = {json: "i3"} ];
+	}
+	
+	oneof data_type4 {
+		option (json.oneof) = {json: "dt4"};
+		string integer4 = 40 [(json.field) = {json: "i4"} ];
+	}
+	
+	oneof data_type5 {
+		option (json.oneof) = {json: "dt5"};
+		string integer5 = 50 [(json.field) = {json: "i5", ignore: true} ];
+		string float5 = 51 [(json.field) = {json: "f5"} ];
+	}
+	
+	oneof data_type6 {
+		option (json.oneof) = {json: "dt6"};
+		string integer6 = 60 [(json.field) = {json: "-"} ];
+		string float6 = 61 [(json.field) = {json: "f6"} ];
+	}
+	
+	oneof data_type7 {
+		option (json.oneof) = {json: "dt7"};
+		string integer7 = 70 [(json.field) = {json: "i7", ignore: true} ];
+		string float7 = 71 [(json.field) = {json: "f7"} ];
+	}
+	
+	oneof data_type8 {
+		option (json.oneof) = {json: "dt8"};
+		string integer8 = 80 [(json.field) = {json: "-"} ];
+		string float8 = 81 [(json.field) = {json: "f8"} ];
+	}
+}
+
+message FieldDisallowUnknown {
+	option (json.message) = {disallow_unknown_fields: true};
+	
+	int32 name_style1 = 1  [(json.field) = {json: "ns1"} ];
+
+	oneof Oneof1 {
+		option (json.oneof) = {hide_oneof_key: false, json: "oneof1"};
+		string t_string1 = 2 [(json.field) = {json: "ts1"} ];
+		string t_string2 = 3 [(json.field) = {json: "ts2"} ];
+	}
+
+	oneof Oneof2 {
+		option (json.oneof) = {hide_oneof_key: true, json: "oneof2"};
+		int32 t_int1 = 4 [(json.field) = {json: "ti1"} ];
+		int32 t_int2 = 5 [(json.field) = {json: "ti2"} ];
+	}
+}
+
+message FieldAllowUnknown {
+	option (json.message) = { disallow_unknown_fields: false };
+	
+	int32 name_style1 = 1  [(json.field) = {json: "ns1"} ];
+
+	oneof Oneof1 {
+		option (json.oneof) = {hide_oneof_key: false, json: "oneof1"};
+		string t_string1 = 2 [(json.field) = {json: "ts1"} ];
+		string t_string2 = 3 [(json.field) = {json: "ts2"} ];
+	}
+
+	oneof Oneof2 {
+		option (json.oneof) = {hide_oneof_key: true, json: "oneof2"};
+		int32 t_int1 = 4 [(json.field) = {json: "ti1"} ];
+		int32 t_int2 = 5 [(json.field) = {json: "ti2"} ];
+	}
+}
+
+message EnumUseString1 {
+	enum Status1 {
+		option (json.enum) = {use_enum_string: true};
+		enabled = 0;
+		disabled = 1;
+	}
+	
+	enum Status2 {
+		option (json.enum) = {use_enum_string: false};
+		success = 0;
+		failed = 1;
+	}
+	
+	Status1 t_status1 = 1;
+	Status2 t_status2 = 2;
+
+	repeated Status1 a_status1 = 21;
+	repeated Status2 a_status2 = 22;
+	repeated Status1 a_status3 = 23;
+
+	map<string, Status1> m_status1 = 31;
+	map<string, Status2> m_status2 = 32;
+	map<string, Status1> m_status3 = 33;
+}
+
+message EnumUseString2 {
+	option (json.message) = {use_enum_string: true};
+	
+	enum Status1 {
+		option (json.enum) = {use_enum_string: true};
+		enabled = 0;
+		disabled = 1;
+	}
+	
+	enum Status2 {
+		success = 0;
+		failed = 1;
+	}
+	
+	Status1 t_status1 = 1;
+	Status2 t_status2 = 2;
+
+	repeated Status1 a_status1 = 21;
+	repeated Status2 a_status2 = 22;
+	repeated Status1 a_status3 = 23;
+
+	map<string, Status1> m_status1 = 31;
+	map<string, Status2> m_status2 = 32;
+	map<string, Status1> m_status3 = 33;
+}
+
+message EnumUseString3 {
+	option (json.message) = {use_enum_string: false};
+	
+	enum Status1 {
+		enabled = 0;
+		disabled = 1;
+	}
+	
+	enum Status2 {
+		success = 0;
+		failed = 1;
+	}
+	
+	Status1 t_status1 = 1;
+	Status2 t_status2 = 2;
+
+	repeated Status1 a_status1 = 21;
+	repeated Status2 a_status2 = 22;
+	repeated Status1 a_status3 = 23;
+
+	map<string, Status1> m_status1 = 31;
+	map<string, Status2> m_status2 = 32;
+	map<string, Status1> m_status3 = 33;
+}
+
+message EnumUseString4 {
+	option (json.message) = {use_enum_string: false};
+
+	enum Status {
+		_ = 0;
+		enabled = 1;
+		disabled = 2;
+	}
+
+	Status t_status1 = 1 [(json.field) = {use_enum_string: true}];
+	Status t_status2 = 2 [(json.field) = {use_enum_string: false}];
+
+	repeated Status a_status1 = 21 [(json.field) = {use_enum_string: true}];
+	repeated Status a_status2 = 22 [(json.field) = {use_enum_string: false}];
+	repeated Status a_status3 = 23 [(json.field) = {use_enum_string: true}];
+
+	map<string, Status> m_status1 = 31 [(json.field) = {use_enum_string: true}];
+	map<string, Status> m_status2 = 32 [(json.field) = {use_enum_string: false}];
+	map<string, Status> m_status3 = 33 [(json.field) = {use_enum_string: true}];
+}
+
+message EnumUseString5 {
+//	option (gojson.msg_options) = {use_enum_string: true};
+
+	enum Status {
+		_ = 0;
+		enabled = 1;
+		disabled = 2;
+	}
+
+	Status t_status = 1 [(json.field) = {use_enum_string: true}];
+	repeated Status a_status = 2 [(json.field) = {use_enum_string: true}];
+	map<string, Status> m_status = 3 [(json.field) = {use_enum_string: true}];
+}
+
+message SerializeBytes1 {
+	option (json.message) = {omitempty: true};
+	
+	bytes bytes1 = 1;
+	bytes bytes2 = 2;
+	bytes bytes3 = 3;
+	
+	repeated bytes array_bytes1 = 11;
+	repeated bytes array_bytes2 = 12;
+	repeated bytes array_bytes3 = 13;
+	
+	map<string, bytes> map_bytes1 = 21;
+	map<string, bytes> map_bytes2 = 22;
+	map<string, bytes> map_bytes3 = 23;
+	map<string, bytes> map_bytes4 = 24;
+}
+
+message SerializeBytes2 {
+	option (json.message) = {omitempty: false};
+	
+	bytes bytes1 = 1;
+	bytes bytes2 = 2;
+	bytes bytes3 = 3;
+	
+	repeated bytes array_bytes1 = 11;
+	repeated bytes array_bytes2 = 12;
+	repeated bytes array_bytes3 = 13;
+	
+	map<string, bytes> map_bytes1 = 21;
+	map<string, bytes> map_bytes2 = 22;
+	map<string, bytes> map_bytes3 = 23;
+	map<string, bytes> map_bytes4 = 24;
+}
+
+message SerializeOmitempty1 {
+	option (json.message) = {omitempty: true};
+	
+	string string1 = 11;
+	string string2 = 12;
+	
+	bytes bytes1 = 21;
+	bytes bytes2 = 22;
+	bytes bytes3 = 23;
+	
+	repeated string array_string1 = 31;
+	repeated string array_string2 = 32;
+	repeated string array_string3 = 33;
+	
+	repeated gojsonexternal.ExternalMessage1 array_message1 = 41;
+	repeated gojsonexternal.ExternalMessage1 array_message2 = 42;
+	repeated gojsonexternal.ExternalMessage1 array_message3 = 43;
+	
+	repeated gojsonexternal.ExternalEnum1 array_enum1 = 51;
+	repeated gojsonexternal.ExternalEnum1 array_enum2 = 52;
+	repeated gojsonexternal.ExternalEnum1 array_enum3 = 53;
+	
+	map<string, string> map_string1 = 111;
+	map<string, string> map_string2 = 112;
+	map<string, string> map_string3 = 113;
+	
+	map<string, gojsonexternal.ExternalMessage1> map_message1 = 121;
+	map<string, gojsonexternal.ExternalMessage1> map_message2 = 122;
+	map<string, gojsonexternal.ExternalMessage1> map_message3 = 123;
+	
+	map<string, gojsonexternal.ExternalEnum1> map_enum1 = 131;
+	map<string, gojsonexternal.ExternalEnum1> map_enum2 = 132;
+	map<string, gojsonexternal.ExternalEnum1> map_enum3 = 133;
+}
+
+message SerializeOmitempty2 {
+	option (json.message) = {omitempty: false};
+	
+	string string1 = 11;
+	string string2 = 12;
+	
+	bytes bytes1 = 21;
+	bytes bytes2 = 22;
+	bytes bytes3 = 23;
+	
+	repeated string array_string1 = 31;
+	repeated string array_string2 = 32;
+	repeated string array_string3 = 33;
+	
+	repeated gojsonexternal.ExternalMessage1 array_message1 = 41;
+	repeated gojsonexternal.ExternalMessage1 array_message2 = 42;
+	repeated gojsonexternal.ExternalMessage1 array_message3 = 43;
+	
+	repeated gojsonexternal.ExternalEnum1 array_enum1 = 51;
+	repeated gojsonexternal.ExternalEnum1 array_enum2 = 52;
+	repeated gojsonexternal.ExternalEnum1 array_enum3 = 53;
+	
+	map<string, string> map_string1 = 111;
+	map<string, string> map_string2 = 112;
+	map<string, string> map_string3 = 113;
+	
+	map<string, gojsonexternal.ExternalMessage1> map_message1 = 121;
+	map<string, gojsonexternal.ExternalMessage1> map_message2 = 122;
+	map<string, gojsonexternal.ExternalMessage1> map_message3 = 123;
+	
+	map<string, gojsonexternal.ExternalEnum1> map_enum1 = 131;
+	map<string, gojsonexternal.ExternalEnum1> map_enum2 = 132;
+	map<string, gojsonexternal.ExternalEnum1> map_enum3 = 133;
+}
+
+message UnmarshalData {
+	enum Enum {
+		running    = 0;
+		stopped    = 1;
+	}
+
+	message Aliases {
+	}
+
+	message Config {
+		string ip = 1;
+		int32  port = 2;
+	}
+
+	string   t_string  = 1;
+	int32    t_int32    = 2;
+	int64    t_int64    = 3;
+	uint32   t_uint32   = 4;
+	uint64   t_uint64   = 5;
+	sint32   t_sint32   = 6;
+	sint64   t_sint64   = 7;
+	sfixed32 t_sfixed32 = 8;
+	sfixed64 t_sfixed64 = 9;
+	fixed32  t_fixed32  = 10;
+	fixed64  t_fixed64  = 11;
+	float    t_float    = 12;
+	double   t_double   = 13;
+	bool     t_bool     = 14;
+	Enum     t_enum1    = 15;
+	Enum     t_enum2    = 16 [ (json.field) = { use_enum_string: true} ];
+	bytes    t_bytes    = 17;
+	Aliases  t_aliases  = 18;
+	Config   t_config   = 19;
+
+	repeated double   array_double   = 101;
+	repeated float    array_float    = 102;
+	repeated int32    array_int32    = 103;
+	repeated int64    array_int64    = 104;
+	repeated uint32   array_uint32   = 105;
+	repeated uint64   array_uint64   = 106;
+	repeated sint32   array_sint32   = 107;
+	repeated sint64   array_sint64   = 108;
+	repeated sfixed32 array_sfixed32 = 109;
+	repeated sfixed64 array_sfixed64 = 110;
+	repeated fixed32  array_fixed32  = 111;
+	repeated fixed64  array_fixed64  = 112;
+	repeated bool     array_bool     = 113;
+	repeated string   array_string   = 114;
+	repeated bytes    array_bytes    = 115;
+	repeated Enum     array_enum1    = 116;
+	repeated Enum     array_enum2    = 117 [ (json.field) = { use_enum_string: true} ];
+	repeated Aliases  array_aliases  = 118;
+	repeated Config   array_config   = 119;
+
+	map<int32, double>   map_int32_double   = 202;
+	map<int32, float>    map_int32_float    = 203;
+	map<int32, int32>    map_int32_int32    = 204;
+	map<int32, int64>    map_int32_int64    = 205;
+	map<int32, uint32>   map_int32_uint32   = 206;
+	map<int32, uint64>   map_int32_uint64   = 207;
+	map<int32, sint32>   map_int32_sint32   = 208;
+	map<int32, sint64>   map_int32_sint64   = 209;
+	map<int32, sfixed32> map_int32_sfixed32 = 210;
+	map<int32, sfixed64> map_int32_sfixed64 = 211;
+	map<int32, fixed32>  map_int32_fixed32  = 212;
+	map<int32, fixed64>  map_int32_fixed64  = 213;
+	map<int32, bool>     map_int32_bool     = 214;
+	map<int32, string>   map_int32_string   = 215;
+	map<int32, bytes>    map_int32_bytes    = 216;
+	map<int32, Enum>     map_int32_enum1    = 217;
+	map<int32, Enum>     map_int32_enum2    = 218 [ (json.field) = { use_enum_string: true} ];
+	map<int32, Aliases>  map_int32_aliases  = 219;
+	map<int32, Config>   map_int32_config   = 220;
+
+	map<int64, int32>    map_int64_int32    = 301;
+	map<uint32, int32>   map_uint32_int32   = 302;
+	map<uint64, int32>   map_uint64_int32   = 304;
+	map<sint32, int32>   map_sint32_int32   = 305;
+	map<sint64, int32>   map_sint64_int32   = 306;
+	map<fixed32, int32>  map_fixed32_int32  = 307;
+	map<fixed64, int32>  map_fixed64_int32  = 308;
+	map<sfixed32, int32> map_sfixed32_int32 = 309;
+	map<sfixed64, int32> map_sfixed64_int32 = 310;
+	map<string, int32>   map_string_int32   = 311;
+}
+
+message UnmarshalOneofNotHide {
+	enum Enum {
+		running    = 0;
+		stopped    = 1;
+	}
+
+	message Aliases {
+	}
+
+	message Config {
+		string ip = 1;
+		int32  port = 2;
+	}
+
+	oneof Type {
+		option (json.oneof) = {json: "type", hide_oneof_key: false, omitempty: false};
+
+		string   t_string  = 1;
+		int32    t_int32    = 2;
+		int64    t_int64    = 3;
+		uint32   t_uint32   = 4;
+		uint64   t_uint64   = 5;
+		sint32   t_sint32   = 6;
+		sint64   t_sint64   = 7;
+		sfixed32 t_sfixed32 = 8;
+		sfixed64 t_sfixed64 = 9;
+		fixed32  t_fixed32  = 10;
+		fixed64  t_fixed64  = 11;
+		float    t_float    = 12;
+		double   t_double   = 13;
+		bool     t_bool     = 14;
+		Enum     t_enum1    = 15;
+		Enum     t_enum2    = 16 [ (json.field) = { use_enum_string: true} ];
+		bytes    t_bytes    = 17;
+		Aliases  t_aliases  = 18;
+		Config   t_config   = 19;
+	}
+
+	string t_seat = 100;
+}
+
+message UnmarshalOneofHide {
+	enum Enum {
+		running    = 0;
+		stopped    = 1;
+	}
+
+	message Aliases {
+	}
+
+	message Config {
+		string ip = 1;
+		int32  port = 2;
+	}
+
+	oneof Type {
+		option (json.oneof) = {json: "type", hide_oneof_key: true, omitempty: false};
+
+		string   t_string  = 1;
+		int32    t_int32    = 2;
+		int64    t_int64    = 3;
+		uint32   t_uint32   = 4;
+		uint64   t_uint64   = 5;
+		sint32   t_sint32   = 6;
+		sint64   t_sint64   = 7;
+		sfixed32 t_sfixed32 = 8;
+		sfixed64 t_sfixed64 = 9;
+		fixed32  t_fixed32  = 10;
+		fixed64  t_fixed64  = 11;
+		float    t_float    = 12;
+		double   t_double   = 13;
+		bool     t_bool     = 14;
+		Enum     t_enum1    = 15;
+		Enum     t_enum2    = 16 [ (json.field) = { use_enum_string: true} ];
+		bytes    t_bytes    = 17;
+		Aliases  t_aliases  = 18;
+		Config   t_config   = 19;
+	}
+
+	string t_seat = 100;
+}
+
+message OptionalModel1 {
+	option (json.message) = {omitempty: true};
+
+	enum Enum {
+		running    = 0;
+		stopped    = 1;
+	}
+
+	message Aliases {
+	}
+
+	message Config {
+		optional string ip = 1;
+		optional int32  port = 2;
+	}
+
+	optional string   t_string   = 1;
+	optional int32    t_int32    = 2;
+	optional int64    t_int64    = 3;
+	optional uint32   t_uint32   = 4;
+	optional uint64   t_uint64   = 5;
+	optional sint32   t_sint32   = 6;
+	optional sint64   t_sint64   = 7;
+	optional sfixed32 t_sfixed32 = 8;
+	optional sfixed64 t_sfixed64 = 9;
+	optional fixed32  t_fixed32  = 10;
+	optional fixed64  t_fixed64  = 11;
+	optional float    t_float    = 12;
+	optional double   t_double   = 13;
+	optional bool     t_bool     = 14;
+	optional Enum     t_enum1    = 15;
+	optional Enum     t_enum2    = 16 [ (json.field) = { use_enum_string: true} ];
+	optional bytes    t_bytes    = 17;
+	optional Aliases  t_aliases  = 18;
+	optional Config   t_config   = 19;
+}
+
+message OptionalModel2 {
+	enum Enum {
+		running    = 0;
+		stopped    = 1;
+	}
+
+	message Aliases {
+	}
+
+	message Config {
+		optional string ip = 1;
+		optional int32  port = 2;
+	}
+
+	optional string   t_string   = 1;
+	optional int32    t_int32    = 2;
+	optional int64    t_int64    = 3;
+	optional uint32   t_uint32   = 4;
+	optional uint64   t_uint64   = 5;
+	optional sint32   t_sint32   = 6;
+	optional sint64   t_sint64   = 7;
+	optional sfixed32 t_sfixed32 = 8;
+	optional sfixed64 t_sfixed64 = 9;
+	optional fixed32  t_fixed32  = 10;
+	optional fixed64  t_fixed64  = 11;
+	optional float    t_float    = 12;
+	optional double   t_double   = 13;
+	optional bool     t_bool     = 14;
+	optional Enum     t_enum1    = 15;
+	optional Enum     t_enum2    = 16 [ (json.field) = { use_enum_string: true} ];
+	optional bytes    t_bytes    = 17;
+	optional Aliases  t_aliases  = 18;
+	optional Config   t_config   = 19;
+}
+
+
+

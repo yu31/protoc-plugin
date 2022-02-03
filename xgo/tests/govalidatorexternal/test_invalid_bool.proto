@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/govalidatorexternal";
+
+import "proto/validator.proto";
+
+message InvalidMessageBool {
+  bool t_field1 = 1 [ (validator.field).tags.bool = { }];
+}

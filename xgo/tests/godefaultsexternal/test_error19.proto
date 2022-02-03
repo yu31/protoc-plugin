@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage19 {
+  int32    t_int32    = 1 [ (defaults.field) = { basic: "1.1";} ];
+}

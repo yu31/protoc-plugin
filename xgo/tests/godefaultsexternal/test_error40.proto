@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage40 {
+  oneof oneof_typ1 {
+    option (defaults.oneof) = { field: "oneof1_double" };
+    double   oneof1_double   = 31 [ (defaults.field) = { basic: "xxxx1"; }];
+    float    oneof1_float    = 32 [ (defaults.field) = { basic: "1.2"; }];
+  }
+}

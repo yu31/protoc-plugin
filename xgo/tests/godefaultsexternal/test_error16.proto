@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage16 {
+  map<int32, bytes>    map_int32_bytes    = 1 [ (defaults.field) = { map: [{}] } ];
+}

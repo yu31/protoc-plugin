@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage35 {
+  map<int32, bool>     map_int32_bool     = 214 [ (defaults.field) = { map: [ { key: "130", value: "ssss" } ] } ];
+}

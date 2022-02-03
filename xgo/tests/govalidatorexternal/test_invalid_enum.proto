@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/govalidatorexternal";
+
+import "proto/validator.proto";
+
+message InvalidMessageEnum {
+  enum Type {
+    Cat = 0;
+  }
+  Type t_field1 = 1 [ (validator.field).tags.enum = { }];
+}

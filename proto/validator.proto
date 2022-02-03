@@ -2,16 +2,15 @@ syntax = "proto3";
 
 package validator;
 
-import "google/protobuf/descriptor.proto";
-
-option go_package = "github.com/yu31/proto-go-plugin/pkg/pb/validatorpb;validatorpb";
+option go_package = "github.com/yu31/protoc-plugin/xgo/pb/pbvalidator";
 
 // Package name of class.
-option java_package = "com.github.yu31.validatorpb";
+option java_package = "io.yu31.protoc.pbvalidator";
 // File name of class.
-option java_outer_classname = "ValidatorPB";
+option java_outer_classname = "PBValidator";
 option java_multiple_files = false;
 
+import "google/protobuf/descriptor.proto";
 
 // Validation options applied at the field level
 extend google.protobuf.FieldOptions {

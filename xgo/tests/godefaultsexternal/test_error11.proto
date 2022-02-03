@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage11 {
+  oneof oneof_typ1 {
+    string oneof1_string2 = 1 [ (defaults.field) = { map: [{}] } ];
+  }
+}

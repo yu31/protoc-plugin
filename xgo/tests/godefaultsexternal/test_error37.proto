@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage37 {
+  map<int64, int32>    map_int64_int32    = 301 [ (defaults.field) = { map: [ { key: "11.11", value: "100" } ] } ];
+}

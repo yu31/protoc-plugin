@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+package gojsonexternal;
+
+option go_package = "tests/gojsonexternal";
+
+//import "google/protobuf/descriptor.proto";
+import "proto/json.proto";
+
+// error when generate code.
+message KeyDuplicate2 {
+  option (json.message) = {name_style: TextName, omitempty: true};
+
+  enum Enum {
+    running    = 0;
+    stopped    = 1;
+  }
+
+  message Aliases {
+  }
+
+  message Config {
+    string ip = 1   [ (json.field) = { json: "ts1" } ];
+    int32  port = 2 [ (json.field) = { json: "ts2" } ];
+  }
+
+  string   t_string   = 1  [ (json.field) = { json: "ts1" } ];
+  int32    t_int32    = 2  [ (json.field) = { json: "ts2" } ];
+  int64    t_int64    = 3  [ (json.field) = { json: "ts3" } ];
+  uint32   t_uint32   = 4  [ (json.field) = { json: "ts4" } ];
+  optional uint64   t_uint64   = 5  [ (json.field) = { json: "ts5" } ];
+  optional sint32   t_sint32   = 6  [ (json.field) = { json: "ts6" } ];
+  sint64   t_sint64   = 7  [ (json.field) = { json: "ts7" } ];
+  optional sfixed32 t_sfixed32 = 8  [ (json.field) = { json: "ts8" } ];
+  sfixed64 t_sfixed64 = 9  [ (json.field) = { json: "ts9" } ];
+  fixed32  t_fixed32  = 10 [ (json.field) = { json: "ts10" } ];
+  fixed64  t_fixed64  = 11 [ (json.field) = { json: "ts11" } ];
+  float    t_float    = 12 [ (json.field) = { json: "ts12" } ];
+  double   t_double   = 13 [ (json.field) = { json: "ts13" } ];
+  optional bool     t_bool     = 14 [ (json.field) = { json: "ts14" } ];
+  Enum     t_enum1    = 15 [ (json.field) = { json: "ts15" } ];
+  Enum     t_enum2    = 16 [ (json.field) = { json: "ts1", use_enum_string: true} ];
+  bytes    t_bytes    = 17 [ (json.field) = { json: "ts2" } ];
+  Aliases  t_aliases  = 18 [ (json.field) = { json: "ts3" } ];
+  Config   t_config   = 19 [ (json.field) = { json: "ts4" } ];
+
+  repeated double   array_double   = 101 [ (json.field) = { json: "ts5" } ];
+  repeated float    array_float    = 102 [ (json.field) = { json: "ts6" } ];
+  repeated int32    array_int32    = 103 [ (json.field) = { json: "ts7" } ];
+  repeated int64    array_int64    = 104 [ (json.field) = { json: "ts8" } ];
+  repeated uint32   array_uint32   = 105 [ (json.field) = { json: "ts9" } ];
+  repeated uint64   array_uint64   = 106 [ (json.field) = { json: "ts10" } ];
+  repeated sint32   array_sint32   = 107 [ (json.field) = { json: "ts11" } ];
+  repeated sint64   array_sint64   = 108 [ (json.field) = { json: "ts12" } ];
+  repeated sfixed32 array_sfixed32 = 109 [ (json.field) = { json: "ts13" } ];
+  repeated sfixed64 array_sfixed64 = 110 [ (json.field) = { json: "ts14" } ];
+  repeated fixed32  array_fixed32  = 111 [ (json.field) = { json: "ts15" } ];
+  repeated fixed64  array_fixed64  = 112 [ (json.field) = { json: "ts1" } ];
+  repeated bool     array_bool     = 113 [ (json.field) = { json: "ts2" } ];
+  repeated string   array_string   = 114 [ (json.field) = { json: "ts3" } ];
+  repeated bytes    array_bytes    = 115 [ (json.field) = { json: "ts4" } ];
+  repeated Enum     array_enum1    = 116 [ (json.field) = { json: "ts5" } ];
+  repeated Enum     array_enum2    = 117 [ (json.field) = { json: "ts6", use_enum_string: true} ];
+  repeated Aliases  array_aliases  = 118 [ (json.field) = { json: "ts7" } ];
+  repeated Config   array_config   = 119 [ (json.field) = { json: "ts8" } ];
+
+  map<int32, double>   map_int32_double   = 202 [ (json.field) = { json: "ts9" } ];
+  map<int32, float>    map_int32_float    = 203 [ (json.field) = { json: "ts10" } ];
+  map<int32, int32>    map_int32_int32    = 204 [ (json.field) = { json: "ts11" } ];
+  map<int32, int64>    map_int32_int64    = 205 [ (json.field) = { json: "ts12" } ];
+  map<int32, uint32>   map_int32_uint32   = 206 [ (json.field) = { json: "ts13" } ];
+  map<int32, uint64>   map_int32_uint64   = 207 [ (json.field) = { json: "ts14" } ];
+  map<int32, sint32>   map_int32_sint32   = 208 [ (json.field) = { json: "ts15" } ];
+  map<int32, sint64>   map_int32_sint64   = 209 [ (json.field) = { json: "ts1" } ];
+  map<int32, sfixed32> map_int32_sfixed32 = 210 [ (json.field) = { json: "ts2" } ];
+  map<int32, sfixed64> map_int32_sfixed64 = 211 [ (json.field) = { json: "ts3" } ];
+  map<int32, fixed32>  map_int32_fixed32  = 212 [ (json.field) = { json: "ts4" } ];
+  map<int32, fixed64>  map_int32_fixed64  = 213 [ (json.field) = { json: "ts5" } ];
+  map<int32, bool>     map_int32_bool     = 214 [ (json.field) = { json: "ts6" } ];
+  map<int32, string>   map_int32_string   = 215 [ (json.field) = { json: "ts7" } ];
+  map<int32, bytes>    map_int32_bytes    = 216 [ (json.field) = { json: "ts8" } ];
+  map<int32, Enum>     map_int32_enum1    = 217 [ (json.field) = { json: "ts9" } ];
+  map<int32, Enum>     map_int32_enum2    = 218 [ (json.field) = { json: "ts10", use_enum_string: true} ];
+  map<int32, Aliases>  map_int32_aliases  = 219 [ (json.field) = { json: "ts11" } ];
+  map<int32, Config>   map_int32_config   = 220 [ (json.field) = { json: "ts12" } ];
+  map<int64, int32>    map_int64_int32    = 301 [ (json.field) = { json: "ts13" } ];
+  map<uint32, int32>   map_uint32_int32   = 302 [ (json.field) = { json: "ts14" } ];
+  map<uint64, int32>   map_uint64_int32   = 304 [ (json.field) = { json: "ts1" } ];
+  map<sint32, int32>   map_sint32_int32   = 305 [ (json.field) = { json: "ts2" } ];
+  map<sint64, int32>   map_sint64_int32   = 306 [ (json.field) = { json: "ts3" } ];
+  map<fixed32, int32>  map_fixed32_int32  = 307 [ (json.field) = { json: "ts4" } ];
+  map<fixed64, int32>  map_fixed64_int32  = 308 [ (json.field) = { json: "ts5" } ];
+  map<sfixed32, int32> map_sfixed32_int32 = 309 [ (json.field) = { json: "ts6" } ];
+  map<sfixed64, int32> map_sfixed64_int32 = 310 [ (json.field) = { json: "ts7" } ];
+  map<string, int32>   map_string_int32   = 311 [ (json.field) = { json: "ts8" } ];
+
+  oneof OneofType1 {
+    option (json.oneof) = {json: "ts9", hide_oneof_key: true, omitempty: false};
+
+    int32    one1_t_int32    = 31 [ (json.field) = { json: "ts9" } ];
+    int64    one1_t_int64    = 32 [ (json.field) = { json: "ts10" } ];
+  }
+
+  oneof OneofType2 {
+    option (json.oneof) = {json: "ts10", hide_oneof_key: true, omitempty: false};
+
+    int32    one2_t_int32    = 41 [ (json.field) = { json: "os1" } ];
+    int64    one2_t_int64    = 42 [ (json.field) = { json: "os2" } ];
+  }
+
+  oneof OneofType3 {
+    option (json.oneof) = {json: "ts11", hide_oneof_key: true, omitempty: false};
+
+    int32    one3_t_int32    = 51 [ (json.field) = { json: "os1" } ];
+    int64    one3_t_int64    = 52 [ (json.field) = { json: "os2" } ];
+  }
+
+  oneof OneofType4 {
+    option (json.oneof) = {json: "ts12", hide_oneof_key: false, omitempty: false};
+
+    int32    one4_t_int32    = 61 [ (json.field) = { json: "os3" } ];
+    int64    one4_t_int64    = 62 [ (json.field) = { json: "os3" } ];
+  }
+
+  oneof OneofType5 {
+    option (json.oneof) = {json: "ts13", hide_oneof_key: false, omitempty: false};
+
+    int32    one5_t_int32    = 71 [ (json.field) = { json: "os3" } ];
+    int64    one5_t_int64    = 72 [ (json.field) = { json: "is4" } ];
+  }
+
+  oneof OneofType6 {
+    option (json.oneof) = {json: "ts14", hide_oneof_key: false, omitempty: false};
+
+    int32    one6_t_int32    = 81 [ (json.field) = { json: "os4" } ];
+    int64    one6_t_int64    = 82 [ (json.field) = { json: "os4" } ];
+  }
+
+  oneof OneofType7 {
+    option (json.oneof) = {json: "ts15", hide_oneof_key: false, omitempty: false};
+
+    int32    one7_t_int32    = 91 [ (json.field) = { json: "os3" } ];
+    int64    one7_t_int64    = 92 [ (json.field) = { json: "os4" } ];
+  }
+
+  oneof OneofType8 {
+    option (json.oneof) = {json: "ts15", hide_oneof_key: false, omitempty: false};
+
+    int32    one8_t_int32    = 93 [ (json.field) = { json: "" } ];
+    int64    one8_t_int64    = 94 [ (json.field) = { json: "" } ];
+  }
+
+  oneof OneofType9 {
+    option (json.oneof) = {json: "", hide_oneof_key: false, omitempty: false};
+
+    int32    one9_t_int32    = 95 [ (json.field) = { json: "" } ];
+    int64    one9_t_int64    = 96 [ (json.field) = { json: "" } ];
+  }
+}

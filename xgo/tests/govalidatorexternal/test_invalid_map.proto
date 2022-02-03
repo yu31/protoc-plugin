@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/govalidatorexternal";
+
+import "proto/validator.proto";
+
+message InvalidMessageMap {
+  map<string, string> t_map_string = 1 [ (validator.field).tags.map = { not_null: true }];
+}

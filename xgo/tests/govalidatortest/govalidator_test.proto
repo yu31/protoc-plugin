@@ -1,0 +1,1404 @@
+syntax = "proto3";
+
+package govalidatortest;
+
+option go_package = "tests/govalidatortest";
+
+import "proto/validator.proto";
+
+enum Enum1 {
+  January  = 0;
+  February = 1;
+  March    = 2;
+  April    = 3;
+  May      = 4;
+  June     = 8;
+}
+
+message Config {
+  string ip = 1 [ (validator.field).tags.string = { eq: "127.0.0.1" } ];
+  int32  port = 2 [ (validator.field).tags.int = { eq: 8080 } ];
+}
+
+// Message for valid field.
+//
+// ValidOneOfTags1 for test option tag OneOfTags.
+message ValidOneOfTags1 {
+  oneof oneof_type1 {
+    option (validator.oneof).tags.oneof = { not_null: true; };
+
+    string oneof1_string1  = 1;
+  }
+
+  oneof oneof_type2 {
+    option (validator.oneof).tags.oneof = { not_null: false; };
+
+    string oneof2_string1  = 2;
+  }
+
+  oneof oneof_type3 {
+    option (validator.oneof).tags.oneof = { };
+
+    string oneof3_string1  = 3;
+  }
+
+  oneof oneof_type4 {
+    option (validator.oneof).tags = { };
+
+    string oneof4_string1  = 4;
+  }
+
+  oneof oneof_type5 {
+    option (validator.oneof) = { };
+
+    string oneof5_string1  = 5;
+  }
+}
+
+// ValidFloatTagsGeneral1 for test option tag FloatTags with general field.
+message ValidFloatTagsGeneral1 {
+  // Type for float
+  float t_float1 = 1;
+  float t_float2 = 2 [ (validator.field).tags.float = { } ];
+  float t_float3 = 3 [ (validator.field).tags = { } ];
+  float t_float4 = 4 [ (validator.field) = { } ];
+
+  float t_float_eq1  = 10 [ (validator.field).tags.float = { eq: 1.1 } ];
+  float t_float_ne1  = 11 [ (validator.field).tags.float = { ne: 2.1 } ];
+  float t_float_lt1  = 12 [ (validator.field).tags.float = { lt: 3.1 } ];
+  float t_float_gt1  = 13 [ (validator.field).tags.float = { gt: 4.1 } ];
+  float t_float_lte1 = 14 [ (validator.field).tags.float = { lte: 5.1 } ];
+  float t_float_gte1 = 15 [ (validator.field).tags.float = { gte: 6.1 } ];
+  float t_float_in1  = 16 [ (validator.field).tags.float = { in: [1.1, 1.2, 1.3] } ];
+  float t_float_not_in1 = 17 [ (validator.field).tags.float = { not_in: [2.1, 2.2, 2.3] } ];
+
+  // Type for double
+  double t_double1 = 31;
+  double t_double2 = 32 [ (validator.field).tags.float = { } ];
+  double t_double3 = 33 [ (validator.field).tags = { } ];
+  double t_double4 = 34 [ (validator.field) = { } ];
+
+  double t_double_eq1  = 40 [ (validator.field).tags.float = { eq: 1.1 } ];
+  double t_double_ne1  = 41 [ (validator.field).tags.float = { ne: 2.1 } ];
+  double t_double_lt1  = 42 [ (validator.field).tags.float = { lt: 3.1 } ];
+  double t_double_gt1  = 43 [ (validator.field).tags.float = { gt: 4.1 } ];
+  double t_double_lte1 = 44 [ (validator.field).tags.float = { lte: 5.1 } ];
+  double t_double_gte1 = 45 [ (validator.field).tags.float = { gte: 6.1 } ];
+  double t_double_in1  = 46 [ (validator.field).tags.float = { in: [1.1, 1.2, 1.3] } ];
+  double t_double_not_in1 = 47 [ (validator.field).tags.float = { not_in: [2.1, 2.2, 2.3] } ];
+}
+
+// ValidFloatTagsOptional1 for test option tag FloatTags with optional field.
+message ValidFloatTagsOptional1 {
+  // Type for float
+  optional float t_float1 = 1;
+  optional float t_float2 = 2 [ (validator.field).tags.float = { } ];
+  optional float t_float3 = 3 [ (validator.field).tags = { } ];
+  optional float t_float4 = 4 [ (validator.field) = { } ];
+
+  optional float t_float_eq1  = 10 [ (validator.field).tags.float = { eq: 1.1 } ];
+  optional float t_float_ne1  = 11 [ (validator.field).tags.float = { ne: 2.1 } ];
+  optional float t_float_lt1  = 12 [ (validator.field).tags.float = { lt: 3.1 } ];
+  optional float t_float_gt1  = 13 [ (validator.field).tags.float = { gt: 4.1 } ];
+  optional float t_float_lte1 = 14 [ (validator.field).tags.float = { lte: 5.1 } ];
+  optional float t_float_gte1 = 15 [ (validator.field).tags.float = { gte: 6.1 } ];
+  optional float t_float_in1  = 16 [ (validator.field).tags.float = { in: [1.1, 1.2, 1.3] } ];
+  optional float t_float_not_in1 = 17 [ (validator.field).tags.float = { not_in: [2.1, 2.2, 2.3] } ];
+
+
+  // Type for double
+  optional double t_double1 = 31;
+  optional double t_double2 = 32 [ (validator.field).tags.float = { } ];
+  optional double t_double3 = 33 [ (validator.field).tags = { } ];
+  optional double t_double4 = 34 [ (validator.field) = { } ];
+
+  optional double t_double_eq1  = 40 [ (validator.field).tags.float = { eq: 1.1 } ];
+  optional double t_double_ne1  = 41 [ (validator.field).tags.float = { ne: 2.1 } ];
+  optional double t_double_lt1  = 42 [ (validator.field).tags.float = { lt: 3.1 } ];
+  optional double t_double_gt1  = 43 [ (validator.field).tags.float = { gt: 4.1 } ];
+  optional double t_double_lte1 = 44 [ (validator.field).tags.float = { lte: 5.1 } ];
+  optional double t_double_gte1 = 45 [ (validator.field).tags.float = { gte: 6.1 } ];
+  optional double t_double_in1  = 46 [ (validator.field).tags.float = { in: [1.1, 1.2, 1.3] } ];
+  optional double t_double_not_in1 = 47 [ (validator.field).tags.float = { not_in: [2.1, 2.2, 2.3] } ];
+
+}
+
+// ValidFloatTagsOneOf1 for test option tag FloatTags with oneof field.
+message ValidFloatTagsOneOf1 {
+  oneof one_typ1 {
+    // Type for float
+    float t_float1 = 1;
+    float t_float2 = 2 [ (validator.field).tags.float = { } ];
+    float t_float3 = 3 [ (validator.field).tags = { } ];
+    float t_float4 = 4 [ (validator.field) = { } ];
+
+    float t_float_eq1  = 10 [ (validator.field).tags.float = { eq: 1.1 } ];
+    float t_float_ne1  = 11 [ (validator.field).tags.float = { ne: 2.1 } ];
+    float t_float_lt1  = 12 [ (validator.field).tags.float = { lt: 3.1 } ];
+    float t_float_gt1  = 13 [ (validator.field).tags.float = { gt: 4.1 } ];
+    float t_float_lte1 = 14 [ (validator.field).tags.float = { lte: 5.1 } ];
+    float t_float_gte1 = 15 [ (validator.field).tags.float = { gte: 6.1 } ];
+    float t_float_in1  = 16 [ (validator.field).tags.float = { in: [1.1, 1.2, 1.3] } ];
+    float t_float_not_in1 = 17 [ (validator.field).tags.float = { not_in: [2.1, 2.2, 2.3] } ];
+
+    // Type for double
+    double t_double1 = 31;
+    double t_double2 = 32 [ (validator.field).tags.float = { } ];
+    double t_double3 = 33 [ (validator.field).tags = { } ];
+    double t_double4 = 34 [ (validator.field) = { } ];
+
+    double t_double_eq1  = 40 [ (validator.field).tags.float = { eq: 1.1 } ];
+    double t_double_ne1  = 41 [ (validator.field).tags.float = { ne: 2.1 } ];
+    double t_double_lt1  = 42 [ (validator.field).tags.float = { lt: 3.1 } ];
+    double t_double_gt1  = 43 [ (validator.field).tags.float = { gt: 4.1 } ];
+    double t_double_lte1 = 44 [ (validator.field).tags.float = { lte: 5.1 } ];
+    double t_double_gte1 = 45 [ (validator.field).tags.float = { gte: 6.1 } ];
+    double t_double_in1  = 46 [ (validator.field).tags.float = { in: [1.1, 1.2, 1.3] } ];
+    double t_double_not_in1 = 47 [ (validator.field).tags.float = { not_in: [2.1, 2.2, 2.3] } ];
+  }
+}
+
+// ValidIntTagsGeneral1 for test option tag IntTags with general field.
+message ValidIntTagsGeneral1 {
+  // Type for int32
+  int32 t_int32_1 = 1;
+  int32 t_int32_2 = 2 [ (validator.field).tags.int = { } ];
+  int32 t_int32_3 = 3 [ (validator.field).tags = { } ];
+  int32 t_int32_4 = 4 [ (validator.field) = { } ];
+
+  int32 t_int32_eq1  = 10 [ (validator.field).tags.int = { eq: 1 } ];
+  int32 t_int32_ne1  = 11 [ (validator.field).tags.int = { ne: 2 } ];
+  int32 t_int32_lt1  = 12 [ (validator.field).tags.int = { lt: 3 } ];
+  int32 t_int32_gt1  = 13 [ (validator.field).tags.int = { gt: 4 } ];
+  int32 t_int32_lte1 = 14 [ (validator.field).tags.int = { lte: 5 } ];
+  int32 t_int32_gte1 = 15 [ (validator.field).tags.int = { gte: 6 } ];
+  int32 t_int32_in1  = 16 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  int32 t_int32_not_in1 = 17 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for int64
+  int64 t_int64_1 = 21;
+  int64 t_int64_2 = 22 [ (validator.field).tags.int = { } ];
+  int64 t_int64_3 = 23 [ (validator.field).tags = { } ];
+  int64 t_int64_4 = 24 [ (validator.field) = { } ];
+
+  int64 t_int64_eq1  = 30 [ (validator.field).tags.int = { eq: 1 } ];
+  int64 t_int64_ne1  = 31 [ (validator.field).tags.int = { ne: 2 } ];
+  int64 t_int64_lt1  = 32 [ (validator.field).tags.int = { lt: 3 } ];
+  int64 t_int64_gt1  = 33 [ (validator.field).tags.int = { gt: 4 } ];
+  int64 t_int64_lte1 = 34 [ (validator.field).tags.int = { lte: 5 } ];
+  int64 t_int64_gte1 = 35 [ (validator.field).tags.int = { gte: 6 } ];
+  int64 t_int64_in1  = 36 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  int64 t_int64_not_in1 = 37 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for sint32
+  sint32 t_sint32_1 = 41;
+  sint32 t_sint32_2 = 42 [ (validator.field).tags.int = { } ];
+  sint32 t_sint32_3 = 43 [ (validator.field).tags = { } ];
+  sint32 t_sint32_4 = 44 [ (validator.field) = { } ];
+
+  sint32 t_sint32_eq1  = 50 [ (validator.field).tags.int = { eq: 1 } ];
+  sint32 t_sint32_ne1  = 51 [ (validator.field).tags.int = { ne: 2 } ];
+  sint32 t_sint32_lt1  = 52 [ (validator.field).tags.int = { lt: 3 } ];
+  sint32 t_sint32_gt1  = 53 [ (validator.field).tags.int = { gt: 4 } ];
+  sint32 t_sint32_lte1 = 54 [ (validator.field).tags.int = { lte: 5 } ];
+  sint32 t_sint32_gte1 = 55 [ (validator.field).tags.int = { gte: 6 } ];
+  sint32 t_sint32_in1  = 56 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  sint32 t_sint32_not_in1 = 57 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for sint64
+  sint64 t_sint64_1 = 61;
+  sint64 t_sint64_2 = 62 [ (validator.field).tags.int = { } ];
+  sint64 t_sint64_3 = 63 [ (validator.field).tags = { } ];
+  sint64 t_sint64_4 = 64 [ (validator.field) = { } ];
+
+  sint64 t_sint64_eq1  = 70 [ (validator.field).tags.int = { eq: 1 } ];
+  sint64 t_sint64_ne1  = 71 [ (validator.field).tags.int = { ne: 2 } ];
+  sint64 t_sint64_lt1  = 72 [ (validator.field).tags.int = { lt: 3 } ];
+  sint64 t_sint64_gt1  = 73 [ (validator.field).tags.int = { gt: 4 } ];
+  sint64 t_sint64_lte1 = 74 [ (validator.field).tags.int = { lte: 5 } ];
+  sint64 t_sint64_gte1 = 75 [ (validator.field).tags.int = { gte: 6 } ];
+  sint64 t_sint64_in1  = 76 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  sint64 t_sint64_not_in1 = 77 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for sfixed32
+  sfixed32 t_sfixed32_1 = 81;
+  sfixed32 t_sfixed32_2 = 82 [ (validator.field).tags.int = { } ];
+  sfixed32 t_sfixed32_3 = 83 [ (validator.field).tags = { } ];
+  sfixed32 t_sfixed32_4 = 84 [ (validator.field) = { } ];
+
+  sfixed32 t_sfixed32_eq1  = 90 [ (validator.field).tags.int = { eq: 1 } ];
+  sfixed32 t_sfixed32_ne1  = 91 [ (validator.field).tags.int = { ne: 2 } ];
+  sfixed32 t_sfixed32_lt1  = 92 [ (validator.field).tags.int = { lt: 3 } ];
+  sfixed32 t_sfixed32_gt1  = 93 [ (validator.field).tags.int = { gt: 4 } ];
+  sfixed32 t_sfixed32_lte1 = 94 [ (validator.field).tags.int = { lte: 5 } ];
+  sfixed32 t_sfixed32_gte1 = 95 [ (validator.field).tags.int = { gte: 6 } ];
+  sfixed32 t_sfixed32_in1  = 96 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  sfixed32 t_sfixed32_not_in1 = 97 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for sfixed64
+  sfixed64 t_sfixed64_1 = 101;
+  sfixed64 t_sfixed64_2 = 102 [ (validator.field).tags.int = { } ];
+  sfixed64 t_sfixed64_3 = 103 [ (validator.field).tags = { } ];
+  sfixed64 t_sfixed64_4 = 104 [ (validator.field) = { } ];
+
+  sfixed64 t_sfixed64_eq1  = 110 [ (validator.field).tags.int = { eq: 1 } ];
+  sfixed64 t_sfixed64_ne1  = 111 [ (validator.field).tags.int = { ne: 2 } ];
+  sfixed64 t_sfixed64_lt1  = 112 [ (validator.field).tags.int = { lt: 3 } ];
+  sfixed64 t_sfixed64_gt1  = 113 [ (validator.field).tags.int = { gt: 4 } ];
+  sfixed64 t_sfixed64_lte1 = 114 [ (validator.field).tags.int = { lte: 5 } ];
+  sfixed64 t_sfixed64_gte1 = 115 [ (validator.field).tags.int = { gte: 6 } ];
+  sfixed64 t_sfixed64_in1  = 116 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  sfixed64 t_sfixed64_not_in1 = 117 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+}
+
+// ValidIntTagsOptional1 for test option tag IntTags with optional field.
+message ValidIntTagsOptional1 {
+  // Type for int32
+  optional int32 t_int32_1 = 1;
+  optional int32 t_int32_2 = 2 [ (validator.field).tags.int = { } ];
+  optional int32 t_int32_3 = 3 [ (validator.field).tags = { } ];
+  optional int32 t_int32_4 = 4 [ (validator.field) = { } ];
+
+  optional int32 t_int32_eq1  = 10 [ (validator.field).tags.int = { eq: 1 } ];
+  optional int32 t_int32_ne1  = 11 [ (validator.field).tags.int = { ne: 2 } ];
+  optional int32 t_int32_lt1  = 12 [ (validator.field).tags.int = { lt: 3 } ];
+  optional int32 t_int32_gt1  = 13 [ (validator.field).tags.int = { gt: 4 } ];
+  optional int32 t_int32_lte1 = 14 [ (validator.field).tags.int = { lte: 5 } ];
+  optional int32 t_int32_gte1 = 15 [ (validator.field).tags.int = { gte: 6 } ];
+  optional int32 t_int32_in1  = 16 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  optional int32 t_int32_not_in1 = 17 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for int64
+  optional int64 t_int64_1 = 21;
+  optional int64 t_int64_2 = 22 [ (validator.field).tags.int = { } ];
+  optional int64 t_int64_3 = 23 [ (validator.field).tags = { } ];
+  optional int64 t_int64_4 = 24 [ (validator.field) = { } ];
+
+  optional int64 t_int64_eq1  = 30 [ (validator.field).tags.int = { eq: 1 } ];
+  optional int64 t_int64_ne1  = 31 [ (validator.field).tags.int = { ne: 2 } ];
+  optional int64 t_int64_lt1  = 32 [ (validator.field).tags.int = { lt: 3 } ];
+  optional int64 t_int64_gt1  = 33 [ (validator.field).tags.int = { gt: 4 } ];
+  optional int64 t_int64_lte1 = 34 [ (validator.field).tags.int = { lte: 5 } ];
+  optional int64 t_int64_gte1 = 35 [ (validator.field).tags.int = { gte: 6 } ];
+  optional int64 t_int64_in1  = 36 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  optional int64 t_int64_not_in1 = 37 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for sint32
+  optional sint32 t_sint32_1 = 41;
+  optional sint32 t_sint32_2 = 42 [ (validator.field).tags.int = { } ];
+  optional sint32 t_sint32_3 = 43 [ (validator.field).tags = { } ];
+  optional sint32 t_sint32_4 = 44 [ (validator.field) = { } ];
+
+  optional sint32 t_sint32_eq1  = 50 [ (validator.field).tags.int = { eq: 1 } ];
+  optional sint32 t_sint32_ne1  = 51 [ (validator.field).tags.int = { ne: 2 } ];
+  optional sint32 t_sint32_lt1  = 52 [ (validator.field).tags.int = { lt: 3 } ];
+  optional sint32 t_sint32_gt1  = 53 [ (validator.field).tags.int = { gt: 4 } ];
+  optional sint32 t_sint32_lte1 = 54 [ (validator.field).tags.int = { lte: 5 } ];
+  optional sint32 t_sint32_gte1 = 55 [ (validator.field).tags.int = { gte: 6 } ];
+  optional sint32 t_sint32_in1  = 56 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  optional sint32 t_sint32_not_in1 = 57 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for sint64
+  optional sint64 t_sint64_1 = 61;
+  optional sint64 t_sint64_2 = 62 [ (validator.field).tags.int = { } ];
+  optional sint64 t_sint64_3 = 63 [ (validator.field).tags = { } ];
+  optional sint64 t_sint64_4 = 64 [ (validator.field) = { } ];
+
+  optional sint64 t_sint64_eq1  = 70 [ (validator.field).tags.int = { eq: 1 } ];
+  optional sint64 t_sint64_ne1  = 71 [ (validator.field).tags.int = { ne: 2 } ];
+  optional sint64 t_sint64_lt1  = 72 [ (validator.field).tags.int = { lt: 3 } ];
+  optional sint64 t_sint64_gt1  = 73 [ (validator.field).tags.int = { gt: 4 } ];
+  optional sint64 t_sint64_lte1 = 74 [ (validator.field).tags.int = { lte: 5 } ];
+  optional sint64 t_sint64_gte1 = 75 [ (validator.field).tags.int = { gte: 6 } ];
+  optional sint64 t_sint64_in1  = 76 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  optional sint64 t_sint64_not_in1 = 77 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for sfixed32
+  optional sfixed32 t_sfixed32_1 = 81;
+  optional sfixed32 t_sfixed32_2 = 82 [ (validator.field).tags.int = { } ];
+  optional sfixed32 t_sfixed32_3 = 83 [ (validator.field).tags = { } ];
+  optional sfixed32 t_sfixed32_4 = 84 [ (validator.field) = { } ];
+
+  optional sfixed32 t_sfixed32_eq1  = 90 [ (validator.field).tags.int = { eq: 1 } ];
+  optional sfixed32 t_sfixed32_ne1  = 91 [ (validator.field).tags.int = { ne: 2 } ];
+  optional sfixed32 t_sfixed32_lt1  = 92 [ (validator.field).tags.int = { lt: 3 } ];
+  optional sfixed32 t_sfixed32_gt1  = 93 [ (validator.field).tags.int = { gt: 4 } ];
+  optional sfixed32 t_sfixed32_lte1 = 94 [ (validator.field).tags.int = { lte: 5 } ];
+  optional sfixed32 t_sfixed32_gte1 = 95 [ (validator.field).tags.int = { gte: 6 } ];
+  optional sfixed32 t_sfixed32_in1  = 96 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  optional sfixed32 t_sfixed32_not_in1 = 97 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+  // Type for sfixed64
+  optional sfixed64 t_sfixed64_1 = 101;
+  optional sfixed64 t_sfixed64_2 = 102 [ (validator.field).tags.int = { } ];
+  optional sfixed64 t_sfixed64_3 = 103 [ (validator.field).tags = { } ];
+  optional sfixed64 t_sfixed64_4 = 104 [ (validator.field) = { } ];
+
+  optional sfixed64 t_sfixed64_eq1  = 110 [ (validator.field).tags.int = { eq: 1 } ];
+  optional sfixed64 t_sfixed64_ne1  = 111 [ (validator.field).tags.int = { ne: 2 } ];
+  optional sfixed64 t_sfixed64_lt1  = 112 [ (validator.field).tags.int = { lt: 3 } ];
+  optional sfixed64 t_sfixed64_gt1  = 113 [ (validator.field).tags.int = { gt: 4 } ];
+  optional sfixed64 t_sfixed64_lte1 = 114 [ (validator.field).tags.int = { lte: 5 } ];
+  optional sfixed64 t_sfixed64_gte1 = 115 [ (validator.field).tags.int = { gte: 6 } ];
+  optional sfixed64 t_sfixed64_in1  = 116 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+  optional sfixed64 t_sfixed64_not_in1 = 117 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+}
+
+// ValidIntTagsOneOf1 for test option tag IntTags with oneof field.
+message ValidIntTagsOneOf1 {
+  oneof one_typ1 {
+    // Type for int32
+    int32 t_int32_1 = 1;
+    int32 t_int32_2 = 2 [ (validator.field).tags.int = { } ];
+    int32 t_int32_3 = 3 [ (validator.field).tags = { } ];
+    int32 t_int32_4 = 4 [ (validator.field) = { } ];
+
+    int32 t_int32_eq1  = 10 [ (validator.field).tags.int = { eq: 1 } ];
+    int32 t_int32_ne1  = 11 [ (validator.field).tags.int = { ne: 2 } ];
+    int32 t_int32_lt1  = 12 [ (validator.field).tags.int = { lt: 3 } ];
+    int32 t_int32_gt1  = 13 [ (validator.field).tags.int = { gt: 4 } ];
+    int32 t_int32_lte1 = 14 [ (validator.field).tags.int = { lte: 5 } ];
+    int32 t_int32_gte1 = 15 [ (validator.field).tags.int = { gte: 6 } ];
+    int32 t_int32_in1  = 16 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+    int32 t_int32_not_in1 = 17 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+    // Type for int64
+    int64 t_int64_1 = 21;
+    int64 t_int64_2 = 22 [ (validator.field).tags.int = { } ];
+    int64 t_int64_3 = 23 [ (validator.field).tags = { } ];
+    int64 t_int64_4 = 24 [ (validator.field) = { } ];
+
+    int64 t_int64_eq1  = 30 [ (validator.field).tags.int = { eq: 1 } ];
+    int64 t_int64_ne1  = 31 [ (validator.field).tags.int = { ne: 2 } ];
+    int64 t_int64_lt1  = 32 [ (validator.field).tags.int = { lt: 3 } ];
+    int64 t_int64_gt1  = 33 [ (validator.field).tags.int = { gt: 4 } ];
+    int64 t_int64_lte1 = 34 [ (validator.field).tags.int = { lte: 5 } ];
+    int64 t_int64_gte1 = 35 [ (validator.field).tags.int = { gte: 6 } ];
+    int64 t_int64_in1  = 36 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+    int64 t_int64_not_in1 = 37 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+    // Type for sint32
+    sint32 t_sint32_1 = 41;
+    sint32 t_sint32_2 = 42 [ (validator.field).tags.int = { } ];
+    sint32 t_sint32_3 = 43 [ (validator.field).tags = { } ];
+    sint32 t_sint32_4 = 44 [ (validator.field) = { } ];
+
+    sint32 t_sint32_eq1  = 50 [ (validator.field).tags.int = { eq: 1 } ];
+    sint32 t_sint32_ne1  = 51 [ (validator.field).tags.int = { ne: 2 } ];
+    sint32 t_sint32_lt1  = 52 [ (validator.field).tags.int = { lt: 3 } ];
+    sint32 t_sint32_gt1  = 53 [ (validator.field).tags.int = { gt: 4 } ];
+    sint32 t_sint32_lte1 = 54 [ (validator.field).tags.int = { lte: 5 } ];
+    sint32 t_sint32_gte1 = 55 [ (validator.field).tags.int = { gte: 6 } ];
+    sint32 t_sint32_in1  = 56 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+    sint32 t_sint32_not_in1 = 57 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+    // Type for sint64
+    sint64 t_sint64_1 = 61;
+    sint64 t_sint64_2 = 62 [ (validator.field).tags.int = { } ];
+    sint64 t_sint64_3 = 63 [ (validator.field).tags = { } ];
+    sint64 t_sint64_4 = 64 [ (validator.field) = { } ];
+
+    sint64 t_sint64_eq1  = 70 [ (validator.field).tags.int = { eq: 1 } ];
+    sint64 t_sint64_ne1  = 71 [ (validator.field).tags.int = { ne: 2 } ];
+    sint64 t_sint64_lt1  = 72 [ (validator.field).tags.int = { lt: 3 } ];
+    sint64 t_sint64_gt1  = 73 [ (validator.field).tags.int = { gt: 4 } ];
+    sint64 t_sint64_lte1 = 74 [ (validator.field).tags.int = { lte: 5 } ];
+    sint64 t_sint64_gte1 = 75 [ (validator.field).tags.int = { gte: 6 } ];
+    sint64 t_sint64_in1  = 76 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+    sint64 t_sint64_not_in1 = 77 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+    // Type for sfixed32
+    sfixed32 t_sfixed32_1 = 81;
+    sfixed32 t_sfixed32_2 = 82 [ (validator.field).tags.int = { } ];
+    sfixed32 t_sfixed32_3 = 83 [ (validator.field).tags = { } ];
+    sfixed32 t_sfixed32_4 = 84 [ (validator.field) = { } ];
+
+    sfixed32 t_sfixed32_eq1  = 90 [ (validator.field).tags.int = { eq: 1 } ];
+    sfixed32 t_sfixed32_ne1  = 91 [ (validator.field).tags.int = { ne: 2 } ];
+    sfixed32 t_sfixed32_lt1  = 92 [ (validator.field).tags.int = { lt: 3 } ];
+    sfixed32 t_sfixed32_gt1  = 93 [ (validator.field).tags.int = { gt: 4 } ];
+    sfixed32 t_sfixed32_lte1 = 94 [ (validator.field).tags.int = { lte: 5 } ];
+    sfixed32 t_sfixed32_gte1 = 95 [ (validator.field).tags.int = { gte: 6 } ];
+    sfixed32 t_sfixed32_in1  = 96 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+    sfixed32 t_sfixed32_not_in1 = 97 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+
+    // Type for sfixed64
+    sfixed64 t_sfixed64_1 = 101;
+    sfixed64 t_sfixed64_2 = 102 [ (validator.field).tags.int = { } ];
+    sfixed64 t_sfixed64_3 = 103 [ (validator.field).tags = { } ];
+    sfixed64 t_sfixed64_4 = 104 [ (validator.field) = { } ];
+
+    sfixed64 t_sfixed64_eq1  = 110 [ (validator.field).tags.int = { eq: 1 } ];
+    sfixed64 t_sfixed64_ne1  = 111 [ (validator.field).tags.int = { ne: 2 } ];
+    sfixed64 t_sfixed64_lt1  = 112 [ (validator.field).tags.int = { lt: 3 } ];
+    sfixed64 t_sfixed64_gt1  = 113 [ (validator.field).tags.int = { gt: 4 } ];
+    sfixed64 t_sfixed64_lte1 = 114 [ (validator.field).tags.int = { lte: 5 } ];
+    sfixed64 t_sfixed64_gte1 = 115 [ (validator.field).tags.int = { gte: 6 } ];
+    sfixed64 t_sfixed64_in1  = 116 [ (validator.field).tags.int = { in: [1, 2, 3] } ];
+    sfixed64 t_sfixed64_not_in1 = 117 [ (validator.field).tags.int = { not_in: [1, 2, 3] } ];
+  }
+}
+
+// ValidUintTagsGeneral1 for test option tag UintTags with general field.
+message ValidUintTagsGeneral1 {
+  // Type for uint32
+  uint32 t_uint32_1 = 1;
+  uint32 t_uint32_2 = 2 [ (validator.field).tags.uint = { } ];
+  uint32 t_uint32_3 = 3 [ (validator.field).tags = { } ];
+  uint32 t_uint32_4 = 4 [ (validator.field) = { } ];
+
+  uint32 t_uint32_eq1  = 10 [ (validator.field).tags.uint = { eq: 1 } ];
+  uint32 t_uint32_ne1  = 11 [ (validator.field).tags.uint = { ne: 2 } ];
+  uint32 t_uint32_lt1  = 12 [ (validator.field).tags.uint = { lt: 3 } ];
+  uint32 t_uint32_gt1  = 13 [ (validator.field).tags.uint = { gt: 4 } ];
+  uint32 t_uint32_lte1 = 14 [ (validator.field).tags.uint = { lte: 5 } ];
+  uint32 t_uint32_gte1 = 15 [ (validator.field).tags.uint = { gte: 6 } ];
+  uint32 t_uint32_in1  = 16 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+  uint32 t_uint32_not_in1 = 17 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+  // Type for uint64
+  uint64 t_uint64_1 = 21;
+  uint64 t_uint64_2 = 22 [ (validator.field).tags.uint = { } ];
+  uint64 t_uint64_3 = 23 [ (validator.field).tags = { } ];
+  uint64 t_uint64_4 = 24 [ (validator.field) = { } ];
+
+  uint64 t_uint64_eq1  = 30 [ (validator.field).tags.uint = { eq: 1 } ];
+  uint64 t_uint64_ne1  = 31 [ (validator.field).tags.uint = { ne: 2 } ];
+  uint64 t_uint64_lt1  = 32 [ (validator.field).tags.uint = { lt: 3 } ];
+  uint64 t_uint64_gt1  = 33 [ (validator.field).tags.uint = { gt: 4 } ];
+  uint64 t_uint64_lte1 = 34 [ (validator.field).tags.uint = { lte: 5 } ];
+  uint64 t_uint64_gte1 = 35 [ (validator.field).tags.uint = { gte: 6 } ];
+  uint64 t_uint64_in1  = 36 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+  uint64 t_uint64_not_in1 = 37 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+  // Type for fixed32
+  fixed32 t_fixed32_1 = 41;
+  fixed32 t_fixed32_2 = 42 [ (validator.field).tags.uint = { } ];
+  fixed32 t_fixed32_3 = 43 [ (validator.field).tags = { } ];
+  fixed32 t_fixed32_4 = 44 [ (validator.field) = { } ];
+
+  fixed32 t_fixed32_eq1  = 50 [ (validator.field).tags.uint = { eq: 1 } ];
+  fixed32 t_fixed32_ne1  = 51 [ (validator.field).tags.uint = { ne: 2 } ];
+  fixed32 t_fixed32_lt1  = 52 [ (validator.field).tags.uint = { lt: 3 } ];
+  fixed32 t_fixed32_gt1  = 53 [ (validator.field).tags.uint = { gt: 4 } ];
+  fixed32 t_fixed32_lte1 = 54 [ (validator.field).tags.uint = { lte: 5 } ];
+  fixed32 t_fixed32_gte1 = 55 [ (validator.field).tags.uint = { gte: 6 } ];
+  fixed32 t_fixed32_in1  = 56 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+  fixed32 t_fixed32_not_in1 = 57 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+  // Type for fixed64
+  fixed64 t_fixed64_1 = 61;
+  fixed64 t_fixed64_2 = 62 [ (validator.field).tags.uint = { } ];
+  fixed64 t_fixed64_3 = 63 [ (validator.field).tags = { } ];
+  fixed64 t_fixed64_4 = 64 [ (validator.field) = { } ];
+
+  fixed64 t_fixed64_eq1  = 70 [ (validator.field).tags.uint = { eq: 1 } ];
+  fixed64 t_fixed64_ne1  = 71 [ (validator.field).tags.uint = { ne: 2 } ];
+  fixed64 t_fixed64_lt1  = 72 [ (validator.field).tags.uint = { lt: 3 } ];
+  fixed64 t_fixed64_gt1  = 73 [ (validator.field).tags.uint = { gt: 4 } ];
+  fixed64 t_fixed64_lte1 = 74 [ (validator.field).tags.uint = { lte: 5 } ];
+  fixed64 t_fixed64_gte1 = 75 [ (validator.field).tags.uint = { gte: 6 } ];
+  fixed64 t_fixed64_in1  = 76 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+  fixed64 t_fixed64_not_in1 = 77 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+}
+
+// ValidUintTagsOptional1 for test option tag UintTags with optional field.
+message ValidUintTagsOptional1 {
+  // Type for uint32
+  optional uint32 t_uint32_1 = 1;
+  optional uint32 t_uint32_2 = 2 [ (validator.field).tags.uint = { } ];
+  optional uint32 t_uint32_3 = 3 [ (validator.field).tags = { } ];
+  optional uint32 t_uint32_4 = 4 [ (validator.field) = { } ];
+
+  optional uint32 t_uint32_eq1  = 10 [ (validator.field).tags.uint = { eq: 1 } ];
+  optional uint32 t_uint32_ne1  = 11 [ (validator.field).tags.uint = { ne: 2 } ];
+  optional uint32 t_uint32_lt1  = 12 [ (validator.field).tags.uint = { lt: 3 } ];
+  optional uint32 t_uint32_gt1  = 13 [ (validator.field).tags.uint = { gt: 4 } ];
+  optional uint32 t_uint32_lte1 = 14 [ (validator.field).tags.uint = { lte: 5 } ];
+  optional uint32 t_uint32_gte1 = 15 [ (validator.field).tags.uint = { gte: 6 } ];
+  optional uint32 t_uint32_in1  = 16 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+  optional uint32 t_uint32_not_in1 = 17 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+  // Type for uint64
+  optional uint64 t_uint64_1 = 21;
+  optional uint64 t_uint64_2 = 22 [ (validator.field).tags.uint = { } ];
+  optional uint64 t_uint64_3 = 23 [ (validator.field).tags = { } ];
+  optional uint64 t_uint64_4 = 24 [ (validator.field) = { } ];
+
+  optional uint64 t_uint64_eq1  = 30 [ (validator.field).tags.uint = { eq: 1 } ];
+  optional uint64 t_uint64_ne1  = 31 [ (validator.field).tags.uint = { ne: 2 } ];
+  optional uint64 t_uint64_lt1  = 32 [ (validator.field).tags.uint = { lt: 3 } ];
+  optional uint64 t_uint64_gt1  = 33 [ (validator.field).tags.uint = { gt: 4 } ];
+  optional uint64 t_uint64_lte1 = 34 [ (validator.field).tags.uint = { lte: 5 } ];
+  optional uint64 t_uint64_gte1 = 35 [ (validator.field).tags.uint = { gte: 6 } ];
+  optional uint64 t_uint64_in1  = 36 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+  optional uint64 t_uint64_not_in1 = 37 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+  // Type for fixed32
+  optional fixed32 t_fixed32_1 = 41;
+  optional fixed32 t_fixed32_2 = 42 [ (validator.field).tags.uint = { } ];
+  optional fixed32 t_fixed32_3 = 43 [ (validator.field).tags = { } ];
+  optional fixed32 t_fixed32_4 = 44 [ (validator.field) = { } ];
+
+  optional fixed32 t_fixed32_eq1  = 50 [ (validator.field).tags.uint = { eq: 1 } ];
+  optional fixed32 t_fixed32_ne1  = 51 [ (validator.field).tags.uint = { ne: 2 } ];
+  optional fixed32 t_fixed32_lt1  = 52 [ (validator.field).tags.uint = { lt: 3 } ];
+  optional fixed32 t_fixed32_gt1  = 53 [ (validator.field).tags.uint = { gt: 4 } ];
+  optional fixed32 t_fixed32_lte1 = 54 [ (validator.field).tags.uint = { lte: 5 } ];
+  optional fixed32 t_fixed32_gte1 = 55 [ (validator.field).tags.uint = { gte: 6 } ];
+  optional fixed32 t_fixed32_in1  = 56 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+  optional fixed32 t_fixed32_not_in1 = 57 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+  // Type for fixed64
+  optional fixed64 t_fixed64_1 = 61;
+  optional fixed64 t_fixed64_2 = 62 [ (validator.field).tags.uint = { } ];
+  optional fixed64 t_fixed64_3 = 63 [ (validator.field).tags = { } ];
+  optional fixed64 t_fixed64_4 = 64 [ (validator.field) = { } ];
+
+  optional fixed64 t_fixed64_eq1  = 70 [ (validator.field).tags.uint = { eq: 1 } ];
+  optional fixed64 t_fixed64_ne1  = 71 [ (validator.field).tags.uint = { ne: 2 } ];
+  optional fixed64 t_fixed64_lt1  = 72 [ (validator.field).tags.uint = { lt: 3 } ];
+  optional fixed64 t_fixed64_gt1  = 73 [ (validator.field).tags.uint = { gt: 4 } ];
+  optional fixed64 t_fixed64_lte1 = 74 [ (validator.field).tags.uint = { lte: 5 } ];
+  optional fixed64 t_fixed64_gte1 = 75 [ (validator.field).tags.uint = { gte: 6 } ];
+  optional fixed64 t_fixed64_in1  = 76 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+  optional fixed64 t_fixed64_not_in1 = 77 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+}
+
+// ValidUintTagsOneOf1 for test option tag UintTags with oneof field.
+message ValidUintTagsOneOf1 {
+  oneof one_typ1 {
+    // Type for uint32
+    uint32 t_uint32_1 = 1;
+    uint32 t_uint32_2 = 2 [ (validator.field).tags.uint = { } ];
+    uint32 t_uint32_3 = 3 [ (validator.field).tags = { } ];
+    uint32 t_uint32_4 = 4 [ (validator.field) = { } ];
+
+    uint32 t_uint32_eq1  = 10 [ (validator.field).tags.uint = { eq: 1 } ];
+    uint32 t_uint32_ne1  = 11 [ (validator.field).tags.uint = { ne: 2 } ];
+    uint32 t_uint32_lt1  = 12 [ (validator.field).tags.uint = { lt: 3 } ];
+    uint32 t_uint32_gt1  = 13 [ (validator.field).tags.uint = { gt: 4 } ];
+    uint32 t_uint32_lte1 = 14 [ (validator.field).tags.uint = { lte: 5 } ];
+    uint32 t_uint32_gte1 = 15 [ (validator.field).tags.uint = { gte: 6 } ];
+    uint32 t_uint32_in1  = 16 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+    uint32 t_uint32_not_in1 = 17 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+    // Type for uint64
+    uint64 t_uint64_1 = 21;
+    uint64 t_uint64_2 = 22 [ (validator.field).tags.uint = { } ];
+    uint64 t_uint64_3 = 23 [ (validator.field).tags = { } ];
+    uint64 t_uint64_4 = 24 [ (validator.field) = { } ];
+
+    uint64 t_uint64_eq1  = 30 [ (validator.field).tags.uint = { eq: 1 } ];
+    uint64 t_uint64_ne1  = 31 [ (validator.field).tags.uint = { ne: 2 } ];
+    uint64 t_uint64_lt1  = 32 [ (validator.field).tags.uint = { lt: 3 } ];
+    uint64 t_uint64_gt1  = 33 [ (validator.field).tags.uint = { gt: 4 } ];
+    uint64 t_uint64_lte1 = 34 [ (validator.field).tags.uint = { lte: 5 } ];
+    uint64 t_uint64_gte1 = 35 [ (validator.field).tags.uint = { gte: 6 } ];
+    uint64 t_uint64_in1  = 36 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+    uint64 t_uint64_not_in1 = 37 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+    // Type for fixed32
+    fixed32 t_fixed32_1 = 41;
+    fixed32 t_fixed32_2 = 42 [ (validator.field).tags.uint = { } ];
+    fixed32 t_fixed32_3 = 43 [ (validator.field).tags = { } ];
+    fixed32 t_fixed32_4 = 44 [ (validator.field) = { } ];
+
+    fixed32 t_fixed32_eq1  = 50 [ (validator.field).tags.uint = { eq: 1 } ];
+    fixed32 t_fixed32_ne1  = 51 [ (validator.field).tags.uint = { ne: 2 } ];
+    fixed32 t_fixed32_lt1  = 52 [ (validator.field).tags.uint = { lt: 3 } ];
+    fixed32 t_fixed32_gt1  = 53 [ (validator.field).tags.uint = { gt: 4 } ];
+    fixed32 t_fixed32_lte1 = 54 [ (validator.field).tags.uint = { lte: 5 } ];
+    fixed32 t_fixed32_gte1 = 55 [ (validator.field).tags.uint = { gte: 6 } ];
+    fixed32 t_fixed32_in1  = 56 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+    fixed32 t_fixed32_not_in1 = 57 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+
+    // Type for fixed64
+    fixed64 t_fixed64_1 = 61;
+    fixed64 t_fixed64_2 = 62 [ (validator.field).tags.uint = { } ];
+    fixed64 t_fixed64_3 = 63 [ (validator.field).tags = { } ];
+    fixed64 t_fixed64_4 = 64 [ (validator.field) = { } ];
+
+    fixed64 t_fixed64_eq1  = 70 [ (validator.field).tags.uint = { eq: 1 } ];
+    fixed64 t_fixed64_ne1  = 71 [ (validator.field).tags.uint = { ne: 2 } ];
+    fixed64 t_fixed64_lt1  = 72 [ (validator.field).tags.uint = { lt: 3 } ];
+    fixed64 t_fixed64_gt1  = 73 [ (validator.field).tags.uint = { gt: 4 } ];
+    fixed64 t_fixed64_lte1 = 74 [ (validator.field).tags.uint = { lte: 5 } ];
+    fixed64 t_fixed64_gte1 = 75 [ (validator.field).tags.uint = { gte: 6 } ];
+    fixed64 t_fixed64_in1  = 76 [ (validator.field).tags.uint = { in: [1, 2, 3] } ];
+    fixed64 t_fixed64_not_in1 = 77 [ (validator.field).tags.uint = { not_in: [1, 2, 3] } ];
+  }
+}
+
+// ValidUintTagsOneOf1 for test option tag BoolTags with field.
+message ValidBoolTags1 {
+  bool t_bool_general_1 = 1;
+  bool t_bool_general_2 = 2 [ (validator.field).tags.bool = { } ];
+  bool t_bool_general_3 = 3 [ (validator.field).tags = { } ];
+  bool t_bool_general_4 = 4 [ (validator.field) = { } ];
+
+  bool t_bool_general_eq1 = 11 [ (validator.field).tags.bool = { eq: true } ];
+
+  optional bool t_bool_optional_1 = 21;
+  optional bool t_bool_optional_2 = 22 [ (validator.field).tags.bool = { } ];
+  optional bool t_bool_optional_3 = 23 [ (validator.field).tags = { } ];
+  optional bool t_bool_optional_4 = 24 [ (validator.field) = { } ];
+
+  optional bool t_bool_optional_eq1 = 31 [ (validator.field).tags.bool = { eq: true } ];
+
+  oneof one_typ1 {
+    bool t_bool_onfof_1 = 41;
+    bool t_bool_onfof_2 = 42 [ (validator.field).tags.bool = { } ];
+    bool t_bool_onfof_3 = 43 [ (validator.field).tags = { } ];
+    bool t_bool_onfof_4 = 44 [ (validator.field) = { } ];
+
+    bool t_bool_oneof_eq1 = 51 [ (validator.field).tags.bool = { eq: true } ];
+  }
+}
+
+// ValidMessageTags for test option tag MessageTags with field.
+message ValidMessageTags {
+  Config t_message_general_1 = 1;
+  Config t_message_general_2 = 2 [ (validator.field).tags.message = { } ];
+  Config t_message_general_3 = 3 [ (validator.field).tags = { } ];
+  Config t_message_general_4 = 4 [ (validator.field) = { } ];
+
+  Config t_message_general_not_null1 = 11 [ (validator.field).tags.message = { not_null: true } ];
+  Config t_message_general_not_null2 = 12 [ (validator.field).tags.message = { not_null: false } ];
+
+  Config t_message_general_skip1 = 13 [ (validator.field).tags.message = { skip: false } ];
+  Config t_message_general_skip2 = 14 [ (validator.field).tags.message = { skip: true } ];
+
+  oneof one_typ1 {
+    Config t_message_onfof_1 = 41;
+    Config t_message_onfof_2 = 42 [ (validator.field).tags.message = { } ];
+    Config t_message_onfof_3 = 43 [ (validator.field).tags = { } ];
+    Config t_message_onfof_4 = 44 [ (validator.field) = { } ];
+
+    Config t_message_oneof_not_null1 = 51 [ (validator.field).tags.message = { not_null: true  } ];
+    Config t_message_oneof_not_null2 = 52 [ (validator.field).tags.message = { not_null: false  } ];
+
+    Config t_message_oneof_skip1 = 53 [ (validator.field).tags.message = { skip: false } ];
+    Config t_message_oneof_skip2 = 54 [ (validator.field).tags.message = { skip: true } ];
+  }
+}
+
+// ValidEnumTagsGeneral1 for test option tag EnumTags with general field.
+message ValidEnumTagsGeneral1 {
+  Enum1 t_enum_1 = 1;
+  Enum1 t_enum_2 = 2 [ (validator.field).tags.enum = { } ];
+  Enum1 t_enum_3 = 3 [ (validator.field).tags = { } ];
+  Enum1 t_enum_4 = 4 [ (validator.field) = { } ];
+
+  Enum1 t_enum_eq1  = 10 [ (validator.field).tags.enum = { eq: 0 } ];
+  Enum1 t_enum_ne1  = 11 [ (validator.field).tags.enum = { ne: 1 } ];
+  Enum1 t_enum_lt1  = 12 [ (validator.field).tags.enum = { lt: 2 } ];
+  Enum1 t_enum_gt1  = 13 [ (validator.field).tags.enum = { gt: 3 } ];
+  Enum1 t_enum_lte1 = 14 [ (validator.field).tags.enum = { lte: 4 } ];
+  Enum1 t_enum_gte1 = 15 [ (validator.field).tags.enum = { gte: 8 } ];
+  Enum1 t_enum_in1  = 16 [ (validator.field).tags.enum = { in: [0, 1, 2] } ];
+  Enum1 t_enum_not_in1 = 17 [ (validator.field).tags.enum = { not_in: [3, 4, 8] } ];
+  Enum1 t_enum_in_enums = 18 [ (validator.field).tags.enum = { in_enums: true } ];
+}
+
+// ValidEnumTagsOptional1 for test option tag EnumTags with optional field.
+message ValidEnumTagsOptional1 {
+  optional Enum1 t_enum_1 = 1;
+  optional Enum1 t_enum_2 = 2 [ (validator.field).tags.enum = { } ];
+  optional Enum1 t_enum_3 = 3 [ (validator.field).tags = { } ];
+  optional Enum1 t_enum_4 = 4 [ (validator.field) = { } ];
+
+  optional Enum1 t_enum_eq1  = 10 [ (validator.field).tags.enum = { eq: 0 } ];
+  optional Enum1 t_enum_ne1  = 11 [ (validator.field).tags.enum = { ne: 1 } ];
+  optional Enum1 t_enum_lt1  = 12 [ (validator.field).tags.enum = { lt: 2 } ];
+  optional Enum1 t_enum_gt1  = 13 [ (validator.field).tags.enum = { gt: 3 } ];
+  optional Enum1 t_enum_lte1 = 14 [ (validator.field).tags.enum = { lte: 4 } ];
+  optional Enum1 t_enum_gte1 = 15 [ (validator.field).tags.enum = { gte: 8 } ];
+  optional Enum1 t_enum_in1  = 16 [ (validator.field).tags.enum = { in: [0, 1, 2] } ];
+  optional Enum1 t_enum_not_in1 = 17 [ (validator.field).tags.enum = { not_in: [3, 4, 8] } ];
+  optional Enum1 t_enum_in_enums = 18 [ (validator.field).tags.enum = { in_enums: true } ];
+}
+
+// ValidEnumTagsOneOf1 for test option tag EnumTags with oneof field.
+message ValidEnumTagsOneOf1 {
+  oneof one_typ1 {
+    Enum1 t_enum_1 = 1;
+    Enum1 t_enum_2 = 2 [ (validator.field).tags.enum = { } ];
+    Enum1 t_enum_3 = 3 [ (validator.field).tags = { } ];
+    Enum1 t_enum_4 = 4 [ (validator.field) = { } ];
+
+    Enum1 t_enum_eq1  = 10 [ (validator.field).tags.enum = { eq: 0 } ];
+    Enum1 t_enum_ne1  = 11 [ (validator.field).tags.enum = { ne: 1 } ];
+    Enum1 t_enum_lt1  = 12 [ (validator.field).tags.enum = { lt: 2 } ];
+    Enum1 t_enum_gt1  = 13 [ (validator.field).tags.enum = { gt: 3 } ];
+    Enum1 t_enum_lte1 = 14 [ (validator.field).tags.enum = { lte: 4 } ];
+    Enum1 t_enum_gte1 = 15 [ (validator.field).tags.enum = { gte: 8 } ];
+    Enum1 t_enum_in1  = 16 [ (validator.field).tags.enum = { in: [0, 1, 2] } ];
+    Enum1 t_enum_not_in1 = 17 [ (validator.field).tags.enum = { not_in: [3, 4, 8] } ];
+    Enum1 t_enum_in_enums = 18 [ (validator.field).tags.enum = { in_enums: true } ];
+  }
+}
+
+// ValidBytesTags1 for test option tag ValidBytes with field.
+message ValidBytesTags1 {
+  bytes t_bytes_1 = 1;
+  bytes t_bytes_2 = 2 [ (validator.field).tags.bytes = { } ];
+  bytes t_bytes_3 = 3 [ (validator.field).tags = { } ];
+  bytes t_bytes_4 = 4 [ (validator.field) = { } ];
+
+  bytes t_bytes_len_eq1  = 10 [ (validator.field).tags.bytes = { len_eq: 1 } ];
+  bytes t_bytes_len_ne1  = 11 [ (validator.field).tags.bytes = { len_ne: 2 } ];
+  bytes t_bytes_len_lt1  = 12 [ (validator.field).tags.bytes = { len_lt: 3 } ];
+  bytes t_bytes_len_gt1  = 13 [ (validator.field).tags.bytes = { len_gt: 4 } ];
+  bytes t_bytes_len_lte1 = 14 [ (validator.field).tags.bytes = { len_lte: 5 } ];
+  bytes t_bytes_len_gte1 = 15 [ (validator.field).tags.bytes = { len_gte: 6 } ];
+}
+
+// ValidRepeatedTagsField1 for test option tag RepeatedTags.
+message ValidRepeatedTagsGeneral1 {
+  repeated string t_list_101 = 101;
+  repeated string t_list_102 = 102 [ (validator.field).tags.repeated = { } ];
+  repeated string t_list_103 = 103 [ (validator.field).tags = { } ];
+  repeated string t_list_104 = 104 [ (validator.field) = { } ];
+  repeated string t_list_105 = 105 [ (validator.field).tags.repeated = { item: {string: {} } } ];
+  repeated string t_list_106 = 106 [ (validator.field).tags.repeated = { item: { } } ];
+  repeated Config t_list_107 = 107;
+  repeated Config t_list_108 = 108 [ (validator.field).tags.repeated = { } ];
+  repeated Config t_list_109 = 109 [ (validator.field).tags = { } ];
+  repeated Config t_list_110 = 110 [ (validator.field) = { } ];
+  repeated Config t_list_111 = 111 [ (validator.field).tags.repeated = { item: {message: {} } } ];
+  repeated Config t_list_112 = 112 [ (validator.field).tags.repeated = { item: { } } ];
+  repeated Enum1 t_list_113 = 113;
+  repeated Enum1 t_list_114 = 114 [ (validator.field).tags.repeated = { } ];
+  repeated Enum1 t_list_115 = 115 [ (validator.field).tags = { } ];
+  repeated Enum1 t_list_116 = 116 [ (validator.field) = { } ];
+  repeated Enum1 t_list_117 = 117 [ (validator.field).tags.repeated = { item: { enum: {} } } ];
+  repeated Enum1 t_list_118 = 118 [ (validator.field).tags.repeated = { item: { } } ];
+
+  repeated string t_list_not_null1 = 16 [ (validator.field).tags.repeated = { not_null: true } ];
+  repeated string t_list_len_eq1 = 10 [ (validator.field).tags.repeated = { len_eq: 1 } ];
+  repeated string t_list_len_ne1 = 11 [ (validator.field).tags.repeated = { len_ne: 2 } ];
+  repeated string t_list_len_lt1 = 12 [ (validator.field).tags.repeated = { len_lt: 3 } ];
+  repeated string t_list_len_gt1 = 13 [ (validator.field).tags.repeated = { len_gt: 4 } ];
+  repeated string t_list_len_lte1 = 14 [ (validator.field).tags.repeated = { len_lte: 5 } ];
+  repeated string t_list_len_gte1 = 15 [ (validator.field).tags.repeated = { len_gte: 6 } ];
+
+  repeated string   t_list_unique_string   = 31 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated double   t_list_unique_double   = 32 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated float    t_list_unique_float    = 33 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated int32    t_list_unique_int32    = 34 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated int64    t_list_unique_int64    = 35 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated uint32   t_list_unique_uint32   = 36 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated uint64   t_list_unique_uint64   = 37 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated sint32   t_list_unique_sint32   = 38 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated sint64   t_list_unique_sint64   = 39 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated sfixed32 t_list_unique_sfixed32 = 40 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated sfixed64 t_list_unique_sfixed64 = 41 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated fixed32  t_list_unique_fixed32  = 42 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated fixed64  t_list_unique_fixed64  = 43 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated bool     t_list_unique_bool     = 44 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated Enum1    t_list_unique_enum     = 45 [ (validator.field).tags.repeated = { unique: true } ];
+  repeated Config   t_list_unique_message  = 46 [ (validator.field).tags.repeated = { unique: true, item: { message: {skip: true} } } ];
+  repeated bytes    t_list_unique_bytes    = 47 [ (validator.field).tags.repeated = { unique: true } ];
+}
+
+// ValidRepeatedTagsField1 for test option tag RepeatedTags wit item.
+message ValidRepeatedTagsItem1 {
+  repeated string   t_list_item_string   = 31 [ (validator.field).tags.repeated = { len_gt: 1, item: { string: { prefix: "id-" }, } } ];
+  repeated double   t_list_item_double   = 32 [ (validator.field).tags.repeated = { len_gt: 1, item: { float: { gte: 1.1, lte: 11.1 }, } } ];
+  repeated float    t_list_item_float    = 33 [ (validator.field).tags.repeated = { len_gt: 1, item: { float: { gte: 1.1, lte: 11.1 }, } } ];
+  repeated int32    t_list_item_int32    = 34 [ (validator.field).tags.repeated = { len_gt: 1, item: { int: { gte: 2, lte: 10 }, } } ];
+  repeated int64    t_list_item_int64    = 35 [ (validator.field).tags.repeated = { len_gt: 1, item: { int: { gte: 2, lte: 10 }, } } ];
+  repeated sint32   t_list_item_sint32   = 38 [ (validator.field).tags.repeated = { len_gt: 1, item: { int: { gte: 2, lte: 10 }, } } ];
+  repeated sint64   t_list_item_sint64   = 39 [ (validator.field).tags.repeated = { len_gt: 1, item: { int: { gte: 2, lte: 10 }, } } ];
+  repeated sfixed32 t_list_item_sfixed32 = 40 [ (validator.field).tags.repeated = { len_gt: 1, item: { int: { gte: 2, lte: 10 }, } } ];
+  repeated sfixed64 t_list_item_sfixed64 = 41 [ (validator.field).tags.repeated = { len_gt: 1, item: { int: { gte: 2, lte: 10 }, } } ];
+
+  repeated uint32   t_list_item_uint32   = 36 [ (validator.field).tags.repeated = { len_gt: 1, item: { uint: { gte: 2, lte: 10 }, } } ];
+  repeated uint64   t_list_item_uint64   = 37 [ (validator.field).tags.repeated = { len_gt: 1, item: { uint: { gte: 2, lte: 10 }, } } ];
+  repeated fixed32  t_list_item_fixed32  = 42 [ (validator.field).tags.repeated = { len_gt: 1, item: { uint: { gte: 2, lte: 10 }, } } ];
+  repeated fixed64  t_list_item_fixed64  = 43 [ (validator.field).tags.repeated = { len_gt: 1, item: { uint: { gte: 2, lte: 10  }, } } ];
+
+  repeated bool     t_list_item_bool     = 44 [ (validator.field).tags.repeated = { len_gt: 1, item: { bool: { eq: true }, } } ];
+  repeated Enum1    t_list_item_enum     = 45 [ (validator.field).tags.repeated = { len_gt: 1, item: { enum: { in_enums: true }, } } ];
+
+  repeated bytes    t_list_item_bytes    = 46 [ (validator.field).tags.repeated = { len_gt: 1, item: { bytes: { len_eq: 3 }, } } ];
+  repeated Config   t_list_item_message  = 47 [ (validator.field).tags.repeated = { len_gt: 1, item: { message: { not_null: true }, } } ];
+}
+
+// ValidMapTagsGeneral1 for test option tag MapTags.
+message ValidMapTagsGeneral1 {
+  map<string, string> t_map_101 = 101;
+  map<string, string> t_map_102 = 102 [ (validator.field).tags.map = { } ];
+  map<string, string> t_map_103 = 103 [ (validator.field).tags = { } ];
+  map<string, string> t_map_104 = 104 [ (validator.field) = { } ];
+  map<string, string> t_map_105 = 105 [ (validator.field).tags.map = { key: {string: {} } } ];
+  map<string, string> t_map_106 = 106 [ (validator.field).tags.map = { key: { } } ];
+  map<string, string> t_map_107 = 107 [ (validator.field).tags.map = { value: {string: {} } } ];
+  map<string, string> t_map_108 = 108 [ (validator.field).tags.map = { value: { } } ];
+
+  map<string, Config> t_map_111 = 111;
+  map<string, Config> t_map_112 = 112 [ (validator.field).tags.map = { } ];
+  map<string, Config> t_map_113 = 113 [ (validator.field).tags = { } ];
+  map<string, Config> t_map_114 = 114 [ (validator.field) = { } ];
+  map<string, Config> t_map_115 = 115 [ (validator.field).tags.map = { key: {string: {} } } ];
+  map<string, Config> t_map_116 = 116 [ (validator.field).tags.map = { key: { } } ];
+  map<string, Config> t_map_117 = 117 [ (validator.field).tags.map = { value: {message: {} } } ];
+  map<string, Config> t_map_118 = 118 [ (validator.field).tags.map = { value: { } } ];
+
+  map<string, string> t_map_not_null1 = 16 [ (validator.field).tags.map = { not_null: true } ];
+  map<string, string> t_map_len_eq1 = 10 [ (validator.field).tags.map = { len_eq: 1 } ];
+  map<string, string> t_map_len_ne1 = 11 [ (validator.field).tags.map = { len_ne: 2 } ];
+  map<string, string> t_map_len_lt1 = 12 [ (validator.field).tags.map = { len_lt: 3 } ];
+  map<string, string> t_map_len_gt1 = 13 [ (validator.field).tags.map = { len_gt: 4 } ];
+  map<string, string> t_map_len_lte1 = 14 [ (validator.field).tags.map = { len_lte: 5 } ];
+  map<string, string> t_map_len_gte1 = 15 [ (validator.field).tags.map = { len_gte: 6 } ];
+}
+
+// ValidMapTagsGeneral1 for test option tag MapTags with key.
+message ValidMapTagsKey1 {
+  map<string, int32>   t_map_key_string   = 10 [ (validator.field).tags.map = { len_gt: 1, key: { string: { prefix: "id-" }, } } ];
+  map<int32, int32>    t_map_key_int32    = 11 [ (validator.field).tags.map = { len_gt: 1, key: { int: { gte: 2, lte: 10 }, } } ];
+  map<int64, int32>    t_map_key_int64    = 12 [ (validator.field).tags.map = { len_gt: 1, key: { int: { gte: 2, lte: 10 }, } } ];
+  map<sint32, int32>   t_map_key_sint32   = 15 [ (validator.field).tags.map = { len_gt: 1, key: { int: { gte: 2, lte: 10 }, } } ];
+  map<sint64, int32>   t_map_key_sint64   = 16 [ (validator.field).tags.map = { len_gt: 1, key: { int: { gte: 2, lte: 10 }, } } ];
+  map<sfixed32, int32> t_map_key_sfixed32 = 19 [ (validator.field).tags.map = { len_gt: 1, key: { int: { gte: 2, lte: 10 }, } } ];
+  map<sfixed64, int32> t_map_key_sfixed64 = 20 [ (validator.field).tags.map = { len_gt: 1, key: { int: { gte: 2, lte: 10 }, } } ];
+
+  map<uint32, int32>   t_map_key_uint32   = 13 [ (validator.field).tags.map = { len_gt: 1, key: { uint: { gte: 2, lte: 10 }, } } ];
+  map<uint64, int32>   t_map_key_uint64   = 14 [ (validator.field).tags.map = { len_gt: 1, key: { uint: { gte: 2, lte: 10 }, } } ];
+  map<fixed32, int32>  t_map_key_fixed32  = 17 [ (validator.field).tags.map = { len_gt: 1, key: { uint: { gte: 2, lte: 10 }, } } ];
+  map<fixed64, int32>  t_map_key_fixed64  = 18 [ (validator.field).tags.map = { len_gt: 1, key: { uint: { gte: 2, lte: 10 }, } } ];
+}
+
+// ValidMapTagsGeneral1 for test option tag MapTags with value.
+message ValidMapTagsValue1 {
+  map<string, string>   t_map_value_string   = 10 [ (validator.field).tags.map = { len_gt: 1, value: { string: { prefix: "id-" }, } } ];
+  map<string, double>   t_map_value_double   = 12 [ (validator.field).tags.map = { len_gt: 1, value: { float: { gte: 1.1, lte: 11.1 }, } } ];
+  map<string, float>    t_map_value_float    = 11 [ (validator.field).tags.map = { len_gt: 1, value: { float: { gte: 1.1, lte: 11.1 }, } } ];
+  map<string, int32>    t_map_value_int32    = 13 [ (validator.field).tags.map = { len_gt: 1, value: { int: { gte: 2, lte: 10 }, } } ];
+  map<string, int64>    t_map_value_int64    = 14 [ (validator.field).tags.map = { len_gt: 1, value: { int: { gte: 2, lte: 10 }, } } ];
+  map<string, sint32>   t_map_value_sint32   = 15 [ (validator.field).tags.map = { len_gt: 1, value: { int: { gte: 2, lte: 10 }, } } ];
+  map<string, sint64>   t_map_value_sint64   = 16 [ (validator.field).tags.map = { len_gt: 1, value: { int: { gte: 2, lte: 10 }, } } ];
+  map<string, sfixed32> t_map_value_sfixed32 = 17 [ (validator.field).tags.map = { len_gt: 1, value: { int: { gte: 2, lte: 10 }, } } ];
+  map<string, sfixed64> t_map_value_sfixed64 = 18 [ (validator.field).tags.map = { len_gt: 1, value: { int: { gte: 2, lte: 10 }, } } ];
+
+  map<string, uint32>   t_map_value_uint32   = 19 [ (validator.field).tags.map = { len_gt: 1, value: { uint: { gte: 2, lte: 10 }, } } ];
+  map<string, uint64>   t_map_value_uint64   = 20 [ (validator.field).tags.map = { len_gt: 1, value: { uint: { gte: 2, lte: 10 }, } } ];
+  map<string, fixed32>  t_map_value_fixed32  = 21 [ (validator.field).tags.map = { len_gt: 1, value: { uint: { gte: 2, lte: 10 }, } } ];
+  map<string, fixed64>  t_map_value_fixed64  = 22 [ (validator.field).tags.map = { len_gt: 1, value: { uint: { gte: 2, lte: 10 }, } } ];
+
+  map<string, bool>     t_map_value_bool     = 23 [ (validator.field).tags.map = { len_gt: 1, value: { bool: { eq: true }, } } ];
+  map<string, Enum1>    t_map_value_enum     = 25 [ (validator.field).tags.map = { len_gt: 1, value: { enum: { in_enums: true }, } } ];
+  map<string, bytes>    t_map_value_bytes    = 24 [ (validator.field).tags.map = { len_gt: 1, value: { bytes: { len_eq: 3 }, } } ];
+  map<string, Config>   t_map_value_message  = 26 [ (validator.field).tags.map = { len_gt: 1, value: { message: { not_null: true }, } } ];
+}
+
+// ValidStringTagsGeneral1 for test option tag StringTags with general field.
+message ValidStringTagsGeneral1 {
+  string t_string1 = 1;
+  string t_string2 = 2 [ (validator.field).tags.string = { } ];
+  string t_string3 = 3 [ (validator.field).tags = { } ];
+  string t_string4 = 4 [ (validator.field) = { } ];
+
+  string t_string_eq1  = 10 [ (validator.field).tags.string = { eq: "b"} ];
+  string t_string_ne1  = 11 [ (validator.field).tags.string = { ne: "b" } ];
+  string t_string_lt1  = 12 [ (validator.field).tags.string = { lt: "c"} ];
+  string t_string_gt1  = 13 [ (validator.field).tags.string = { gt: "c" } ];
+  string t_string_lte1 = 14 [ (validator.field).tags.string = { lte: "c" } ];
+  string t_string_gte1 = 15 [ (validator.field).tags.string = { gte: "c" } ];
+  string t_string_in1  = 16 [ (validator.field).tags.string = { in: ["a", "b", "c"] } ];
+  string t_string_not_in1 = 17 [ (validator.field).tags.string = { not_in: ["x", "y", "z"] } ];
+
+  string t_string_char_len_eq1 = 20 [ (validator.field).tags.string = { char_len_eq: 3 } ];
+  string t_string_char_len_ne1 = 21 [ (validator.field).tags.string = { char_len_ne: 3 } ];
+  string t_string_char_len_gt1 = 22 [ (validator.field).tags.string = { char_len_gt: 3 } ];
+  string t_string_char_len_lt1 = 23 [ (validator.field).tags.string = { char_len_lt: 3 } ];
+  string t_string_char_len_gte1 = 24 [ (validator.field).tags.string = { char_len_gte: 3 } ];
+  string t_string_char_len_lte1 = 25 [ (validator.field).tags.string = { char_len_lte: 3 } ];
+
+  string t_string_byte_len_eq1  = 30 [ (validator.field).tags.string = { byte_len_eq: 5 } ];
+  string t_string_byte_len_ne1  = 31 [ (validator.field).tags.string = { byte_len_ne: 5 } ];
+  string t_string_byte_len_gt1  = 32 [ (validator.field).tags.string = { byte_len_gt: 5 } ];
+  string t_string_byte_len_lt1  = 33 [ (validator.field).tags.string = { byte_len_lt: 5 } ];
+  string t_string_byte_len_gte1 = 34 [ (validator.field).tags.string = { byte_len_gte: 5 } ];
+  string t_string_byte_len_lte1 = 35 [ (validator.field).tags.string = { byte_len_lte: 5 } ];
+
+  string t_string_regex1 = 40 [ (validator.field).tags.string = { regex: "^[0-9]+.jar$" } ];
+
+  string t_string_prefix1           = 41 [ (validator.field).tags.string = { prefix: "prefix" } ];
+  string t_string_no_prefix1        = 42 [ (validator.field).tags.string = { no_prefix: "prefix" } ];
+  string t_string_suffix1           = 43 [ (validator.field).tags.string = { suffix: "suffix" } ];
+  string t_string_no_suffix1        = 44 [ (validator.field).tags.string = { no_suffix: "suffix" } ];
+  string t_string_contains1         = 45 [ (validator.field).tags.string = { contains: "abc" } ];
+  string t_string_no_contains1      = 46 [ (validator.field).tags.string = { not_contains: "abc" } ];
+  string t_string_contains_any1     = 47 [ (validator.field).tags.string = { contains_any: "xyz" } ];
+  string t_string_not_contains_any1 = 48 [ (validator.field).tags.string = { not_contains_any: "xyz" } ];
+
+  string t_string_utf8 = 81 [ (validator.field).tags.string = { utf8: true } ];
+
+  string t_string_ascii        = 71 [ (validator.field).tags.string = { ascii: true } ];
+  string t_string_print_ascii  = 72 [ (validator.field).tags.string = { print_ascii: true } ];
+  string t_string_boolean      = 73 [ (validator.field).tags.string = { boolean: true } ];
+  string t_string_lowercase    = 74 [ (validator.field).tags.string = { lowercase: true } ];
+  string t_string_uppercase    = 75 [ (validator.field).tags.string = { uppercase: true } ];
+  string t_string_alpha        = 76 [ (validator.field).tags.string = { alpha: true } ];
+  string t_string_number       = 77 [ (validator.field).tags.string = { number: true } ];
+  string t_string_alpha_number = 78 [ (validator.field).tags.string = { alpha_number: true } ];
+
+  string t_string_ip               = 101 [ (validator.field).tags.string = { ip: true } ];
+  string t_string_ipv4             = 102 [ (validator.field).tags.string = { ipv4: true } ];
+  string t_string_ipv6             = 103 [ (validator.field).tags.string = { ipv6: true } ];
+  string t_string_ip_addr          = 104 [ (validator.field).tags.string = { ip_addr: true } ];
+  string t_string_ip4_addr         = 105 [ (validator.field).tags.string = { ip4_addr: true } ];
+  string t_string_ip6_addr         = 106 [ (validator.field).tags.string = { ip6_addr: true } ];
+  string t_string_cidr             = 107 [ (validator.field).tags.string = { cidr: true } ];
+  string t_string_cidrv4           = 108 [ (validator.field).tags.string = { cidrv4: true } ];
+  string t_string_cidrv6           = 109 [ (validator.field).tags.string = { cidrv6: true } ];
+  string t_string_mac              = 110 [ (validator.field).tags.string = { mac: true } ];
+  string t_string_tcp_addr         = 111 [ (validator.field).tags.string = { tcp_addr: true } ];
+  string t_string_tcp4_addr        = 112 [ (validator.field).tags.string = { tcp4_addr: true } ];
+  string t_string_tcp6_addr        = 113 [ (validator.field).tags.string = { tcp6_addr: true } ];
+  string t_string_udp_addr         = 114 [ (validator.field).tags.string = { udp_addr: true } ];
+  string t_string_udp4_addr        = 115 [ (validator.field).tags.string = { udp4_addr: true } ];
+  string t_string_udp6_addr        = 116 [ (validator.field).tags.string = { udp6_addr: true } ];
+  string t_string_unix_addr        = 117 [ (validator.field).tags.string = { unix_addr: true } ];
+  string t_string_hostname         = 118 [ (validator.field).tags.string = { hostname: true } ];
+  string t_string_hostname_rfc1123 = 119 [ (validator.field).tags.string = { hostname_rfc1123: true } ];
+  string t_string_hostname_port    = 120 [ (validator.field).tags.string = { hostname_port: true } ];
+  string t_string_data_uri         = 121 [ (validator.field).tags.string = { data_uri: true } ];
+  string t_string_fqdn             = 122 [ (validator.field).tags.string = { fqdn: true } ];
+  string t_string_uri              = 123 [ (validator.field).tags.string = { uri: true } ];
+  string t_string_url              = 124 [ (validator.field).tags.string = { url: true } ];
+  string t_string_url_encoded      = 125 [ (validator.field).tags.string = { url_encoded: true } ];
+
+  string t_string_unix_cron    = 141 [ (validator.field).tags.string = { unix_cron: true } ];
+  string t_string_email        = 126 [ (validator.field).tags.string = { email: true } ];
+  string t_string_json         = 127 [ (validator.field).tags.string = { json: true } ];
+  string t_string_jwt          = 128 [ (validator.field).tags.string = { jwt: true } ];
+  string t_string_html         = 129 [ (validator.field).tags.string = { html: true } ];
+  string t_string_html_encoded = 130 [ (validator.field).tags.string = { html_encoded: true } ];
+  string t_string_base64       = 131 [ (validator.field).tags.string = { base64: true } ];
+  string t_string_base64_url   = 132 [ (validator.field).tags.string = { base64_url: true } ];
+  string t_string_hexadecimal  = 133 [ (validator.field).tags.string = { hexadecimal: true } ];
+  string t_string_datetime     = 134 [ (validator.field).tags.string = { datetime: "2006-01-02 15:04:05" } ];
+  string t_string_timezone     = 135 [ (validator.field).tags.string = { timezone: true } ];
+  string t_string_uuid         = 136 [ (validator.field).tags.string = { uuid: true } ];
+  string t_string_uuid1        = 137 [ (validator.field).tags.string = { uuid1: true } ];
+  string t_string_uuid3        = 138 [ (validator.field).tags.string = { uuid3: true } ];
+  string t_string_uuid4        = 139 [ (validator.field).tags.string = { uuid4: true } ];
+  string t_string_uuid5        = 140 [ (validator.field).tags.string = { uuid5: true } ];
+}
+
+// ValidStringTagsOptional1 for test option tag StringTags with optional field.
+message ValidStringTagsOptional1 {
+  optional string t_string1 = 1;
+  optional string t_string2 = 2 [ (validator.field).tags.string = { } ];
+  optional string t_string3 = 3 [ (validator.field).tags = { } ];
+  optional string t_string4 = 4 [ (validator.field) = { } ];
+
+  optional string t_string_eq1  = 10 [ (validator.field).tags.string = { eq: "b"} ];
+  optional string t_string_ne1  = 11 [ (validator.field).tags.string = { ne: "b" } ];
+  optional string t_string_lt1  = 12 [ (validator.field).tags.string = { lt: "c"} ];
+  optional string t_string_gt1  = 13 [ (validator.field).tags.string = { gt: "c" } ];
+  optional string t_string_lte1 = 14 [ (validator.field).tags.string = { lte: "c" } ];
+  optional string t_string_gte1 = 15 [ (validator.field).tags.string = { gte: "c" } ];
+  optional string t_string_in1  = 16 [ (validator.field).tags.string = { in: ["a", "b", "c"] } ];
+  optional string t_string_not_in1 = 17 [ (validator.field).tags.string = { not_in: ["x", "y", "z"] } ];
+
+  optional string t_string_char_len_eq1 = 20 [ (validator.field).tags.string = { char_len_eq: 3 } ];
+  optional string t_string_char_len_ne1 = 21 [ (validator.field).tags.string = { char_len_ne: 3 } ];
+  optional string t_string_char_len_gt1 = 22 [ (validator.field).tags.string = { char_len_gt: 3 } ];
+  optional string t_string_char_len_lt1 = 23 [ (validator.field).tags.string = { char_len_lt: 3 } ];
+  optional string t_string_char_len_gte1 = 24 [ (validator.field).tags.string = { char_len_gte: 3 } ];
+  optional string t_string_char_len_lte1 = 25 [ (validator.field).tags.string = { char_len_lte: 3 } ];
+
+  optional string t_string_byte_len_eq1  = 30 [ (validator.field).tags.string = { byte_len_eq: 5 } ];
+  optional string t_string_byte_len_ne1  = 31 [ (validator.field).tags.string = { byte_len_ne: 5 } ];
+  optional string t_string_byte_len_gt1  = 32 [ (validator.field).tags.string = { byte_len_gt: 5 } ];
+  optional string t_string_byte_len_lt1  = 33 [ (validator.field).tags.string = { byte_len_lt: 5 } ];
+  optional string t_string_byte_len_gte1 = 34 [ (validator.field).tags.string = { byte_len_gte: 5 } ];
+  optional string t_string_byte_len_lte1 = 35 [ (validator.field).tags.string = { byte_len_lte: 5 } ];
+
+  optional string t_string_regex1 = 40 [ (validator.field).tags.string = { regex: "^[0-9]+.jar$" } ];
+
+  optional string t_string_prefix1           = 41 [ (validator.field).tags.string = { prefix: "prefix" } ];
+  optional string t_string_no_prefix1        = 42 [ (validator.field).tags.string = { no_prefix: "prefix" } ];
+  optional string t_string_suffix1           = 43 [ (validator.field).tags.string = { suffix: "suffix" } ];
+  optional string t_string_no_suffix1        = 44 [ (validator.field).tags.string = { no_suffix: "suffix" } ];
+  optional string t_string_contains1         = 45 [ (validator.field).tags.string = { contains: "abc" } ];
+  optional string t_string_no_contains1      = 46 [ (validator.field).tags.string = { not_contains: "abc" } ];
+  optional string t_string_contains_any1     = 47 [ (validator.field).tags.string = { contains_any: "xyz" } ];
+  optional string t_string_not_contains_any1 = 48 [ (validator.field).tags.string = { not_contains_any: "xyz" } ];
+
+  optional string t_string_utf8 = 81 [ (validator.field).tags.string = { utf8: true } ];
+
+  optional string t_string_ascii        = 71 [ (validator.field).tags.string = { ascii: true } ];
+  optional string t_string_print_ascii  = 72 [ (validator.field).tags.string = { print_ascii: true } ];
+  optional string t_string_boolean      = 73 [ (validator.field).tags.string = { boolean: true } ];
+  optional string t_string_lowercase    = 74 [ (validator.field).tags.string = { lowercase: true } ];
+  optional string t_string_uppercase    = 75 [ (validator.field).tags.string = { uppercase: true } ];
+  optional string t_string_alpha        = 76 [ (validator.field).tags.string = { alpha: true } ];
+  optional string t_string_number       = 77 [ (validator.field).tags.string = { number: true } ];
+  optional string t_string_alpha_number = 78 [ (validator.field).tags.string = { alpha_number: true } ];
+
+  optional string t_string_ip               = 101 [ (validator.field).tags.string = { ip: true } ];
+  optional string t_string_ipv4             = 102 [ (validator.field).tags.string = { ipv4: true } ];
+  optional string t_string_ipv6             = 103 [ (validator.field).tags.string = { ipv6: true } ];
+  optional string t_string_ip_addr          = 104 [ (validator.field).tags.string = { ip_addr: true } ];
+  optional string t_string_ip4_addr         = 105 [ (validator.field).tags.string = { ip4_addr: true } ];
+  optional string t_string_ip6_addr         = 106 [ (validator.field).tags.string = { ip6_addr: true } ];
+  optional string t_string_cidr             = 107 [ (validator.field).tags.string = { cidr: true } ];
+  optional string t_string_cidrv4           = 108 [ (validator.field).tags.string = { cidrv4: true } ];
+  optional string t_string_cidrv6           = 109 [ (validator.field).tags.string = { cidrv6: true } ];
+  optional string t_string_mac              = 110 [ (validator.field).tags.string = { mac: true } ];
+  optional string t_string_tcp_addr         = 111 [ (validator.field).tags.string = { tcp_addr: true } ];
+  optional string t_string_tcp4_addr        = 112 [ (validator.field).tags.string = { tcp4_addr: true } ];
+  optional string t_string_tcp6_addr        = 113 [ (validator.field).tags.string = { tcp6_addr: true } ];
+  optional string t_string_udp_addr         = 114 [ (validator.field).tags.string = { udp_addr: true } ];
+  optional string t_string_udp4_addr        = 115 [ (validator.field).tags.string = { udp4_addr: true } ];
+  optional string t_string_udp6_addr        = 116 [ (validator.field).tags.string = { udp6_addr: true } ];
+  optional string t_string_unix_addr        = 117 [ (validator.field).tags.string = { unix_addr: true } ];
+  optional string t_string_hostname         = 118 [ (validator.field).tags.string = { hostname: true } ];
+  optional string t_string_hostname_rfc1123 = 119 [ (validator.field).tags.string = { hostname_rfc1123: true } ];
+  optional string t_string_hostname_port    = 120 [ (validator.field).tags.string = { hostname_port: true } ];
+  optional string t_string_data_uri         = 121 [ (validator.field).tags.string = { data_uri: true } ];
+  optional string t_string_fqdn             = 122 [ (validator.field).tags.string = { fqdn: true } ];
+  optional string t_string_uri              = 123 [ (validator.field).tags.string = { uri: true } ];
+  optional string t_string_url              = 124 [ (validator.field).tags.string = { url: true } ];
+  optional string t_string_url_encoded      = 125 [ (validator.field).tags.string = { url_encoded: true } ];
+
+  optional string t_string_unix_cron    = 141 [ (validator.field).tags.string = { unix_cron: true } ];
+  optional string t_string_email        = 126 [ (validator.field).tags.string = { email: true } ];
+  optional string t_string_json         = 127 [ (validator.field).tags.string = { json: true } ];
+  optional string t_string_jwt          = 128 [ (validator.field).tags.string = { jwt: true } ];
+  optional string t_string_html         = 129 [ (validator.field).tags.string = { html: true } ];
+  optional string t_string_html_encoded = 130 [ (validator.field).tags.string = { html_encoded: true } ];
+  optional string t_string_base64       = 131 [ (validator.field).tags.string = { base64: true } ];
+  optional string t_string_base64_url   = 132 [ (validator.field).tags.string = { base64_url: true } ];
+  optional string t_string_hexadecimal  = 133 [ (validator.field).tags.string = { hexadecimal: true } ];
+  optional string t_string_datetime     = 134 [ (validator.field).tags.string = { datetime: "2006-01-02 15:04:05" } ];
+  optional string t_string_timezone     = 135 [ (validator.field).tags.string = { timezone: true } ];
+  optional string t_string_uuid         = 136 [ (validator.field).tags.string = { uuid: true } ];
+  optional string t_string_uuid1        = 137 [ (validator.field).tags.string = { uuid1: true } ];
+  optional string t_string_uuid3        = 138 [ (validator.field).tags.string = { uuid3: true } ];
+  optional string t_string_uuid4        = 139 [ (validator.field).tags.string = { uuid4: true } ];
+  optional string t_string_uuid5        = 140 [ (validator.field).tags.string = { uuid5: true } ];
+}
+
+// ValidStringTagsOneOf1 for test option tag StringTags with oneof field.
+message ValidStringTagsOneOf1 {
+  oneof one_typ1 {
+    string t_string1 = 1;
+    string t_string2 = 2 [ (validator.field).tags.string = { } ];
+    string t_string3 = 3 [ (validator.field).tags = { } ];
+    string t_string4 = 4 [ (validator.field) = { } ];
+
+    string t_string_eq1  = 10 [ (validator.field).tags.string = { eq: "b"} ];
+    string t_string_ne1  = 11 [ (validator.field).tags.string = { ne: "b" } ];
+    string t_string_lt1  = 12 [ (validator.field).tags.string = { lt: "c"} ];
+    string t_string_gt1  = 13 [ (validator.field).tags.string = { gt: "c" } ];
+    string t_string_lte1 = 14 [ (validator.field).tags.string = { lte: "c" } ];
+    string t_string_gte1 = 15 [ (validator.field).tags.string = { gte: "c" } ];
+    string t_string_in1  = 16 [ (validator.field).tags.string = { in: ["a", "b", "c"] } ];
+    string t_string_not_in1 = 17 [ (validator.field).tags.string = { not_in: ["x", "y", "z"] } ];
+
+    string t_string_char_len_eq1 = 20 [ (validator.field).tags.string = { char_len_eq: 3 } ];
+    string t_string_char_len_ne1 = 21 [ (validator.field).tags.string = { char_len_ne: 3 } ];
+    string t_string_char_len_gt1 = 22 [ (validator.field).tags.string = { char_len_gt: 3 } ];
+    string t_string_char_len_lt1 = 23 [ (validator.field).tags.string = { char_len_lt: 3 } ];
+    string t_string_char_len_gte1 = 24 [ (validator.field).tags.string = { char_len_gte: 3 } ];
+    string t_string_char_len_lte1 = 25 [ (validator.field).tags.string = { char_len_lte: 3 } ];
+
+    string t_string_byte_len_eq1  = 30 [ (validator.field).tags.string = { byte_len_eq: 5 } ];
+    string t_string_byte_len_ne1  = 31 [ (validator.field).tags.string = { byte_len_ne: 5 } ];
+    string t_string_byte_len_gt1  = 32 [ (validator.field).tags.string = { byte_len_gt: 5 } ];
+    string t_string_byte_len_lt1  = 33 [ (validator.field).tags.string = { byte_len_lt: 5 } ];
+    string t_string_byte_len_gte1 = 34 [ (validator.field).tags.string = { byte_len_gte: 5 } ];
+    string t_string_byte_len_lte1 = 35 [ (validator.field).tags.string = { byte_len_lte: 5 } ];
+
+    string t_string_regex1 = 40 [ (validator.field).tags.string = { regex: "^[0-9]+.jar$" } ];
+
+    string t_string_prefix1           = 41 [ (validator.field).tags.string = { prefix: "prefix" } ];
+    string t_string_no_prefix1        = 42 [ (validator.field).tags.string = { no_prefix: "prefix" } ];
+    string t_string_suffix1           = 43 [ (validator.field).tags.string = { suffix: "suffix" } ];
+    string t_string_no_suffix1        = 44 [ (validator.field).tags.string = { no_suffix: "suffix" } ];
+    string t_string_contains1         = 45 [ (validator.field).tags.string = { contains: "abc" } ];
+    string t_string_no_contains1      = 46 [ (validator.field).tags.string = { not_contains: "abc" } ];
+    string t_string_contains_any1     = 47 [ (validator.field).tags.string = { contains_any: "xyz" } ];
+    string t_string_not_contains_any1 = 48 [ (validator.field).tags.string = { not_contains_any: "xyz" } ];
+
+    string t_string_utf8 = 81 [ (validator.field).tags.string = { utf8: true } ];
+
+    string t_string_ascii        = 71 [ (validator.field).tags.string = { ascii: true } ];
+    string t_string_print_ascii  = 72 [ (validator.field).tags.string = { print_ascii: true } ];
+    string t_string_boolean      = 73 [ (validator.field).tags.string = { boolean: true } ];
+    string t_string_lowercase    = 74 [ (validator.field).tags.string = { lowercase: true } ];
+    string t_string_uppercase    = 75 [ (validator.field).tags.string = { uppercase: true } ];
+    string t_string_alpha        = 76 [ (validator.field).tags.string = { alpha: true } ];
+    string t_string_number       = 77 [ (validator.field).tags.string = { number: true } ];
+    string t_string_alpha_number = 78 [ (validator.field).tags.string = { alpha_number: true } ];
+
+    string t_string_ip               = 101 [ (validator.field).tags.string = { ip: true } ];
+    string t_string_ipv4             = 102 [ (validator.field).tags.string = { ipv4: true } ];
+    string t_string_ipv6             = 103 [ (validator.field).tags.string = { ipv6: true } ];
+    string t_string_ip_addr          = 104 [ (validator.field).tags.string = { ip_addr: true } ];
+    string t_string_ip4_addr         = 105 [ (validator.field).tags.string = { ip4_addr: true } ];
+    string t_string_ip6_addr         = 106 [ (validator.field).tags.string = { ip6_addr: true } ];
+    string t_string_cidr             = 107 [ (validator.field).tags.string = { cidr: true } ];
+    string t_string_cidrv4           = 108 [ (validator.field).tags.string = { cidrv4: true } ];
+    string t_string_cidrv6           = 109 [ (validator.field).tags.string = { cidrv6: true } ];
+    string t_string_mac              = 110 [ (validator.field).tags.string = { mac: true } ];
+    string t_string_tcp_addr         = 111 [ (validator.field).tags.string = { tcp_addr: true } ];
+    string t_string_tcp4_addr        = 112 [ (validator.field).tags.string = { tcp4_addr: true } ];
+    string t_string_tcp6_addr        = 113 [ (validator.field).tags.string = { tcp6_addr: true } ];
+    string t_string_udp_addr         = 114 [ (validator.field).tags.string = { udp_addr: true } ];
+    string t_string_udp4_addr        = 115 [ (validator.field).tags.string = { udp4_addr: true } ];
+    string t_string_udp6_addr        = 116 [ (validator.field).tags.string = { udp6_addr: true } ];
+    string t_string_unix_addr        = 117 [ (validator.field).tags.string = { unix_addr: true } ];
+    string t_string_hostname         = 118 [ (validator.field).tags.string = { hostname: true } ];
+    string t_string_hostname_rfc1123 = 119 [ (validator.field).tags.string = { hostname_rfc1123: true } ];
+    string t_string_hostname_port    = 120 [ (validator.field).tags.string = { hostname_port: true } ];
+    string t_string_data_uri         = 121 [ (validator.field).tags.string = { data_uri: true } ];
+    string t_string_fqdn             = 122 [ (validator.field).tags.string = { fqdn: true } ];
+    string t_string_uri              = 123 [ (validator.field).tags.string = { uri: true } ];
+    string t_string_url              = 124 [ (validator.field).tags.string = { url: true } ];
+    string t_string_url_encoded      = 125 [ (validator.field).tags.string = { url_encoded: true } ];
+
+    string t_string_unix_cron    = 141 [ (validator.field).tags.string = { unix_cron: true } ];
+    string t_string_email        = 126 [ (validator.field).tags.string = { email: true } ];
+    string t_string_json         = 127 [ (validator.field).tags.string = { json: true } ];
+    string t_string_jwt          = 128 [ (validator.field).tags.string = { jwt: true } ];
+    string t_string_html         = 129 [ (validator.field).tags.string = { html: true } ];
+    string t_string_html_encoded = 130 [ (validator.field).tags.string = { html_encoded: true } ];
+    string t_string_base64       = 131 [ (validator.field).tags.string = { base64: true } ];
+    string t_string_base64_url   = 132 [ (validator.field).tags.string = { base64_url: true } ];
+    string t_string_hexadecimal  = 133 [ (validator.field).tags.string = { hexadecimal: true } ];
+    string t_string_datetime     = 134 [ (validator.field).tags.string = { datetime: "2006-01-02 15:04:05" } ];
+    string t_string_timezone     = 135 [ (validator.field).tags.string = { timezone: true } ];
+    string t_string_uuid         = 136 [ (validator.field).tags.string = { uuid: true } ];
+    string t_string_uuid1        = 137 [ (validator.field).tags.string = { uuid1: true } ];
+    string t_string_uuid3        = 138 [ (validator.field).tags.string = { uuid3: true } ];
+    string t_string_uuid4        = 139 [ (validator.field).tags.string = { uuid4: true } ];
+    string t_string_uuid5        = 140 [ (validator.field).tags.string = { uuid5: true } ];
+  }
+}
+
+// ValidOptionsMultiCond1 for test multi option in a field.
+message ValidOptionsMultiCond1 {
+  string t_basic_string1 = 1 [ (validator.field).tags.string = { prefix: "id-", byte_len_gt: 5, byte_len_lt: 7 } ];
+  optional string t_basic_string2 = 2 [ (validator.field).tags.string = { prefix: "id-", byte_len_gt: 5, byte_len_lt: 7  } ];
+  int64  t_basic_int64 = 3 [ (validator.field).tags.int = { gte: 1, lte: 10 } ];
+  optional int32 t_basic_int32 = 4 [ (validator.field).tags.int = { gte: 1, lte: 10 } ];
+
+  repeated string t_list_string = 10 [ (validator.field).tags.repeated = {
+    len_gte: 1, len_lte: 3,
+    item: { string: { prefix: "id-", byte_len_gt: 1, byte_len_lt: 5 } }
+  } ];
+  repeated int64 t_list_int64 = 11 [ (validator.field).tags.repeated = {
+    len_gte: 1, len_lte: 3, item: { int: { gte: 1, lte: 10 } }
+  } ];
+
+  map<string, string> t_map_string1 = 20 [ (validator.field).tags.map = {
+    len_gte: 1, len_lte: 3,
+    key: { string: { prefix: "id-", byte_len_gt: 5, byte_len_lt: 7  } },
+    value: { string: { prefix: "id-", byte_len_gt: 5, byte_len_lt: 7  } }
+  } ];
+  map<int64, int64> t_map_int64 = 21 [ (validator.field).tags.map = {
+    len_gte: 1, len_lte: 3,
+    key: { int: { gt: 5, lt: 10  } }
+    value: { int: { gt: 5, lt: 10 } }
+  } ];
+
+  oneof one_typ1 {
+    string oneof_string1 = 30 [ (validator.field).tags.string = { prefix: "id-", byte_len_gt: 5, byte_len_lt: 7  } ];
+    int64  oneof_int64 = 31 [ (validator.field).tags.int = { gte: 1, lte: 10 } ];
+  }
+
+  map<string, string> t_map_string2 = 22 [ (validator.field).tags.map = {
+    len_gte: 1, len_lte: 3,
+    key: { string: { in: ["a1", "a2", "a3"], not_in: ["a3", "a4", "a5"] } },
+    value: { string: { in: ["a1", "a2", "a3"], not_in: ["a3", "a4", "a5"]  } }
+  } ];
+}
+
+// message for check if.
+//
+message CheckIfOptions1 {
+  oneof oneof_type1 {
+    string oneof1_string1  = 1;
+  }
+
+  string t_basic_string = 10 [
+    (validator.field).check_if = { field: "oneof_type1", tags: { oneof: { not_null: true }}},
+    (validator.field).tags.string = { byte_len_eq: 3 }
+  ];
+  repeated string t_list_string = 11 [
+    (validator.field).check_if = { field: "oneof_type1", tags: { oneof: { not_null: true }}},
+    (validator.field).tags.repeated = { len_eq: 3 }
+  ];
+  map<string, string> t_map_string = 12 [
+    (validator.field).check_if = { field: "oneof_type1", tags: { oneof: { not_null: true }}},
+    (validator.field).tags.map = { len_eq: 3 }
+  ];
+
+  oneof oneof_type2 {
+    option (validator.oneof) = {
+      check_if: { field: "oneof_type1", tags: { oneof: { not_null: true }} },
+      tags: { oneof: { not_null: true} }
+    };
+
+    string oneof2_string = 13 [
+      (validator.field).check_if = { field: "oneof_type1", tags: { oneof: { not_null: true }} },
+      (validator.field).tags.string = { byte_len_eq: 3 }
+    ];
+  }
+}
+
+message CheckIfOptions2 {
+  oneof oneof_type1 {
+    string oneof1_string1  = 1;
+  }
+
+  string t_basic_string = 10 [
+    (validator.field).check_if = { field: "oneof1_string1", tags: { string: { eq: "check" } }},
+    (validator.field).tags.string = { byte_len_eq: 3 }
+  ];
+  repeated string t_list_string = 11 [
+    (validator.field).check_if = { field: "oneof1_string1", tags: { string: { eq: "check" } }},
+    (validator.field).tags.repeated = { len_eq: 3 }
+  ];
+  map<string, string> t_map_string = 12 [
+    (validator.field).check_if = { field: "oneof1_string1", tags: { string: { eq: "check" } }},
+    (validator.field).tags.map = { len_eq: 3 }
+  ];
+
+  oneof oneof_type2 {
+    option (validator.oneof) = {
+      check_if: { field: "oneof1_string1", tags: { string: { eq: "check" } } },
+      tags: { oneof: { not_null: true }  }
+    };
+
+    string oneof2_string = 13 [
+      (validator.field).check_if = { field: "oneof1_string1", tags: { string: { eq: "check" } } },
+      (validator.field).tags.string = { byte_len_eq: 3 }
+    ];
+  }
+}
+
+message CheckIfOptions3 {
+  string seed_string1 = 1;
+
+  string t_basic_string = 10 [
+    (validator.field).check_if = { field: "seed_string1", tags: { string: { eq: "check" } }},
+    (validator.field).tags.string = { byte_len_eq: 3 }
+  ];
+  repeated string t_list_string = 11 [
+    (validator.field).check_if = { field: "seed_string1", tags: { string: { eq: "check" } }},
+    (validator.field).tags.repeated = { len_eq: 3 }
+  ];
+  map<string, string> t_map_string = 12 [
+    (validator.field).check_if = { field: "seed_string1", tags: { string: { eq: "check" } }},
+    (validator.field).tags.map = { len_eq: 3 }
+  ];
+
+  oneof oneof_type2 {
+    option (validator.oneof) = {
+      check_if: { field: "seed_string1", tags: { string: { eq: "check" } } },
+      tags: { oneof: { not_null: true }  }
+    };
+
+    string oneof2_string = 13 [
+      (validator.field).check_if = { field: "seed_string1", tags: { string: { eq: "check" } } },
+      (validator.field).tags.string = { byte_len_eq: 3 }
+    ];
+  }
+}
+
+message CheckIfOptions4 {
+  oneof oneof_type1 {
+    string oneof1_string1  = 1;
+  }
+
+  string t_basic_string = 10 [
+    (validator.field).check_if = { field: "oneof1_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } }},
+    (validator.field).tags.string = { byte_len_eq: 3 }
+  ];
+  repeated string t_list_string = 11 [
+    (validator.field).check_if = { field: "oneof1_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } }},
+    (validator.field).tags.repeated = { len_eq: 3 }
+  ];
+  map<string, string> t_map_string = 12 [
+    (validator.field).check_if = { field: "oneof1_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5} }},
+    (validator.field).tags.map = { len_eq: 3 }
+  ];
+
+  oneof oneof_type2 {
+    option (validator.oneof) = {
+      check_if: { field: "oneof1_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } } },
+      tags: { oneof: { not_null: true }  }
+    };
+
+    string oneof2_string = 13 [
+      (validator.field).check_if = { field: "oneof1_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } } },
+      (validator.field).tags.string = { byte_len_eq: 3 }
+    ];
+  }
+}
+
+message CheckIfOptions5 {
+  string seed_string1 = 1;
+
+  string t_basic_string = 10 [
+    (validator.field).check_if = { field: "seed_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } }},
+    (validator.field).tags.string = { byte_len_eq: 3 }
+  ];
+  repeated string t_list_string = 11 [
+    (validator.field).check_if = { field: "seed_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } }},
+    (validator.field).tags.repeated = { len_eq: 3 }
+  ];
+  map<string, string> t_map_string = 12 [
+    (validator.field).check_if = { field: "seed_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } }},
+    (validator.field).tags.map = { len_eq: 3 }
+  ];
+
+  oneof oneof_type2 {
+    option (validator.oneof) = {
+      check_if: { field: "seed_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } } },
+      tags: { oneof: { not_null: true }  }
+    };
+
+    string oneof2_string = 13 [
+      (validator.field).check_if = { field: "seed_string1", tags: { string: { byte_len_gt: 3, byte_len_lt: 5 } } },
+      (validator.field).tags.string = { byte_len_eq: 3 }
+    ];
+  }
+}
+
+message CheckIfOptions6 {
+  map<string, string> seed_map_string = 1;
+
+  map<string, string> t_map_string1 = 10 [
+    (validator.field).check_if = { field: "seed_map_string", tags: { map: {
+      len_gt: 1,
+      key: { string: { in: ["a1", "a2", "a3"], not_in: ["a3", "a4", "a5"] } },
+      value: { string: { in: ["b1", "b2", "b3"], not_in: ["b3", "b4", "b5"]  } }
+    } } },
+    (validator.field).tags.map = {
+      key: { string: { in: ["c1", "c2", "c3"], not_in: ["c3", "c4", "c5"] } },
+      value: { string: { in: ["d1", "d2", "d3"], not_in: ["d3", "d4", "d5"]  } }
+    }
+  ];
+
+  map<string, string> t_map_string2 = 11 [
+    (validator.field).check_if = { field: "seed_map_string", tags: { map: {
+      len_gt: 1,
+      key: { string: { in: ["a1", "a2", "a3"], not_in: ["a3", "a4", "a5"] } },
+      value: { string: { in: ["b1", "b2", "b3"], not_in: ["b3", "b4", "b5"]  } }
+    } } },
+    (validator.field).tags.map = {
+      key: { string: { in: ["c1", "c2", "c3"], not_in: ["c3", "c4", "c5"] } },
+      value: { string: { in: ["d1", "d2", "d3"], not_in: ["d3", "d4", "d5"]  } }
+    }
+  ];
+}

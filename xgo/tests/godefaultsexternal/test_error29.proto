@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage29 {
+  repeated int32    array_int32    = 103 [ (defaults.field) = { array: ["10.11", "11", "12"]; } ];
+}

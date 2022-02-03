@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+enum Enum1 {
+  January  = 0;
+  February = 1;
+  March    = 2;
+  April    = 3;
+  May      = 4;
+  June     = 8;
+}
+
+message ErrorMessage22 {
+  Enum1    t_enum1    = 1 [ (defaults.field) = { basic: "5"; } ];
+}

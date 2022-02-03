@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message Config {
+  string ip = 1 [ (defaults.field) = { basic: "127.0.0.1" }];
+  int32  port = 2 [ (defaults.field) = { basic: "80" }];
+}
+
+message ErrorMessage15 {
+  repeated Config   array_config1  = 1 [ (defaults.field) = { array: [""]} ];
+}

@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+package govalidatorignore;
+
+option go_package = "tests/govalidatorignore";

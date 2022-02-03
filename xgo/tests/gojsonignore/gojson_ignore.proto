@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package gojsonignore;
+
+option go_package = "tests/gojsonignore";
+
+import "proto/json.proto";
+
+option (json.file) = {
+	ignore: false,
+//	name_style: TextName,
+//	hide_oneof_key: false,
+};
+
+message Args {
+	option (json.message) = {ignore: true};
+	string tt = 1;
+}
+
+// Flink Engine Service
+service S1 {
+	rpc Create(Args) returns (Args) {}
+}

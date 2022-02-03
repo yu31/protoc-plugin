@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/govalidatorexternal";
+
+import "proto/validator.proto";
+
+message InvalidMessageList {
+  repeated string t_list_string1 = 1 [ (validator.field).tags.repeated = { not_null: true }];
+}

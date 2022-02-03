@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage30 {
+   repeated bool  array_bool     = 113 [ (defaults.field) = { array: ["ddddd", "false", "true"]; } ];
+}

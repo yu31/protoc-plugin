@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+enum Enum1 {
+   January  = 0;
+   February = 1;
+   March    = 2;
+   April    = 3;
+   May      = 4;
+   June     = 8;
+}
+
+message ErrorMessage31 {
+   repeated Enum1    array_enum1    = 116 [ (defaults.field) = { array: ["9", "1", "2"]; } ];
+}

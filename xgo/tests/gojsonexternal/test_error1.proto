@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package gojsonexternal;
+
+option go_package = "tests/gojsonexternal";
+
+import "proto/json.proto";
+
+// error when generate code.
+message KeyDuplicate1 {
+  message Config {
+    optional string ip = 1   [ (json.field) = { json: "" } ];
+    optional int32  port = 2 [ (json.field) = { json: "" } ];
+  }
+
+  string t_string1 = 1  [ (json.field) = { json: "ip1" } ];
+  string t_string2 = 2  [ (json.field) = { json: "ip2" } ];
+}

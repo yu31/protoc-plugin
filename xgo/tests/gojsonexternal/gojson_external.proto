@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package gojsonexternal;
+
+option go_package = "github.com/yu31/protoc-plugin/xgo/tests/gojsonexternal;gojsonexternal";
+
+//import "google/protobuf/descriptor.proto";
+
+enum ExternalEnum1 {
+	Monday    = 0;
+	Tuesday   = 1;
+	Wednesday = 2;
+	Thursday  = 3;
+	Friday    = 4;
+	Saturday  = 5;
+	Sunday    = 6;
+}
+
+message ExternalMessage1 {
+	string ip1 = 1;
+	string ip2 = 2;
+	string ip3 = 3;
+}

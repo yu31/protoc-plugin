@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package gosqltest;
+
+option go_package = "tests/gosqltest";
+
+import "google/protobuf/descriptor.proto";
+// Use import "github.com/yu31/protoc-plugin/gox/proto/gosql.proto" in other project.
+import "proto/gosql.proto";
+
+//
+message User1 {
+  message Meta1 {
+    message Meta2 {
+      int64 sex = 1;
+    }
+    option (gosql.serialize) = { json: {} };
+    int64 age = 1;
+    Meta2 meta1 = 2;
+  }
+  option (gosql.serialize) = { json: {} };
+  string id = 1;
+  Meta1 meta1 = 2;
+}
+
+message User2 {
+  option (gosql.serialize) = {
+    protojson: {
+      marshal: { Indent: " "; UseEnumNumbers: true; EmitUnpopulated: true; };
+      unmarshal: { AllowPartial: true };
+    }
+  };
+  string id = 1;
+}
+
+message User3 {
+  option (gosql.serialize) = { proto: {} };
+  string id = 1;
+}
+
+message User4 {
+  option (gosql.serialize) = { gogoproto: {} };
+  string id = 1;
+}
+
+message User5 {
+  option (gosql.serialize) = { };
+  string id = 1;
+}
+
+message User6 {
+  string id = 1;
+}
+
+message User7 {
+  option no_standard_descriptor_accessor = true;
+  string id =1;
+}

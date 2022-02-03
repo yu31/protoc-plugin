@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+
+message ErrorMessage25 {
+  optional bool     t_bool     = 113 [ (defaults.field) = { basic: "xx2"; } ];
+}
