@@ -16,15 +16,15 @@ help:
 
 .PHONY: format
 format:
-	@[[ ${VERBOSE} = "yes" ]] && set -x; go fmt ./xgo/...;
+	@[[ ${VERBOSE} = "yes" ]] && set -x; go fmt ./xgo/...; go fmt ./cmd/...;
 
 .PHONY: vet
 vet:
-	@[[ ${VERBOSE} = "yes" ]] && set -x; go vet ./xgo/...;
+	@[[ ${VERBOSE} = "yes" ]] && set -x; go vet ./xgo/...; go vet ./cmd/...;
 
 .PHONY: lint
 lint:
-	@[[ ${VERBOSE} = "yes" ]] && set -x; staticcheck ./xgo/...;
+	@[[ ${VERBOSE} = "yes" ]] && set -x; staticcheck ./xgo/...; staticcheck ./cmd/...;
 
 .PHONY: check
 check: format vet lint

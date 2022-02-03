@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/yu31/protoc-plugin/xgo/internal/generator"
-	"github.com/yu31/protoc-plugin/xgo/internal/utils"
+	"github.com/yu31/protoc-plugin/cmd/internal/generator"
+	"github.com/yu31/protoc-plugin/cmd/internal/generator/utils"
 	"github.com/yu31/protoc-plugin/xgo/pb/pbgosql"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"

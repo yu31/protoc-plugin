@@ -1,29 +1,32 @@
-package godefaults
+package govalidator
 
 import (
-	"fmt"
-	"os"
-	"runtime"
-
-	"github.com/yu31/protoc-plugin/xgo/internal/generator"
-	"github.com/yu31/protoc-plugin/xgo/internal/utils"
+	"github.com/yu31/protoc-plugin/cmd/internal/generator"
+	"github.com/yu31/protoc-plugin/cmd/internal/generator/utils"
 	"google.golang.org/protobuf/compiler/protogen"
 )
 
 const version = "0.0.1"
 
+var (
+	validatorPackage = protogen.GoImportPath("github.com/yu31/protoc-plugin/xgo/pkg/protovalidator")
+	regexpPackage    = protogen.GoImportPath("regexp")
+	stringsPackage   = protogen.GoImportPath("strings")
+	utf8Package      = protogen.GoImportPath("unicode/utf8")
+	strconvPackage   = protogen.GoImportPath("strconv")
+)
+
 type plugin struct {
 	g    *protogen.GeneratedFile
 	file *protogen.File
 
-	// The valid message lists.
 	messages []*protogen.Message
 
 	// The message of currently being processed.
 	message *protogen.Message
 
 	// The fileds of currently being processed.
-	fields []*protogen.Field
+	filedInfos []*FieldInfo
 }
 
 func New() generator.Plugin {
@@ -32,7 +35,7 @@ func New() generator.Plugin {
 
 // Name identifies the plugin.
 func (p *plugin) Name() string {
-	return "defaults"
+	return "validator"
 }
 
 // Version identifies the plugin version.
@@ -59,24 +62,23 @@ func (p *plugin) Generate(g *protogen.GeneratedFile) {
 }
 
 func (p *plugin) generateMessage(msg *protogen.Message) {
-	defer func() {
-		if r := recover(); r != nil {
-			println(fmt.Sprintf(
-				"panic on -> file: %s, message: %s",
-				p.file.Desc.FullName(), msg.Desc.Name(),
-			))
-
-			println(fmt.Sprintf("recover: %v", r))
-			buf := make([]byte, 4096)
-			_ = runtime.Stack(buf, true)
-			println(string(buf))
-
-			os.Exit(1)
-		}
-	}()
-
 	p.message = msg
-	p.fields = utils.LoadFieldList(msg)
+
+	p.loadFieldList()
+
+	// TODO: check cycle message and skip.
 
 	p.generateCode()
 }
+
+//func (p *plugin) processMessageTags(msg *protogen.Message)  {
+//	for _, field := range msg.Fields {
+//		switch field.Desc.Kind() {
+//		case protoreflect.MessageKind:
+//			println(field.Message.GoIdent.GoName, field.Desc.TextName())
+//			if field.Message.GoIdent.GoName != p.message.GoIdent.GoName {
+//				p.processMessageTags(field.Message)
+//			}
+//		}
+//	}
+//}
