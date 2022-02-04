@@ -96,6 +96,11 @@ test-validator-error: compile
 .PHONY: test-error
 test-error: test-json-error test-defaults-error test-validator-error
 
+# publishing java jar to central repository
+.PHONY: java-release
+java-release:
+	@[[ ${VERBOSE} = "yes" ]] && set -x; cd xjava; mvn clean deploy -P release
+
 .DEFAULT_GOAL = help
 
 # Target name % means that it is a rule that matches anything, @: is a recipe;
