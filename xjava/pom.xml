@@ -6,14 +6,14 @@
 
     <groupId>io.github.yu31</groupId>
     <artifactId>protoc-plugin</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <url>https://github.com/yu31/protoc-plugin</url>
     <name>protoc-plugin</name>
     <description>A protobuf plugins in collection for implements utils includes "validator", "defaults" and "json"</description>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <protobuf.version>3.19.3</protobuf.version>
     </properties>
 
