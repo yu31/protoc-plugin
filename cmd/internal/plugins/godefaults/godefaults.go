@@ -10,7 +10,7 @@ import (
 	"google.golang.org/protobuf/compiler/protogen"
 )
 
-const version = "0.0.1"
+const version = "0.0.2"
 
 type plugin struct {
 	g    *protogen.GeneratedFile

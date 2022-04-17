@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package godefaultstest;
+
+option go_package = "tests/godefaultstest";
+
+import "proto/defaults.proto";
+import "tests/godefaultsexternal/godefaults_external.proto";
+
+// MessageExternal1 for test include a external proto file.
+message MessageExternal1 {
+  godefaultsexternal.ExternalMessage1.EmbedEnum1 status = 1 [ (defaults.field).basic = "1" ];
+}
+

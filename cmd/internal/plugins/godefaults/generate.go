@@ -221,12 +221,15 @@ func (p *plugin) setBasic(field *protogen.Field) {
 	}
 
 	p.g.P("if ", emptyCond, " {")
-	if isPointer {
+	switch {
+	case isPointer:
 		p.g.P("x := ", goType, "(", valueSet, ")")
 		p.g.P(itemName, " = &x")
-	} else if field.Desc.Kind() == protoreflect.MessageKind {
+	case field.Desc.Kind() == protoreflect.MessageKind:
 		p.g.P(itemName, " = new(", p.g.QualifiedGoIdent(field.Message.GoIdent), ")")
-	} else {
+	case field.Desc.Kind() == protoreflect.EnumKind:
+		p.g.P(fmt.Sprintf("%s = %s(%s)", itemName, goType, valueSet))
+	default:
 		p.g.P(itemName, " = ", valueSet)
 	}
 	p.g.P("}")
