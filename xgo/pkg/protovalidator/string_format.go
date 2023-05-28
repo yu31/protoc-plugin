@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/yu31/gcron/pkg/expr"
+	"github.com/yu31/cron-go/pkg/expr"
 )
 
 func StringIsUnixCron(s string) bool {
